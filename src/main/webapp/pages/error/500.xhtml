@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head> </h:head>
+<h:body>
+
+	<!--  This doesn't work, why? template is found, but Ui:define content is not inserted. why?
+
+	<f:loadBundle basename="messages" var="msgs" />
+
+	<ui:composition template="#{msgs['templates_error']}">
+			<ui:define name="nav_list">
+			<ui:include src="../../templates/bootstrap/nav_top_error.xhtml" />
+		</ui:define>
+		
+		-->
+
+	<ui:composition template="../../templates/errortemplate.xhtml">
+
+		<ui:define name="content">
+			<div style="margin-top: 10px">
+				 <p style="word-wrap: break-word;
+width: 52em; color:red"> #{error.message} </p> 
+
+			
+					
+					<p:inputTextarea style="overflow:scroll; height:300px;"  readonly="true" autoResize="false" value="#{error.stackTrace}"/>
+					
+			</div>
+		</ui:define>
+		
+	</ui:composition>
+</h:body>
+</html>

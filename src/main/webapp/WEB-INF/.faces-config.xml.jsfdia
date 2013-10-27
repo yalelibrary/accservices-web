@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#pages#edit.xhtml" PATH="/pages/edit.xhtml"
+  SHAPE="32,161,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#edit.xhtml:0" NAME="item"
+   PATH="/pages/edit.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="ok::#pages#history_min.xhtml" NAME="output"
+    PATH="/pages/history_min.xhtml"
+    TARGET="rules:#pages#history_min.xhtml" TITLE="ok" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#search.xhtml"
+  PATH="/pages/search.xhtml" SHAPE="32,353,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#search.xhtml:0" NAME="item"
+   PATH="/pages/search.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="ok::#pages#results.xhtml" NAME="output"
+    PATH="/pages/results.xhtml" TARGET="rules:#pages#results.xhtml"
+    TITLE="ok" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="nullfile::#pages#error#500.xhtml"
+    NAME="output1" PATH="/pages/error/500.xhtml"
+    TARGET="rules:#pages#error#500.xhtml" TITLE="nullfile" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#results.xhtml"
+  PATH="/pages/results.xhtml" SHAPE="272,369,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#settings.xhtml"
+  PATH="/pages/settings.xhtml" SHAPE="32,609,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#settings.xhtml:0" NAME="item"
+   PATH="/pages/settings.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="ok::#pages#saved.xhtml" NAME="output"
+    PATH="/pages/saved.xhtml" TARGET="rules:#pages#saved.xhtml"
+    TITLE="ok" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#saved.xhtml" PATH="/pages/saved.xhtml"
+  SHAPE="240,625,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#search_min.xhtml"
+  PATH="/pages/search_min.xhtml" SHAPE="32,497,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#search_min.xhtml:0" NAME="item"
+   PATH="/pages/search_min.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="ok::#pages#results.xhtml" NAME="output"
+    PATH="/pages/results.xhtml" TARGET="rules:#pages#results.xhtml"
+    TITLE="ok" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="nullfile::#pages#error#500.xhtml"
+    NAME="output1" PATH="/pages/error/500.xhtml"
+    TARGET="rules:#pages#error#500.xhtml" TITLE="nullfile" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#advanced_search.xhtml"
+  PATH="/pages/advanced_search.xhtml" SHAPE="32,753,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#advanced_search.xhtml:0" NAME="item"
+   PATH="/pages/advanced_search.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="ok::#pages#files_search_results.xhtml"
+    NAME="output" PATH="/pages/files_search_results.xhtml"
+    TARGET="rules:#pages#files_search_results.xhtml" TITLE="ok" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#files_search_results.xhtml"
+  PATH="/pages/files_search_results.xhtml" SHAPE="240,769,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#history_min.xhtml"
+  PATH="/pages/history_min.xhtml" SHAPE="240,145,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#error#500.xhtml"
+  PATH="/pages/error/500.xhtml" SHAPE="256,257,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#edit_shelving.xhtml"
+  PATH="/pages/edit_shelving.xhtml" SHAPE="32,241,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#edit_shelving.xhtml:0" NAME="item"
+   PATH="/pages/edit_shelving.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="ok::#pages#shelving_history.xhtml"
+    NAME="output" PATH="/pages/shelving_history.xhtml"
+    TARGET="rules:#pages#shelving_history.xhtml" TITLE="ok" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#shelving_history.xhtml"
+  PATH="/pages/shelving_history.xhtml" SHAPE="240,881,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#shelving.xhtml"
+  PATH="/pages/shelving.xhtml" SHAPE="32,865,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#shelving.xhtml:0" NAME="item"
+   PATH="/pages/shelving.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="ok::#pages#shelving_history.xhtml"
+    NAME="output" PATH="/pages/shelving_history.xhtml"
+    TARGET="rules:#pages#shelving_history.xhtml" TITLE="ok" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+</PROCESS>

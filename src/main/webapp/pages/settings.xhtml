@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="../templates/formtemplate.xhtml">
+	<ui:define name="nav_list">
+		<ui:include src="../templates/bootstrap/nav_top.xhtml" />
+	</ui:define>
+	<ui:define name="content">
+
+		<h3>Settings</h3>
+
+
+		<p:tabView>
+
+			<p:tab title="Settings">
+				<h:form id="SettingsForm" enctype="multipart/form-data"
+					styleClass="form-horizontal"
+					style="margin:0 auto; background-color:#fff;
+					border: 1px solid #bbb; border-radius: 0.4em; overflow:hidden;">
+
+					<div class="pull-right">
+						<span class="help-block"> </span>
+					</div>
+					<br />
+					<br />
+			
+			&nbsp; Enter application wide settings and messages here.
+			
+			<br />
+					<div style="padding: 2em;">
+						<ui:repeat var="m" value="#{messagesView.messagesList}">
+							<div class="control-group" id="options_div">
+								<label class="control-label" for="oversize"
+									style="width: 300px; text-align: left">#{m.NAME} </label>
+								<div class="controls">
+									&nbsp; &nbsp;
+									<p:inputText value="#{m.VALUE}" size="800" />
+									&nbsp; &nbsp; Purpose :
+									<p:inputTextarea value="#{m.TOOLTIP}" size="1600" />
+								</div>
+							</div>
+							<br />
+						</ui:repeat>
+						
+						<div class="control-group" id="button_div">
+							<div class="controls">
+								<p:commandButton id="submit_link" value="submit"
+									style="background-color:#fff" onerror="throwErr();"
+									action="#{messagesView.updateAll}" ajax="false" />
+							</div>
+						</div>
+
+					</div>
+
+				</h:form>
+			</p:tab>
+
+			<p:tab title="log">
+
+				<p:dataTable id="logDatatable" value="#{messagesView.logList}"
+					var="c" paginator="true" rows="100"
+					tableStyle="width:80%; margin:0 auto;" paginatorPosition="bottom"
+					editable="false">
+					<p:column width="5%">
+						<f:facet name="header">
+							<h:outputText value="Netid" />
+						</f:facet>
+						<h:outputText value="#{c.net_id}" />
+					</p:column>
+					<p:column width="5%">
+						<f:facet name="header">
+							<h:outputText value="Timestamp" />
+						</f:facet>
+						<h:outputText value="#{c.timestamp}" />
+					</p:column>
+					<p:column width="5%">
+						<f:facet name="header">
+							<h:outputText value="Operation" />
+						</f:facet>
+						<h:outputText value="#{c.operation}" />
+					</p:column>
+
+
+					<p:column width="80%">
+						<f:facet name="header">
+							<h:outputText value="File" />
+						</f:facet>
+						<h:outputText value="#{c.input_file}" />
+					</p:column>
+
+
+					<p:column width="70" rendered="false">
+						<f:facet name="header">
+							<h:outputText value="Stacktrace" />
+						</f:facet>
+					</p:column>
+
+
+				</p:dataTable>
+
+
+
+			</p:tab>
+
+
+		</p:tabView>
+
+	</ui:define>
+</ui:composition>
+</html>

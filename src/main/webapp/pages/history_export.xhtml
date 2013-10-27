@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="../templates/formtemplate.xhtml">
+	<ui:define name="nav_list">
+		<ui:include src="../templates/bootstrap/nav_top.xhtml" />
+	</ui:define>
+	<ui:define name="content">
+
+		<h:form id="HistoryExcelForm" styleClass="form-horizontal">
+
+			<h2>Export</h2>
+
+			<br />
+			<br />
+			<h:commandLink value= "Download File (Microsoft Excel Format)">
+				<p:dataExporter type="xls" target="history_for_excel"
+					fileName="shelfscan_history" />
+			</h:commandLink>
+		
+		<br/> <br/> <br/>
+		
+		<h4> Export Options </h4><br />
+
+			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="3">
+
+				<h:outputText value="Exclude Columns 'Notes' and 'Mislabelled' ?" />
+				<p:selectBooleanCheckbox value="#{excelHistoryView.nonColumns}">
+					<p:ajax listener="#{excelHistoryView.toggle}" />
+				</p:selectBooleanCheckbox>
+
+			</h:panelGrid>
+
+
+			<!--  for Excel report printing -->
+
+			<p:dataTable id="history_for_excel"
+				value="#{excelHistoryView.historyAsList}" var="c" paginator="true"
+				rows="7" paginatorPosition="bottom" rendered="false"
+				postProcessor="#{excelProcessor.postProcessXLS}">
+				<p:column width="400" sortBy="#{c.SCANDATE}">
+					<f:facet name="header">
+						<h:outputText value="ShelfScan DateTime" />
+					</f:facet>
+					<h:outputText value="#{c.SCANDATE}" style="#{msgs.small_font}" />
+				</p:column>
+				<p:column width="300" sortBy="#{c.RUNDATE}">
+					<f:facet name="header">
+						<h:outputText value="ShelfScan Run DateTime" />
+					</f:facet>
+					<h:outputText value="#{c.RUNDATE}" style="#{msgs.small_font}" />
+				</p:column>
+				<p:column width="40">
+					<f:facet name="header">
+						<h:outputText value="NetId" />
+					</f:facet>
+					<h:outputText value="#{c.NETID}" />
+				</p:column>
+				<p:column width="40">
+					<f:facet name="header">
+						<h:outputText value="Time" />
+					</f:facet>
+					<h:outputText value="#{c.TIMESPENT}" />
+				</p:column>
+				<p:column width="400">
+					<f:facet name="header">
+						<h:outputText value="First Call No." />
+					</f:facet>
+					<h:outputText value="#{c.FIRSTCALLNUMBER}" />
+				</p:column>
+				<p:column width="400">
+					<f:facet name="header">
+						<h:outputText value="Last Call No." />
+					</f:facet>
+					<h:outputText value="#{c.LASTCALLNUMBER}" />
+				</p:column>
+				<p:column width="55">
+					<f:facet name="header">
+						<h:outputText value="Location" />
+					</f:facet>
+					<h:outputText value="#{c.SCANLOCATION}" />
+				</p:column>
+				<p:column width="50">
+					<f:facet name="header">
+						<h:outputText value="# Scan" escape="false" />
+					</f:facet>
+					<h:outputText value="#{c.NUMBERSCANNED}" />
+				</p:column>
+				<p:column width="50">
+					<f:facet name="header">
+						<h:outputText value="Missing" escape="false" />
+					</f:facet>
+					<h:outputText value="#{c.NULLBARCODE}" />
+				</p:column>
+				<p:column width="55">
+					<f:facet name="header">
+						<h:outputText value="Oversize" />
+					</f:facet>
+					<h:outputText value="#{c.OVERSIZE}" />
+				</p:column>
+				<p:column width="55">
+					<f:facet name="header">
+						<h:outputText value="Accuracy" />
+					</f:facet>
+					<h:outputText value="#{c.ACCURACY}" />
+				</p:column>
+				<p:column width="50">
+					<f:facet name="header">
+						<h:outputText value="Supress" />
+					</f:facet>
+					<h:outputText value="#{c.SUPPRESS}" />
+				</p:column>
+				<p:column width="50">
+					<f:facet name="header">
+						<h:outputText value="Status" />
+					</f:facet>
+					<h:outputText value="#{c.STATUS}" />
+				</p:column>
+				<p:column width="50">
+					<f:facet name="header">
+						<h:outputText value="Loc. E." />
+					</f:facet>
+					<h:outputText value="#{c.LOCATIONERROR}" />
+				</p:column>
+				<p:column width="50" exportable="#{not excelHistoryView.nonColumns}">
+					<f:facet name="header">
+						<h:outputText value="Notes" />
+					</f:facet>
+					<h:outputText value="#{c.NOTES}" />
+				</p:column>
+				<p:column width="50" exportable="#{not excelHistoryView.nonColumns}">
+					<f:facet name="header">
+						<h:outputText value="Mislabelled." />
+					</f:facet>
+					<h:outputText value="#{c.MISLABELLED}" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

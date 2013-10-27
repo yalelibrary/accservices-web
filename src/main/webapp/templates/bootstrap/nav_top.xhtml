@@ -1,0 +1,101 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+<!--  TODO: has to after html -->
+<f:loadBundle basename="messages" var="msgs" />
+<ui:composition>
+
+	<style type="text/css">
+.header-bottom {
+	background-color: #3c78b5;
+	border-top: 1px solid #114070;
+	clear: both;
+	height: auto;
+	min-height: 24px;
+	overflow: hidden;
+	display: inline;
+}
+
+.ui-buttonset .ui-button {
+	background-color: #eee;
+	color: rgb(25, 61, 138);
+}
+
+.ui-buttonset .ui-corner-right.ui-state-default {
+	-moz-border-radius-topright: 0px;
+	-webkit-border-top-right-radius: 0px;
+	-webkit-border-bottom-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+
+.ui-buttonset .ui-corner-left.ui-state-default {
+	-moz-border-radius-topleft: 0px;
+	-webkit-border-top-left-radius: 0px;
+	border-top-left-radius: 0px;
+	-moz-border-radius-bottomleft: 0px;
+	-webkit-border-bottom-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
+</style>
+	<h:form>
+		<div class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<a class="brand" href="#{msgs['search_url']}"> <i
+						class="icon-leaf icon-white"> </i> <h:outputText
+							value="#{messagesView.hashMap.get('app.title')}" />
+					</a>
+
+					<div class="nav-collapse collapse">
+						<ul class="nav">
+							<li><h:link value="Report" rendered="#{sessionScope['HISTORYID'] != null}"/> </li>
+							<li><a href="history_min.xhtml"> History </a></li>
+							<li> </li>
+							
+							<li><a href="shelving.xhtml"> Shelving </a></li>
+							<li><a href="shelving_history.xhtml"> Shelving History </a></li>
+							<li> </li>
+							
+							<li><a href="advanced_search.xhtml"> Search </a></li>
+							<li><a href="files.xhtml"> Files </a></li>
+						</ul>
+						
+						<p:splitButton
+							value="Application"
+							style="z-index:1000000;float:right; ">
+							<p:menuitem  value="  " />
+							<p:separator />
+							<p:menuitem value="Shelving" 
+								url="shelving.xhtml" />
+							<p:separator />
+							<p:menuitem value="ShelfScan" 
+								url="search.xhtml" />
+							<p:separator />
+						</p:splitButton>
+
+						<p:splitButton  icon="ui-icon-person"
+							value="#{sessionScope['netid']}"
+							style="z-index:1000000;float:right; ">
+							<p:menuitem id="title" value="  " />
+							<p:separator />
+							<p:menuitem  value="User Admin" 
+								url="admin.xhtml" />
+							<p:menuitem value="Locations" 
+								url="locations.xhtml" />
+							<p:separator />
+							<p:menuitem value="Settings" 
+								url="settings.xhtml" />
+							<p:separator />
+							<p:menuitem value="Logout" icon="ui-icon-power"
+								url="logout.xhtml" />
+						</p:splitButton>					
+					</div>
+				</div>
+			</div>
+		</div>
+	</h:form>
+</ui:composition>
+</html>

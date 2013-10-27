@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<h:outputStylesheet library="css" name="bootstrap.css" />
+	<h:outputStylesheet library="css" name="bootstrap-responsive.css" />
+	<!--   <h:outputStylesheet library="css" name="docs.css"/> -->
+	<!--  o/wise have to use docs.css.xhtml?ln=img  = how to resolve this problem -->
+
+	<link rel="stylesheet" type="text/css"
+		href="#{msgs['css_docs_ref']}" />
+	<h:outputStylesheet library="css" name="table.css" />
+	<title>ShelfScan</title>
+	<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE" />
+	
+	<f:facet name="first">
+        <ui:insert name="meta" />
+    </f:facet>
+</h:head>
+
+<h:body data-spy="scroll" data-target=".subnav" data-offset="50"
+	style="background-color:#eee">
+
+	<ui:insert name="nav_list">
+		<ui:include src="/templates/bootstrap/nav_top_scan.xhtml" />
+	</ui:insert>
+
+	<div class="container">
+		<div class="content">
+			<ui:insert name="content" />
+		</div>
+	</div>
+
+	<div class="footer">
+		<!--   <p class="pull-right"><a href="#">Back to top</a></p> -->
+		<p>			
+			 <a href="search.xhtml"> New Report </a> | <a href="shelving.xhtml"> New Shelving Report </a>  | <a href="logout.xhtml"> Logout </a>
+		</p>
+	</div>
+
+	<ui:debug />
+</h:body>
+</html>

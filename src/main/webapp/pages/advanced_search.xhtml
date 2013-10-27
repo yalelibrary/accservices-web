@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+<ui:composition template="../templates/formtemplate_scan.xhtml">
+
+	<ui:define name="content">
+				<h:outputStylesheet library="css" name="style.css" />
+			
+				<h2>Search</h2>
+			
+				<h:form id="SearchViewForm" enctype="multipart/form-data"  styleClass="form-horizontal"
+					style="margin:0 auto; background-color:#fff;
+					border: 1px solid #bbb; border-radius: 0.4em; overflow:hidden;">
+					
+					<br/> 
+					
+					<div style="padding:2em;">
+						
+					Enter barcode to search file and corresponding report(s).
+					
+					<br/> <br/>
+						
+						<div class="control-group" id="message_div">
+							<label class="control-label" for="scandate"> Barcode </label>
+							<div class="controls">
+								<h:inputText value="#{historySearchView.barcodeSearchTerm}"/>
+							</div>
+						</div>
+
+						<!-- 						
+						<div class="control-group" id="date_div">
+							<label class="control-label" for="scandate">Scan Date (N/A) </label>
+							<div class="controls">
+								<p:calendar id="cal_start" effect="fadeIn"
+									value="#{historySearchView.searchStartDate}" readonlyInput="true"
+									required="true" requiredMessage=" Date required."
+									styleClass="inputBox" mode="popup" popupIconOnly="true" />
+								<h:graphicImage library="img" name="calendarIcon.png" />
+								<h:message for="cal_start" style="color:red" />
+								
+								&nbsp; &nbsp;
+								<p:calendar id="cal_end" effect="fadeIn"
+									value="#{historySearchView.searchEndDate}" readonlyInput="true"
+									required="true" requiredMessage=" Date required."
+									styleClass="inputBox" mode="popup" popupIconOnly="true" />
+								<h:graphicImage library="img" name="calendarIcon.png" />
+								<h:message for="cal_end" style="color:red" />
+							</div>
+						</div>
+					
+						
+						<div class="control-group" id="date_div">
+							<label class="control-label" for="scandate">Run Date  (N/A)</label>
+							<div class="controls">
+								<p:calendar id="cal_run_start" effect="fadeIn"
+									value="#{historySearchView.searchRunStartDate}" readonlyInput="true"
+									required="true" requiredMessage=" Date required."
+									styleClass="inputBox" mode="popup" popupIconOnly="true"
+									style="width:20px" />
+								<h:graphicImage library="img" name="calendarIcon.png" />
+								<h:message for="cal_start" style="color:red" />
+								
+								&nbsp; &nbsp;
+								
+								<p:calendar id="cal_run_end" effect="fadeIn"
+									value="#{historySearchView.searchRunEndDate}" readonlyInput="true"
+									required="true" requiredMessage=" Date required."
+									styleClass="inputBox" mode="popup" popupIconOnly="true" />
+								<h:graphicImage library="img" name="calendarIcon.png" />
+								<h:message for="cal_end" style="color:red" />
+							</div>
+						</div>
+						-->	
+					
+						<!--  submit link, causes ajax -->
+						<div class="control-group" id="button_div">
+							<div class="controls">
+								<p:commandButton id="submit_link" value="search"
+									style="background-color:#fff"
+									action="#{historySearchView.process}" />
+							</div>
+						</div>
+					</div>
+				</h:form>
+	</ui:define>
+</ui:composition>
+</html>

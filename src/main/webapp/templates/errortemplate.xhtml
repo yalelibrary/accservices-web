@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<h:outputStylesheet library="css" name="bootstrap_error.css" />
+
+<style>	
+body {
+/*background: url(/powershelf/resources/img/robot.png) 50% 50% no-repeat; */
+margin: 0px auto;
+max-width: 600px;
+min-height: 180px;
+/*padding: 30px 0 15px;*/
+padding-right:200px;
+}
+
+.container
+{
+margin-top:40%;
+}
+</style>
+
+	
+</h:head>
+<h:body data-spy="scroll">
+	
+	<div class="container">
+		<div class="content">
+			<ui:insert name="content" />
+		</div>
+	</div>
+	<ui:debug />
+</h:body>
+</html>
