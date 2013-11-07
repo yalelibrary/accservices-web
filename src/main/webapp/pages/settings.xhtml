@@ -47,7 +47,7 @@
 							</div>
 							<br />
 						</ui:repeat>
-						
+
 						<div class="control-group" id="button_div">
 							<div class="controls">
 								<p:commandButton id="submit_link" value="submit"
@@ -60,55 +60,6 @@
 
 				</h:form>
 			</p:tab>
-
-			<p:tab title="log">
-
-				<p:dataTable id="logDatatable" value="#{messagesView.logList}"
-					var="c" paginator="true" rows="100"
-					tableStyle="width:80%; margin:0 auto;" paginatorPosition="bottom"
-					editable="false">
-					<p:column width="5%">
-						<f:facet name="header">
-							<h:outputText value="Netid" />
-						</f:facet>
-						<h:outputText value="#{c.net_id}" />
-					</p:column>
-					<p:column width="5%">
-						<f:facet name="header">
-							<h:outputText value="Timestamp" />
-						</f:facet>
-						<h:outputText value="#{c.timestamp}" />
-					</p:column>
-					<p:column width="5%">
-						<f:facet name="header">
-							<h:outputText value="Operation" />
-						</f:facet>
-						<h:outputText value="#{c.operation}" />
-					</p:column>
-
-
-					<p:column width="80%">
-						<f:facet name="header">
-							<h:outputText value="File" />
-						</f:facet>
-						<h:outputText value="#{c.input_file}" />
-					</p:column>
-
-
-					<p:column width="70" rendered="false">
-						<f:facet name="header">
-							<h:outputText value="Stacktrace" />
-						</f:facet>
-					</p:column>
-
-
-				</p:dataTable>
-
-
-
-			</p:tab>
-
-
 		</p:tabView>
 
 	</ui:define>

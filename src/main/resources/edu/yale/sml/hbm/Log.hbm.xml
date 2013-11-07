@@ -13,5 +13,7 @@
           <property name="input_file" column="input_file"/>
           <property name="application_env" column="application_env"/>
           <property name="user_env" column="user_env"/>
+          <property name="stacktrace" column="stacktrace"/>
+          
     </class>
 </hibernate-mapping>
