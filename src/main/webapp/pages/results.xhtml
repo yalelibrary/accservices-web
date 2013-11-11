@@ -312,6 +312,7 @@
 									rendered="#{d.text ne 0 and d.text ne 5555}">
 								</h:outputText>
 							</p:column>
+							<!-- 
 							<p:column rendered="false">
 								<f:facet name="header">
 									<h:outputText value="PBP" style="#{msgs.column_header_font}" />
@@ -319,14 +320,14 @@
 								<h:outputText style="color:#000000; "
 									value="#{d.physicalPrior.ITEM_BARCODE}" />
 							</p:column>
-							<!--  prior sorted ignored -->
 							<p:column rendered="false">
 								<f:facet name="header">
-									<h:outputText value="Prior Call Number"
+									<h:outputText value="Prior Sorted Call Number"
 										style="#{msgs.column_header_font}" />
 								</f:facet>
 								<h:outputText value="#{d.prior}" />
 							</p:column>
+							-->
 							<p:column rendered="true">
 								<f:facet name="header">
 									<h:outputText value="Preceding"
