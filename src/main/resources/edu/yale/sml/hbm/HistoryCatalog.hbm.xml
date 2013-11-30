@@ -29,7 +29,6 @@
 		<property name="NOTES" column="NOTES" />
 		<property name="FILENAME" column="FILENAME" />
 		<property name="SEARCHVIEW" column="SEARCHVIEW" />
-		<property name="TRANSCATIONMESSAGES" column="TRANSCATIONMESSAGES" />
 		<property name="MISLABELLED" column="MISLABELLED" />
 		
 		<property name="NORM_CALL_FIRST" column="NORM_CALL_FIRST" />
