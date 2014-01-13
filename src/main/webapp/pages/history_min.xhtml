@@ -37,9 +37,7 @@
 			<br />
 			<div style="float: right;">
 				<p:splitButton icon="ui-icon-gear">
-					<p:menuitem value="Delete All" onclick="dlg2.show();"
-						icon="ui-icon-trash" />
-					<p:separator />
+
 					<p:menuitem value="Export Options" url="history_export.xhtml"
 						icon="ui-icon-note" />
 				</p:splitButton>
@@ -51,19 +49,6 @@
 					value="#{messagesView.hashMap.get('form.history.instructions')}" />
 			</div>
 			<br />
-
-			<p:dialog id="modalDialog" header="Delete History" widgetVar="dlg2"
-				modal="true" height="70" width="250" resizable="false">
-				<div class="control-group">
-					<span class="help-block"> <p:messages id="messagesAdmin"
-							showDetail="true" autoUpdate="true" closable="true" />
-					</span>
-				</div>
-				<div>Delete all history?</div>
-				<p:commandButton update="history" value="Yes" styleClass="btn"
-					actionListener="#{historyView.removeAllPaginated}">
-				</p:commandButton>
-			</p:dialog>
 
 
 			<p:contextMenu for="history">
