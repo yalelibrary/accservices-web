@@ -252,18 +252,7 @@
 								<h:outputText value="#{d.CHRON}" />
 							</p:column>
 
-							<p:column rendered="false">
-								<f:facet name="header">
-									<h:outputText value="Status E."
-										style="#{msgs.column_header_font}" />
-								</f:facet>
-								<!--  display error if status is not charged and item status date is less than the scan date -->
-								<!--  bug: date/string comparison -->
 
-								<h:graphicImage library="img" name="warn.gif"
-									rendered="#{(not empty d.ITEM_STATUS_DESC) and 
-										(d.ITEM_STATUS_DESC ne 'Not Charged') and (d.ITEM_STATUS_DATE lt searchView.scanDate)}" />
-							</p:column>
 							<p:column rendered="true">
 								<f:facet name="header">
 									<h:outputText value="LocErr" style="#{msgs.column_header_font}" />
@@ -286,7 +275,7 @@
 								</f:facet>
 								<h:graphicImage library="img" name="warn.gif"
 									rendered="#{(not empty d.ITEM_STATUS_DESC) and 
-										(d.ITEM_STATUS_DESC ne 'Not Charged') and (d.ITEM_STATUS_DESC ne 'Discharged') and (d.ITEM_STATUS_DATE lt searchView.scanDate)}" />
+										(d.ITEM_STATUS_DESC ne 'Not Charged') and (d.ITEM_STATUS_DESC ne 'Discharged') and (d.ITEM_STATUS_DESC ne 'Circulation Review') and (d.ITEM_STATUS_DESC ne 'Discharged') and (d.ITEM_STATUS_DATE lt searchView.scanDate)}" />
 								<h:outputText value="#{d.ITEM_STATUS_DESC}" />
 							</p:column>
 
@@ -546,7 +535,7 @@
 								</f:facet>
 								<h:graphicImage library="img" name="warn.gif"
 									rendered="#{(not empty p.ITEM_STATUS_DESC) and 
-											(p.ITEM_STATUS_DESC ne 'Not Charged') and (p.ITEM_STATUS_DATE lt searchView.scanDate)}" />
+											(p.ITEM_STATUS_DESC ne 'Not Charged') and (p.ITEM_STATUS_DESC ne 'Discharged') and (p.ITEM_STATUS_DESC ne 'Circulation Review') and (p.ITEM_STATUS_DATE lt searchView.scanDate)}" />
 								<h:outputText value="#{p.ITEM_STATUS_DESC}" />
 							</p:column>
 
