@@ -1,44 +1,47 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:pe="http://primefaces.org/ui/extensions"
-	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
 
 
 <ui:composition template="../templates/formtemplate.xhtml">
-	<ui:define name="nav_list">
-		<ui:include src="../templates/bootstrap/nav_top.xhtml" />
-	</ui:define>
-	<ui:define name="content">
-		<f:metadata>
-  		</f:metadata>
-		<h3> Edit Shelving History Item </h3>
-		<h:form id="HistoryNotes" enctype="multipart/form-data"
-			styleClass="form-horizontal" style="margin:0 auto; background-color:#fff;
+    <ui:define name="nav_list">
+        <ui:include src="../templates/bootstrap/nav_top.xhtml"/>
+    </ui:define>
+    <ui:define name="content">
+        <f:metadata>
+        </f:metadata>
+
+        <h3> Edit Shelving History Item </h3>
+        <h:form id="HistoryNotes" enctype="multipart/form-data"
+                styleClass="form-horizontal" style="margin:0 auto; background-color:#fff;
 			border: 1px solid #bbb; border-radius: 0.4em; overflow:hidden;">
-				<br />
-			
-				<div class="control-group" id="options_div">
-					<label class="control-label" for="oversize">Notes </label>
-					<div class="controls">
-						<p:inputTextarea id="notes"
-							value="#{editHistoryShelvingView.historyCatalog.notes}" rows="10" cols="40" autoResize="false"	/>
-						<h:message for="notes" style="color:red" />
-					</div>
-				</div>
-				<!--  submit link, causes ajax  -->
-				<div class="control-group" id="button_div">
-					<div class="controls">
-						<h:commandButton id="submit_link" value="Save"
-							action="#{editHistoryShelvingView.save}" ajax="false">
-						</h:commandButton>
-					</div>
-				</div>
-		</h:form>
-	</ui:define>
+            <br/>
+
+            <div class="control-group" id="options_div">
+                <label class="control-label" for="oversize">Notes </label>
+
+                <div class="controls">
+                    <p:inputTextarea id="notes"
+                                     value="#{editHistoryShelvingView.historyCatalog.notes}" rows="10" cols="40"
+                                     autoResize="false"/>
+                    <h:message for="notes" style="color:red"/>
+                </div>
+            </div>
+            <!--  submit link, causes ajax  -->
+            <div class="control-group" id="button_div">
+                <div class="controls">
+                    <h:commandButton id="submit_link" value="Save"
+                                     action="#{editHistoryShelvingView.save}" ajax="false">
+                    </h:commandButton>
+                </div>
+            </div>
+        </h:form>
+    </ui:define>
 </ui:composition>
 </html>

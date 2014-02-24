@@ -1,366 +1,367 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 <ui:composition template="../templates/formtemplate_shelving.xhtml">
 
-	<ui:define name="content">
-		<h:outputStylesheet library="css" name="style.css" />
-		<h:outputScript library="js" name="bootstrap-dropdown.js" />
+<ui:define name="content">
+<h:outputStylesheet library="css" name="style.css"/>
+<h:outputScript library="js" name="bootstrap-dropdown.js"/>
 
-		<style type="text/css">
-				tr.d0 td {
-					background-color: rgb(247, 252, 237);
-					color: black;
-				}
-				
-				tr.d1 td {
-					background-color: #9999CC;
-					color: black;
-				}
-				
-				.ui-widget-header {
-					background: #fff;
-				}
-		</style>
+<style type="text/css">
+    tr.d0 td {
+        background-color: rgb(247, 252, 237);
+        color: black;
+    }
 
-		<h2>Shelving History</h2>
+    tr.d1 td {
+        background-color: #9999CC;
+        color: black;
+    }
 
-		<h:form id="ShelvingHistoryForm" styleClass="form-horizontal"
-			style="margin:0 auto; background-color:#fff;
+    .ui-widget-header {
+        background: #fff;
+    }
+</style>
+
+<h2>Shelving History</h2>
+
+<h:form id="ShelvingHistoryForm" styleClass="form-horizontal"
+        style="margin:0 auto; background-color:#fff;
 			border: 1px solid #bbb; border-radius: 0.4em; overflow-x:scroll;">
 
-			<p:growl id="growl" showDetail="true" sticky="false" />
+<p:growl id="growl" showDetail="true" sticky="false"/>
 
 
-			<br />
-			<div style="float: right;">
-				<p:splitButton icon="ui-icon-gear">
-					<p:menuitem value="Delete All" onclick="dlg2.show();"
-						icon="ui-icon-trash" />
-					<p:separator />
-					<!--  <p:menuitem value="Export Options" url="history_export.xhtml"
-						icon="ui-icon-note" /> -->
-				</p:splitButton>
-			</div>
+<br/>
 
-			<div style="margin-left: 30px;">
-				<h:graphicImage library="img" name="information.png" />
-				<h:outputText
-					value="#{messagesView.hashMap.get('form.history.instructions')}" />
-			</div>
-			<br />
+<div style="float: right;">
+    <p:splitButton icon="ui-icon-gear">
+        <p:menuitem value="Delete All" onclick="dlg2.show();"
+                    icon="ui-icon-trash"/>
+        <p:separator/>
+        <!--  <p:menuitem value="Export Options" url="history_export.xhtml"
+            icon="ui-icon-note" /> -->
+    </p:splitButton>
+</div>
 
-			<p:dialog id="modalDialog" header="Delete History" widgetVar="dlg2"
-				modal="true" height="70" width="250" resizable="false">
-				<div class="control-group">
+<div style="margin-left: 30px;">
+    <h:graphicImage library="img" name="information.png"/>
+    <h:outputText
+            value="#{messagesView.hashMap.get('form.history.instructions')}"/>
+</div>
+<br/>
+
+<p:dialog id="modalDialog" header="Delete History" widgetVar="dlg2"
+          modal="true" height="70" width="250" resizable="false">
+    <div class="control-group">
 					<span class="help-block"> <p:messages id="messagesAdmin"
-							showDetail="true" autoUpdate="true" closable="true" />
+                                                          showDetail="true" autoUpdate="true" closable="true"/>
 					</span>
-				</div>
-				<div>Delete all history?</div>
-				<p:commandButton update="history" value="Yes" styleClass="btn"
-					actionListener="#{shelvingApplication.removeAllPaginated}">
-				</p:commandButton>
-			</p:dialog>
+    </div>
+    <div>Delete all history?</div>
+    <p:commandButton update="history" value="Yes" styleClass="btn"
+                     actionListener="#{shelvingApplication.removeAllPaginated}">
+    </p:commandButton>
+</p:dialog>
 
 
-			<p:contextMenu for="history">
-				<!--  sends redirect -->
-				<p:menuitem value="Edit Notes" icon="ui-icon-pencil"
-					action="#{shelvingApplication.selectElement}">
-				</p:menuitem>
-				<p:menuitem value="Delete" icon="ui-icon-close"
-					actionListener="#{shelvingApplication.removeElement}"
-					update="history">
-				</p:menuitem>
-				<!-- 
-				<p:menuitem value="View Transaction Log" icon="ui-icon-document"
-					action="#{shelvingApplication.browseTransaction}">
-				</p:menuitem>
-				-->
-			</p:contextMenu>
+<p:contextMenu for="history">
+    <!--  sends redirect -->
+    <p:menuitem value="Edit Notes" icon="ui-icon-pencil"
+                action="#{shelvingApplication.selectElement}">
+    </p:menuitem>
+    <p:menuitem value="Delete" icon="ui-icon-close"
+                actionListener="#{shelvingApplication.removeElement}"
+                update="history">
+    </p:menuitem>
+    <!--
+    <p:menuitem value="View Transaction Log" icon="ui-icon-document"
+        action="#{shelvingApplication.browseTransaction}">
+    </p:menuitem>
+    -->
+</p:contextMenu>
 
-			<!--  datatable		 -->
+<!--  datatable		 -->
 
-			<p:dataTable id="history" value="#{shelvingApplication.lazyModel}"
-				var="c" rowKey="#{c.id}" paginator="true" rows="14" lazy="true"
-				paginatorPosition="bottom"
-				selection="#{shelvingApplication.selectedHistory}"
-				selectionMode="single" editable="true" editMode="row">
+<p:dataTable id="history" value="#{shelvingApplication.lazyModel}"
+             var="c" rowKey="#{c.id}" paginator="true" rows="14" lazy="true"
+             paginatorPosition="bottom"
+             selection="#{shelvingApplication.selectedHistory}"
+             selectionMode="single" editable="true" editMode="row">
 
-				<!--  for edit row / cell -->
-				<p:ajax event="rowEdit" listener="#{menuView.onEdit}" update="@this" />
-				<p:ajax event="rowEditCancel" listener="#{menuView.onCancel}" />
+    <!--  for edit row / cell -->
+    <p:ajax event="rowEdit" listener="#{menuView.onEdit}" update="@this"/>
+    <p:ajax event="rowEditCancel" listener="#{menuView.onCancel}"/>
 
-				<p:ajax event="cellEdit" listener="#{locationView.onCellEdit}"
-					update="@this" />
+    <p:ajax event="cellEdit" listener="#{locationView.onCellEdit}"
+            update="@this"/>
 
-				<p:column width="7%" sortBy="#{c.creationDate}">
-					<f:facet name="header">
-						<h:outputText value="Entry Time" />
-					</f:facet>
-					<h:outputText value="#{c.creationDate}" style="#{msgs.small_font}">
-						<f:convertDateTime pattern="yyyy-MM-d HH:mm" />
-					
-					</h:outputText>
-				</p:column>
+    <p:column width="7%" sortBy="#{c.creationDate}">
+        <f:facet name="header">
+            <h:outputText value="Entry Time"/>
+        </f:facet>
+        <h:outputText value="#{c.creationDate}" style="#{msgs.small_font}">
+            <f:convertDateTime pattern="yyyy-MM-d HH:mm"/>
 
-				<p:column width="5%" sortBy="#{c.formDate}">
-					<f:facet name="header">
-						<h:outputText value="Shelving Date" />
-					</f:facet>
-					<h:outputText value="#{c.formDate}" style="#{msgs.small_font}">
-						<f:convertDateTime pattern="yyyy-MM-d" />
-					</h:outputText>
-				</p:column>
+        </h:outputText>
+    </p:column>
 
-				<p:column width="5%">
-					<f:facet name="header">
-						<h:outputText value="Mode" />
-					</f:facet>
-					<h:outputText value="#{c.team}"/>
-					(
-					<h:outputText value="#{c.teamSize}"
-						style="#{msgs.small_font}" >
-						<!--  convert 1.0 to 1 -->
-							<f:converter converterId="edu.yale.sml.jsf.FloatConverter" />
-						</h:outputText>
-					)	
-				</p:column>
+    <p:column width="5%" sortBy="#{c.formDate}">
+        <f:facet name="header">
+            <h:outputText value="Shelving Date"/>
+        </f:facet>
+        <h:outputText value="#{c.formDate}" style="#{msgs.small_font}">
+            <f:convertDateTime pattern="yyyy-MM-d"/>
+        </h:outputText>
+    </p:column>
 
-				<p:column width="5%" headerText="NetId" filterBy="#{c.NETID}"
-					filterOptions="#{shelvingApplication.netidOptions}"
-					filterMatchMode="exact" rendered="true">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{c.NETID}" />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText value="#{c.NETID}" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-				<p:column width="3%">
-					<f:facet name="header">
-						<h:outputText value="Time" />
-					</f:facet>
-					<h:outputText value="#{c.time}" />
-				</p:column>
-				<p:column width="7%">
-					<f:facet name="header">
-						<h:outputText value="Barcode" />
-					</f:facet>
+    <p:column width="5%">
+        <f:facet name="header">
+            <h:outputText value="Mode"/>
+        </f:facet>
+        <h:outputText value="#{c.team}"/>
+        (
+        <h:outputText value="#{c.teamSize}"
+                      style="#{msgs.small_font}">
+            <!--  convert 1.0 to 1 -->
+            <f:converter converterId="edu.yale.sml.jsf.FloatConverter"/>
+        </h:outputText>
+        )
+    </p:column>
 
-					<ul>
-						<li><h:outputText value="First :" escape="false" /> <h:outputText
-								value="#{c.barcodeStart}" /></li>
-						<li><h:outputText value="Last :" escape="false" /> <h:outputText
-								value="#{c.barcodeEnd}" /></li>
-					</ul>
+    <p:column width="5%" headerText="NetId" filterBy="#{c.NETID}"
+              filterOptions="#{shelvingApplication.netidOptions}"
+              filterMatchMode="exact" rendered="true">
+        <p:cellEditor>
+            <f:facet name="output">
+                <h:outputText value="#{c.NETID}"/>
+            </f:facet>
+            <f:facet name="input">
+                <p:inputText value="#{c.NETID}"/>
+            </f:facet>
+        </p:cellEditor>
+    </p:column>
+    <p:column width="3%">
+        <f:facet name="header">
+            <h:outputText value="Time"/>
+        </f:facet>
+        <h:outputText value="#{c.time}"/>
+    </p:column>
+    <p:column width="7%">
+        <f:facet name="header">
+            <h:outputText value="Barcode"/>
+        </f:facet>
 
-					<!-- 	
-					<ul>
-							<li><h:outputText value="Count:" escape="false" />
-							<h:outputText value="#{c.NUMBERSCANNED}" /></li>
-					</ul>
-					-->
-				</p:column>
-				<p:column width="7%">
-					<f:facet name="header">
-						<h:outputText value=" Call No." />
-					</f:facet>
+        <ul>
+            <li><h:outputText value="First :" escape="false"/> <h:outputText
+                    value="#{c.barcodeStart}"/></li>
+            <li><h:outputText value="Last :" escape="false"/> <h:outputText
+                    value="#{c.barcodeEnd}"/></li>
+        </ul>
 
-					<ul>
-						<li><h:outputText value="First :" escape="false" />
-							#{c.displayStart} </li>
-						<li><h:outputText value="Last :" escape="false" />
-							#{c.displayEnd} </li>
-					</ul>
+        <!--
+        <ul>
+                <li><h:outputText value="Count:" escape="false" />
+                <h:outputText value="#{c.NUMBERSCANNED}" /></li>
+        </ul>
+        -->
+    </p:column>
+    <p:column width="7%">
+        <f:facet name="header">
+            <h:outputText value=" Call No."/>
+        </f:facet>
 
-					<!-- 	
-					<ul>#{c.normalizedStart}
-							<li><h:outputText value="Count:" escape="false" />
-							<h:outputText value="#{c.NUMBERSCANNED}" /></li>
-					</ul>
-					-->
-				</p:column>
+        <ul>
+            <li><h:outputText value="First :" escape="false"/>
+                #{c.displayStart} </li>
+            <li><h:outputText value="Last :" escape="false"/>
+                #{c.displayEnd} </li>
+        </ul>
 
-				<!--  --> new -->
-				<p:column width="7%">
-					<f:facet name="header">
-						<h:outputText value="Status / Date" />
-					</f:facet>
+        <!--
+        <ul>#{c.normalizedStart}
+                <li><h:outputText value="Count:" escape="false" />
+                <h:outputText value="#{c.NUMBERSCANNED}" /></li>
+        </ul>
+        -->
+    </p:column>
 
-					<ul>
-						<li><h:outputText value="First :" escape="false" />
-						<h:graphicImage library="img" name="warn.gif"
-									rendered="#{(not empty c.startItemStatus) and 
-										(c.startItemStatus ne 'Not Charged') and (c.startItemStatus ne 'Discharged') and (c.startItemStatusDate lt c.formDate)}" />
-							#{c.startItemStatus} / #{c.startItemStatusDate} </li>
-						<li><h:outputText value="Last :" escape="false" />
-							<h:graphicImage library="img" name="warn.gif"
-									rendered="#{(not empty c.endItemStatus) and 
-										(c.endItemStatus ne 'Not Charged') and (c.endItemStatus ne 'Discharged') and (c.endItemStatusDate lt c.formDate)}" />
-							#{c.endItemStatus} / #{c.endItemStatusDate} </li>
-					</ul>
-				</p:column>
+    <!--  --> new -->
+    <p:column width="7%">
+        <f:facet name="header">
+            <h:outputText value="Status / Date"/>
+        </f:facet>
 
-				<p:column width="5%" filterBy="#{c.SCANLOCATION}"
-					filterOptions="#{shelvingApplication.locationSelectOptions}"
-					filterMatchMode="exact" rendered="true">
-					<f:facet name="header">
-						<h:outputText value="Location" />
-					</f:facet>
-					<h:outputText value="#{c.SCANLOCATION}" />
-				</p:column>
+        <ul>
+            <li><h:outputText value="First :" escape="false"/>
+                <h:graphicImage library="img" name="warn.gif"
+                                rendered="#{(not empty c.startItemStatus) and
+										(c.startItemStatus ne 'Not Charged') and (c.startItemStatus ne 'Discharged') and (c.startItemStatusDate lt c.formDate)}"/>
+                #{c.startItemStatus} / #{c.startItemStatusDate} </li>
+            <li><h:outputText value="Last :" escape="false"/>
+                <h:graphicImage library="img" name="warn.gif"
+                                rendered="#{(not empty c.endItemStatus) and
+										(c.endItemStatus ne 'Not Charged') and (c.endItemStatus ne 'Discharged') and (c.endItemStatusDate lt c.formDate)}"/>
+                #{c.endItemStatus} / #{c.endItemStatusDate} </li>
+        </ul>
+    </p:column>
 
-				<p:column width="4%" rendered="true">
-					<f:facet name="header">
-						<h:outputText value="Floor" />
-					</f:facet>
-					<h:outputText value="#{c.floor}" />
-				</p:column>
-				
-				<p:column width="3%" rendered="true">
-					<f:facet name="header">
-						<h:outputText value="Rows" />
-					</f:facet>
-					<h:outputText value="#{c.numRows}" />
-				</p:column>
+    <p:column width="5%" filterBy="#{c.SCANLOCATION}"
+              filterOptions="#{shelvingApplication.locationSelectOptions}"
+              filterMatchMode="exact" rendered="true">
+        <f:facet name="header">
+            <h:outputText value="Location"/>
+        </f:facet>
+        <h:outputText value="#{c.SCANLOCATION}"/>
+    </p:column>
 
-				<p:column width="10%" headerText="Notes" style="white-space:wrap;">
-					<p:cellEditor style="white-space:wrap;">
-						<f:facet name="output" style="white-space:wrap;">
-							<h:outputText value="#{c.notes}" style="white-space:wrap;">
-								<f:converter converterId="edu.yale.sml.jsf.LongStringConverter" />
-							</h:outputText>
-						</f:facet>
-						<f:facet name="input" style="white-space:wrap;">
-							<h:outputText value="#{c.notes}" style="white-space:wrap;">
-								<f:converter converterId="edu.yale.sml.jsf.LongStringConverter" />
-							</h:outputText>
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
+    <p:column width="4%" rendered="true">
+        <f:facet name="header">
+            <h:outputText value="Floor"/>
+        </f:facet>
+        <h:outputText value="#{c.floor}"/>
+    </p:column>
 
+    <p:column width="3%" rendered="true">
+        <f:facet name="header">
+            <h:outputText value="Rows"/>
+        </f:facet>
+        <h:outputText value="#{c.numRows}"/>
+    </p:column>
 
-				<p:column width="80" headerText="Edit" rendered="false">
-					<p:rowEditor />
-				</p:column>
-			</p:dataTable>
+    <p:column width="10%" headerText="Notes" style="white-space:wrap;">
+        <p:cellEditor style="white-space:wrap;">
+            <f:facet name="output" style="white-space:wrap;">
+                <h:outputText value="#{c.notes}" style="white-space:wrap;">
+                    <f:converter converterId="edu.yale.sml.jsf.LongStringConverter"/>
+                </h:outputText>
+            </f:facet>
+            <f:facet name="input" style="white-space:wrap;">
+                <h:outputText value="#{c.notes}" style="white-space:wrap;">
+                    <f:converter converterId="edu.yale.sml.jsf.LongStringConverter"/>
+                </h:outputText>
+            </f:facet>
+        </p:cellEditor>
+    </p:column>
 
 
-			<!--  for Excel report printing
+    <p:column width="80" headerText="Edit" rendered="false">
+        <p:rowEditor/>
+    </p:column>
+</p:dataTable>
 
-			<p:dataTable id="history_for_excel"
-				value="#{shelvingApplication.historyAsList}" var="c" paginator="true"
-				rows="7" paginatorPosition="bottom" rendered="false"
-				postProcessor="#{excelProcessor.postProcessXLS}">
-				<p:column width="400" sortBy="#{c.SCANDATE}">
-					<f:facet name="header">
-						<h:outputText value="ShelfScan DateTime" />
-					</f:facet>
-					<h:outputText value="#{c.SCANDATE}" style="#{msgs.small_font}" />
-				</p:column>
-				<p:column width="300" sortBy="#{c.RUNDATE}">
-					<f:facet name="header">
-						<h:outputText value="ShelfScan Run DateTime" />
-					</f:facet>
-					<h:outputText value="#{c.RUNDATE}" style="#{msgs.small_font}" />
-				</p:column>
-				<p:column width="40">
-					<f:facet name="header">
-						<h:outputText value="NetId" />
-					</f:facet>
-					<h:outputText value="#{c.NETID}" />
-				</p:column>
-				<p:column width="40">
-					<f:facet name="header">
-						<h:outputText value="Time" />
-					</f:facet>
-					<h:outputText value="#{c.TIMESPENT}" />
-				</p:column>
-				<p:column width="400">
-					<f:facet name="header">
-						<h:outputText value="First Call No." />
-					</f:facet>
-					<h:outputText value="#{c.FIRSTCALLNUMBER}" />
-				</p:column>
-				<p:column width="400">
-					<f:facet name="header">
-						<h:outputText value="Last Call No." />
-					</f:facet>
-					<h:outputText value="#{c.LASTCALLNUMBER}" />
-				</p:column>
-				<p:column width="55">
-					<f:facet name="header">
-						<h:outputText value="Location" />
-					</f:facet>
-					<h:outputText value="#{c.SCANLOCATION}" />
-				</p:column>
-				<p:column width="50">
-					<f:facet name="header">
-						<h:outputText value="# Scan" escape="false" />
-					</f:facet>
-					<h:outputText value="#{c.NUMBERSCANNED}" />
-				</p:column>
-				<p:column width="50">
-					<f:facet name="header">
-						<h:outputText value="Missing" escape="false" />
-					</f:facet>
-					<h:outputText value="#{c.NULLBARCODE}" />
-				</p:column>
-				<p:column width="55">
-					<f:facet name="header">
-						<h:outputText value="Oversize" />
-					</f:facet>
-					<h:outputText value="#{c.OVERSIZE}" />
-				</p:column>
-				<p:column width="55">
-					<f:facet name="header">
-						<h:outputText value="Accuracy" />
-					</f:facet>
-					<h:outputText value="#{c.ACCURACY}" />
-				</p:column>
-				<p:column width="50">
-					<f:facet name="header">
-						<h:outputText value="Supress" />
-					</f:facet>
-					<h:outputText value="#{c.SUPPRESS}" />
-				</p:column>
-				<p:column width="50">
-					<f:facet name="header">
-						<h:outputText value="Status" />
-					</f:facet>
-					<h:outputText value="#{c.STATUS}" />
-				</p:column>
-				<p:column width="50">
-					<f:facet name="header">
-						<h:outputText value="Loc. E." />
-					</f:facet>
-					<h:outputText value="#{c.LOCATIONERROR}" />
-				</p:column>
-				<p:column width="50">
-					<f:facet name="header">
-						<h:outputText value="Notes" />
-					</f:facet>
-					<h:outputText value="#{c.NOTES}" />
-				</p:column>
-				<p:column width="50">
-					<f:facet name="header">
-						<h:outputText value="Mislabelled." />
-					</f:facet>
-					<h:outputText value="#{c.MISLABELLED}" />
-				</p:column>
-			</p:dataTable>
-			-->
-		</h:form>
-	</ui:define>
+
+<!--  for Excel report printing
+
+<p:dataTable id="history_for_excel"
+    value="#{shelvingApplication.historyAsList}" var="c" paginator="true"
+    rows="7" paginatorPosition="bottom" rendered="false"
+    postProcessor="#{excelProcessor.postProcessXLS}">
+    <p:column width="400" sortBy="#{c.SCANDATE}">
+        <f:facet name="header">
+            <h:outputText value="ShelfScan DateTime" />
+        </f:facet>
+        <h:outputText value="#{c.SCANDATE}" style="#{msgs.small_font}" />
+    </p:column>
+    <p:column width="300" sortBy="#{c.RUNDATE}">
+        <f:facet name="header">
+            <h:outputText value="ShelfScan Run DateTime" />
+        </f:facet>
+        <h:outputText value="#{c.RUNDATE}" style="#{msgs.small_font}" />
+    </p:column>
+    <p:column width="40">
+        <f:facet name="header">
+            <h:outputText value="NetId" />
+        </f:facet>
+        <h:outputText value="#{c.NETID}" />
+    </p:column>
+    <p:column width="40">
+        <f:facet name="header">
+            <h:outputText value="Time" />
+        </f:facet>
+        <h:outputText value="#{c.TIMESPENT}" />
+    </p:column>
+    <p:column width="400">
+        <f:facet name="header">
+            <h:outputText value="First Call No." />
+        </f:facet>
+        <h:outputText value="#{c.FIRSTCALLNUMBER}" />
+    </p:column>
+    <p:column width="400">
+        <f:facet name="header">
+            <h:outputText value="Last Call No." />
+        </f:facet>
+        <h:outputText value="#{c.LASTCALLNUMBER}" />
+    </p:column>
+    <p:column width="55">
+        <f:facet name="header">
+            <h:outputText value="Location" />
+        </f:facet>
+        <h:outputText value="#{c.SCANLOCATION}" />
+    </p:column>
+    <p:column width="50">
+        <f:facet name="header">
+            <h:outputText value="# Scan" escape="false" />
+        </f:facet>
+        <h:outputText value="#{c.NUMBERSCANNED}" />
+    </p:column>
+    <p:column width="50">
+        <f:facet name="header">
+            <h:outputText value="Missing" escape="false" />
+        </f:facet>
+        <h:outputText value="#{c.NULLBARCODE}" />
+    </p:column>
+    <p:column width="55">
+        <f:facet name="header">
+            <h:outputText value="Oversize" />
+        </f:facet>
+        <h:outputText value="#{c.OVERSIZE}" />
+    </p:column>
+    <p:column width="55">
+        <f:facet name="header">
+            <h:outputText value="Accuracy" />
+        </f:facet>
+        <h:outputText value="#{c.ACCURACY}" />
+    </p:column>
+    <p:column width="50">
+        <f:facet name="header">
+            <h:outputText value="Supress" />
+        </f:facet>
+        <h:outputText value="#{c.SUPPRESS}" />
+    </p:column>
+    <p:column width="50">
+        <f:facet name="header">
+            <h:outputText value="Status" />
+        </f:facet>
+        <h:outputText value="#{c.STATUS}" />
+    </p:column>
+    <p:column width="50">
+        <f:facet name="header">
+            <h:outputText value="Loc. E." />
+        </f:facet>
+        <h:outputText value="#{c.LOCATIONERROR}" />
+    </p:column>
+    <p:column width="50">
+        <f:facet name="header">
+            <h:outputText value="Notes" />
+        </f:facet>
+        <h:outputText value="#{c.NOTES}" />
+    </p:column>
+    <p:column width="50">
+        <f:facet name="header">
+            <h:outputText value="Mislabelled." />
+        </f:facet>
+        <h:outputText value="#{c.MISLABELLED}" />
+    </p:column>
+</p:dataTable>
+-->
+</h:form>
+</ui:define>
 </ui:composition>
 
 </html>

@@ -1,132 +1,128 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
 
 <ui:composition template="../templates/formtemplate.xhtml">
-	<ui:define name="nav_list">
-		<ui:include src="../templates/bootstrap/nav_top.xhtml" />
-	</ui:define>
-	<ui:define name="content">
+    <ui:define name="nav_list">
+        <ui:include src="../templates/bootstrap/nav_top.xhtml"/>
+    </ui:define>
+    <ui:define name="content">
 
-		<h:outputStylesheet library="css" name="style.css" />
+        <h:outputStylesheet library="css" name="style.css"/>
 
-		<style type="text/css">
-			.ui-widget-header {
-				background: #fff;
-			}
-			
-			.ui-datatable thead th {
-				font-weight: normal;
-				color: #bbb;
-			}
-			
-			.indent-text {
-				padding: 4px 4.5em 2px .6em;
-			}
-		</style>
+        <style type="text/css">
+            .ui-widget-header {
+                background: #fff;
+            }
 
-		<h3>Manage Locations</h3>
+            .ui-datatable thead th {
+                font-weight: normal;
+                color: #bbb;
+            }
+
+            .indent-text {
+                padding: 4px 4.5em 2px .6em;
+            }
+        </style>
+
+        <h3>Manage Locations</h3>
 
 
-		<h:form id="LocationForm" enctype="multipart/form-data"
-			styleClass="form-horizontal"
-			style="margin:0 auto; background-color:#fff;
+        <h:form id="LocationForm" enctype="multipart/form-data"
+                styleClass="form-horizontal"
+                style="margin:0 auto; background-color:#fff;
 			border: 1px solid #bbb; border-radius: 0.4em; overflow:hidden; min-height:600px;">
-			<div class="pull-right">
-				<span class="help-block"> </span>
-			</div>
+            <div class="pull-right">
+                <span class="help-block"> </span>
+            </div>
 
-			<br />
-
-
-
-			<div style="padding: 2em;" class="row-fluid">
+            <br/>
 
 
-				<div class="span6"
-					style="margin: 0 auto; background-color: #fff; border: 1px solid #bbb; overflow: hidden; min-height: 400px;">
-
-					<h4 style="background-color: #eee" class="indent-text">
-						Current Locations</h4>
+            <div style="padding: 2em;" class="row-fluid">
 
 
-					<div align="left" class="indent-text">
-						<h:graphicImage library="img" name="information.png" />
-						<h:outputText
-							value="#{messagesView.hashMap.get('form.location.instructions')}" />
-					</div>
+                <div class="span6"
+                     style="margin: 0 auto; background-color: #fff; border: 1px solid #bbb; overflow: hidden; min-height: 400px;">
 
-					<p:commandButton id="chartBtn" icon="ui-icon-plusthick"
-						value="New Location" type="button"
-						style="color:#103480; background-color:#fff;"
-						onclick="dlg1.show();" />
-
-					<br /> <br />
+                    <h4 style="background-color: #eee" class="indent-text">
+                        Current Locations</h4>
 
 
-					<p:dialog id="overlayPanelId" header="Add Location"
-						widgetVar="dlg1" modal="true" height="200" width="300"
-						resizable="false" style="color:#103480">
-						<div class="control-group">
+                    <div align="left" class="indent-text">
+                        <h:graphicImage library="img" name="information.png"/>
+                        <h:outputText
+                                value="#{messagesView.hashMap.get('form.location.instructions')}"/>
+                    </div>
+
+                    <p:commandButton id="chartBtn" icon="ui-icon-plusthick"
+                                     value="New Location" type="button"
+                                     style="color:#103480; background-color:#fff;"
+                                     onclick="dlg1.show();"/>
+
+                    <br/> <br/>
+
+
+                    <p:dialog id="overlayPanelId" header="Add Location"
+                              widgetVar="dlg1" modal="true" height="200" width="300"
+                              resizable="false" style="color:#103480">
+                        <div class="control-group">
 							<span class="help-block"> <p:messages
-									id="messagesLocation" showDetail="true" autoUpdate="true"
-									closable="true" />
+                                    id="messagesLocation" showDetail="true" autoUpdate="true"
+                                    closable="true"/>
 							</span>
-						</div>
-						<p:inputText id="name" value="#{floorView.name}" />
-						<br />
-						<p:inputText id="date" value="#{floorView.date}"
-							rendered="false" />
-						<p:commandButton update="locationid, messagesLocation"
-							value="Submit" styleClass="btn" action="#{floorView.saveAll}"
-							actionListener="#{floorView.addInfo}" />
-					</p:dialog>
+                        </div>
+                        <p:inputText id="name" value="#{floorView.name}"/>
+                        <br/>
+                        <p:inputText id="date" value="#{floorView.date}"
+                                     rendered="false"/>
+                        <p:commandButton update="locationid, messagesLocation"
+                                         value="Submit" styleClass="btn" action="#{floorView.saveAll}"
+                                         actionListener="#{floorView.addInfo}"/>
+                    </p:dialog>
 
-					<p:dataTable id="locationid" value="#{floorView.locationAsList}"
-						var="c" paginator="true" editable="false" rows="10"
-						paginatorPosition="bottom" tableStyle="width:80%; margin:0 auto;">
-
-
-						<p:column width="140" headerText="Floor Code">
-							<h:outputText value="#{c.name}" />
-						</p:column>
-						<p:column width="140">
-							<f:facet name="header">
-								<h:outputText value="Editor" />
-							</f:facet>
-							<h:outputText value="#{c.editor}" />
-						</p:column>
-						<p:column width="140" rendered="false">
-							<f:facet name="header">
-								<h:outputText value="Date Created" />
-							</f:facet>
-							<h:outputText value="#{c.date}" />
-						</p:column>
-						<p:column width="80">
-							<f:facet name="header">
-								<h:outputText value="Remove?" />
-							</f:facet>
-							<p:commandButton icon="ui-icon-close" title="remove from db"
-								actionListener="#{floorView.remove(c)}" update="locationid" />
-						</p:column>
-					</p:dataTable>
-				</div>
-				<div class="span4 offset2">
-				
+                    <p:dataTable id="locationid" value="#{floorView.locationAsList}"
+                                 var="c" paginator="true" editable="false" rows="10"
+                                 paginatorPosition="bottom" tableStyle="width:80%; margin:0 auto;">
 
 
-					
+                        <p:column width="140" headerText="Floor Code">
+                            <h:outputText value="#{c.name}"/>
+                        </p:column>
+                        <p:column width="140">
+                            <f:facet name="header">
+                                <h:outputText value="Editor"/>
+                            </f:facet>
+                            <h:outputText value="#{c.editor}"/>
+                        </p:column>
+                        <p:column width="140" rendered="false">
+                            <f:facet name="header">
+                                <h:outputText value="Date Created"/>
+                            </f:facet>
+                            <h:outputText value="#{c.date}"/>
+                        </p:column>
+                        <p:column width="80">
+                            <f:facet name="header">
+                                <h:outputText value="Remove?"/>
+                            </f:facet>
+                            <p:commandButton icon="ui-icon-close" title="remove from db"
+                                             actionListener="#{floorView.remove(c)}" update="locationid"/>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+                <div class="span4 offset2">
 
-				</div>
 
-			</div>
-		</h:form>
-	</ui:define>
+                </div>
+
+            </div>
+        </h:form>
+    </ui:define>
 </ui:composition>
 </html>

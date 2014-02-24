@@ -1,929 +1,832 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:pe="http://primefaces.org/ui/extensions"
-	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
 
 <ui:composition template="../templates/formtemplate_scan.xhtml">
 
-	<ui:define name="content">
-		<h:outputStylesheet library="css" name="style.css" />
-		<!--  results -->
+<ui:define name="content">
+<h:outputStylesheet library="css" name="style.css"/>
+<!--  results -->
 
-		<style type="text/css">
-			.ui-widget-header {
-				background: #fff;
-				font-weight: normal;
-		}
+<style type="text/css">
+    .ui-widget-header {
+        background: #fff;
+        font-weight: normal;
+    }
 
-			ui-tabs .ui-tabs-nav.ui-widget-header li.ui-state-active a,.ui-tabs .ui-tabs-nav.ui-widget-header li.ui-state-active a
-		{
-				background-color: rgb(250, 253, 248);
-		}
-		</style>
+    ui-tabs .ui-tabs-nav.ui-widget-header li.ui-state-active a, .ui-tabs .ui-tabs-nav.ui-widget-header li.ui-state-active a {
+        background-color: rgb(250, 253, 248);
+    }
+</style>
 
-		<h:form id="BarcodeSearchViewFormResult" enctype="multipart/form-data"
-			styleClass="form-horizontal"
-			style="margin:0 auto; background-color:#fff;
+<h:form id="BarcodeSearchViewFormResult" enctype="multipart/form-data"
+        styleClass="form-horizontal"
+        style="margin:0 auto; background-color:#fff;
 			border: 1px solid #bbb; border-radius: 0.4em; overflow:hidden;"
-			rendered="#{not empty searchView.engine.reportLists.catalogAsList}">
-			<!--  printer button -->
+        rendered="#{not empty searchView.engine.reportLists.catalogAsList}">
+<!--  printer button -->
 
-			<p:tabView>
+<p:tabView>
 
-				<!--  TAB: MAIN RESULTS + PRINT -->
-				<p:tab id="report_tab2" title="ShelfScan Report"
-					style="font-weight:normal;" rendered="true">
+<!--  TAB: MAIN RESULTS + PRINT -->
+<p:tab id="report_tab2" title="ShelfScan Report"
+       style="font-weight:normal;" rendered="true">
 
-					<div class="row">
-						<div class="span4">
-							<h2>
-								<h:outputText value="#{searchView.fileName}" />
-							</h2>
-						</div>
-						<div class="span2">
-							<h:graphicImage library="img" name="add.png" />
-							<h:link value=" Create New Report" outcome="search" />
-						</div>
-                        <div class="span2">
-                            <h:graphicImage library="img" name="edit.png" />
-                            <h:link value=" Edit Other Reports" outcome="edit_options" />
-                        </div>
-                        <div class="span2">
-                            <h:graphicImage library="img" name="delete.png" />
-                            <h:link value=" Delete Other Reports" outcome="delete_options" />
-                        </div>
-						<div class="span2">
-							<p:commandButton value="Print" type="button" icon="ui-icon-print"
-								rendered="#{not empty searchView.engine.reportLists.reportCatalogAsList}">
-								<p:printer target="sorted_report_for_printing" />
-							</p:commandButton>
-						</div>
-					</div>
+<div class="row">
+    <div class="span4">
+        <h2>
+            <h:outputText value="#{searchView.fileName}"/>
+        </h2>
+    </div>
+    <div class="span2">
+        <h:graphicImage library="img" name="add.png"/>
+        <h:link value=" Create New Report" outcome="search"/>
+    </div>
+    <div class="span2">
+        <h:graphicImage library="img" name="edit.png"/>
+        <h:link value=" Edit Other Reports" outcome="edit_options"/>
+    </div>
+    <div class="span2">
+        <h:graphicImage library="img" name="delete.png"/>
+        <h:link value=" Delete Other Reports" outcome="delete_options"/>
+    </div>
+    <div class="span2">
+        <p:commandButton value="Print" type="button" icon="ui-icon-print"
+                         rendered="#{not empty searchView.engine.reportLists.reportCatalogAsList}">
+            <p:printer target="sorted_report_for_printing"/>
+        </p:commandButton>
+    </div>
+</div>
 
-					<div id="results_div">
-						<div>
-							<h:graphicImage library="img" name="accept.png"
-								rendered="#{(empty searchView.engine.reportLists.reportCatalogAsList)}" />
-							<h:outputText value="  No errors were detected."
-								rendered="#{empty searchView.engine.reportLists.reportCatalogAsList}" />
-						</div>
+<div id="results_div">
+<div>
+    <h:graphicImage library="img" name="accept.png"
+                    rendered="#{(empty searchView.engine.reportLists.reportCatalogAsList)}"/>
+    <h:outputText value="  No errors were detected."
+                  rendered="#{empty searchView.engine.reportLists.reportCatalogAsList}"/>
+</div>
 
-						<p:dialog id="suppressDialog" widgetVar="suppressDlg">
-							<h:outputText value="Supress Errors:" />
-						</p:dialog>
+<p:dialog id="suppressDialog" widgetVar="suppressDlg">
+    <h:outputText value="Supress Errors:"/>
+</p:dialog>
 
-						<!--  Main -->
-						<p:dataTable id="sorted_report_3_2"
-							value="#{searchView.engine.reportLists.culpritList}" var="d"
-							paginator="true" rows="7" resizableColumns="false"
-							paginatorPosition="bottom" emptyMessage="No errors found."
-							rendered="#{(not empty searchView.engine.reportLists.culpritList)}"
-							tableStyle="width:100%;" tableStyleClass="table">
+<!--  Main -->
+<p:dataTable id="sorted_report_3_2"
+             value="#{searchView.engine.reportLists.culpritList}" var="d"
+             paginator="true" rows="7" resizableColumns="false"
+             paginatorPosition="bottom" emptyMessage="No errors found."
+             rendered="#{(not empty searchView.engine.reportLists.culpritList)}"
+             tableStyle="width:100%;" tableStyleClass="table">
 
-							<f:facet name="header">
-								<p:tabView style="padding: 0.2em 0.4em;">
-									<p:tab rendered="true" title="Summary">
-										<table
-											style="margin-left: 5%; border-color: rgb(255, 237, 237);">
-											<tr>
-												<td style="text-align: left"><h:outputText
-														style="color:#000000; " value="Scanned File: " /> <h:outputText
-														value="#{searchView.fileName}" /></td>
-												<td style="text-align: right"><h:outputText
-														style="color:#000000; " value="Discharge Errors: " /> <h:outputText
-														value="#{searchView.engine.shelvingError.status_errors}" /></td>
-											</tr>
-											<tr>
-												<td style="text-align: left"><h:outputText
-														style="color:#000000; " value="Starting Call Num.: " /> <h:outputText
-														value="#{rules.getFirstValidDisplayCallNum(searchView.engine.reportLists.catalogAsList)}" /></td>
-												<td style="text-align: right"><h:outputText
-														style="color:#000000; " value="Oversize Errors: " /> <h:outputText
-														value="#{searchView.engine.shelvingError.oversize_errors}" /></td>
-											</tr>
+<f:facet name="header">
+    <p:tabView style="padding: 0.2em 0.4em;">
+        <p:tab rendered="true" title="Summary">
+            <table
+                    style="margin-left: 5%; border-color: rgb(255, 237, 237);">
+                <tr>
+                    <td style="text-align: left"><h:outputText
+                            style="color:#000000; " value="Scanned File: "/> <h:outputText
+                            value="#{searchView.fileName}"/></td>
+                    <td style="text-align: right"><h:outputText
+                            style="color:#000000; " value="Discharge Errors: "/> <h:outputText
+                            value="#{searchView.engine.shelvingError.status_errors}"/></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left"><h:outputText
+                            style="color:#000000; " value="Starting Call Num.: "/> <h:outputText
+                            value="#{rules.getFirstValidDisplayCallNum(searchView.engine.reportLists.catalogAsList)}"/>
+                    </td>
+                    <td style="text-align: right"><h:outputText
+                            style="color:#000000; " value="Oversize Errors: "/> <h:outputText
+                            value="#{searchView.engine.shelvingError.oversize_errors}"/></td>
+                </tr>
 
-											<tr>
-												<td style="text-align: left"><h:outputText
-														style="color:#000000; " value="Ending Call Num.: " /> <!--  <h:outputText
+                <tr>
+                    <td style="text-align: left"><h:outputText
+                            style="color:#000000; " value="Ending Call Num.: "/> <!--  <h:outputText
 														value="#{searchView.engine.reportLists.catalogAsList.get(fn:length(searchView.engine.reportLists.catalogAsList) - 1).DISPLAY_CALL_NO}" /></td>
 														--> <h:outputText
-														value="#{rules.getLastValidDisplayCallNum(searchView.engine.reportLists.catalogAsList)}" />
-												</td>
-
-												<td style="text-align: right"><h:outputLink
-														id="nullResult" style="color:#000000; "
-														value="Null Result: "> Null Result:
-												</h:outputLink> <h:outputText
-														value="#{searchView.engine.reportLists.nullResultBarcodes.size()}" />
-													<p:overlayPanel id="imgPanel2" for="nullResult"
-														showEffect="blind" hideEffect="explode"
-														showEvent="mouseover" hideEvent="mousedown"
-														styleClass="ui-helper-clearfix">
-
-														<p:dataTable id="null_result_datatable"
-															value="#{searchView.engine.reportLists.nullResultBarcodes}"
-															var="n" paginator="true" rows="15"
-															paginatorPosition="bottom" emptyMessage="None  found.">
-															<p:column>
-																<f:facet name="header">
-																	<h:outputText value="Null Result Barcode"
-																		style="#{msgs.column_header_font}" />
-																</f:facet>
-																<h:outputText value="#{n.ITEM_BARCODE}" />
-															</p:column>
-															<p:column>
-																<f:facet name="header">
-																	<h:outputText value="Previous Call. #"
-																		style="#{msgs.column_header_font}" />
-																</f:facet>
-																<h:outputText value="N/A" />
-															</p:column>
-														</p:dataTable>
-													</p:overlayPanel></td>
-											</tr>
-											<tr>
-												<td style="text-align: left"><h:outputText
-														style="color:#000000; " value="Scan Location: " /> <h:outputText
-														value="#{searchView.finalLocationName}" /></td>
-												<td style="text-align: right"><h:outputText
-														style="color:#000000; " value="Accuracy (Misshelf > 2): " />
-													<h:outputText
-														value="#{searchView.engine.shelvingError.misshelf_threshold_errors}" />
-												</td>
-											</tr>
-											<tr>
-												<td style="text-align: left"><h:outputText
-														style="color:#000000; " value="Oversize Material: " /> <h:outputText
-														value="#{searchView.oversize}" /></td>
-												<td style="text-align: right"><h:outputText
-														style="color:#000000; " value="Shelving (+ Loc.) Errors: " />
-													<h:outputText
-														value="#{searchView.engine.shelvingError.accuracy_errors}" /></td>
-											</tr>
-											<tr>
-												<td style="text-align: left"><h:outputText
-														style="color:#000000; " value="Scan Date: " /> <h:outputText
-														value="#{searchView.scanDate}">
-														<f:convertDateTime pattern="M-d-yyyy" />
-													</h:outputText></td>
-												<td style="text-align: right"><h:outputText
-														style="color:#000000; " value="Shelving Warnings: " /> <h:outputText
-														value="#{searchView.engine.shelvingError.enum_warnings}" /></td>
-											</tr>
-											<tr>
-												<td style="text-align: left">Page: #{view.viewId} ?id=
-													#{param['id']}</td>
-												<td style="text-align: right"><h:outputLink id="sup"
-														style="color:#000000; " value="Suppress Error: "> Suppress Errors:
-												</h:outputLink> <h:outputText
-														value="#{searchView.engine.shelvingError.suppress_errors}" />
-													<!-- <p:commandButton id="sup1" value="Basic" type="button" />   -->
-													<!-- <p:commandButton id="basicSupres" value="Show" onclick="suppressDlg.show()" type="button"/>
-											--> <p:overlayPanel id="imgPanel" for="sup"
-														showEffect="blind" hideEffect="explode"
-														showEvent="mouseover" hideEvent="mousedown"
-														styleClass="ui-helper-clearfix">
-
-														<p:dataTable id="suppressed_list_report"
-															value="#{searchView.engine.reportLists.suppressedList}"
-															var="s" paginator="true" rows="15"
-															paginatorPosition="bottom" emptyMessage="None  found.">
-															<p:column>
-																<f:facet name="header">
-																	<h:outputText value="Suppressed Barcode"
-																		style="#{msgs.column_header_font}" />
-																</f:facet>
-																<!--  <h:outputText style="#{searchView.finalLocationName eq 'sml' ? 'color:red; background-color:#ffc' : 'color:blue' }" value="#{d.NORMALIZED_CALL_NO}"/> -->
-																<h:outputText value="#{s.ITEM_BARCODE}" />
-															</p:column>
-															<p:column>
-																<f:facet name="header">
-																	<h:outputText value="Display Call #"
-																		style="#{msgs.column_header_font}" />
-																</f:facet>
-																<!--  <h:outputText style="#{searchView.finalLocationName eq 'sml' ? 'color:red; background-color:#ffc' : 'color:blue' }" value="#{d.NORMALIZED_CALL_NO}"/> -->
-																<h:outputText value="#{s.DISPLAY_CALL_NO}" />
-															</p:column>
-														</p:dataTable>
-													</p:overlayPanel></td>
-											</tr>
-										</table>
-									</p:tab>
-								</p:tabView>
-							</f:facet>
-
-							<p:column rendered="true">
-								<f:facet name="header">
-									<h:outputText value="Barcode"
-										style="#{msgs.column_header_font}" />
-								</f:facet>
-								<h:graphicImage library="img" name="warn.gif"
-									rendered="#{d.DISPLAY_CALL_NO.contains('REPEAT')}" />
-								<h:outputText style="color:#000000;" value="#{d.ITEM_BARCODE}" />
-							</p:column>
-
-
-							<p:column rendered="true">
-								<f:facet name="header">
-									<h:outputText value="Call Number"
-										style="#{msgs.column_header_font}" />
-								</f:facet>
-								<h:outputText
-									value="#{d.DISPLAY_CALL_NO.replace('REPEAT', '').replace('*','')}" />
-							</p:column>
-							<p:column rendered="true">
-								<f:facet name="header">
-									<h:outputText value=" CN Type"
-										style="#{msgs.column_header_font}" />
-								</f:facet>
-								<h:outputText value="#{d.CALL_NO_TYPE}"
-									rendered="#{!d.CALL_NO_TYPE.equals('0')}" style="color:red;" />
-								<h:outputText value="#{d.CALL_NO_TYPE}"
-									rendered="#{d.CALL_NO_TYPE.equals('0')}" />
-
-							</p:column>
-							<p:column rendered="true">
-								<f:facet name="header">
-									<h:outputText value="Enum" style="#{msgs.column_header_font}" />
-								</f:facet>
-								<h:outputText value="#{d.ITEM_ENUM}" />
-							</p:column>
-							<p:column rendered="true">
-								<f:facet name="header">
-									<h:outputText value="Chron" style="#{msgs.column_header_font}" />
-								</f:facet>
-								<h:outputText value="#{d.CHRON}" />
-							</p:column>
-
-
-							<p:column rendered="true">
-								<f:facet name="header">
-									<h:outputText value="LocErr" style="#{msgs.column_header_font}" />
-								</f:facet>
-								<!--  do not display if there's no value of location, e.g. bad barcode. 
-								What if an item has no perm_location in Orbis?  -->
-
-								<h:graphicImage library="img" name="warn.gif"
-									rendered="#{(not empty d.LOCATION_NAME) and 
-										(d.LOCATION_NAME ne searchView.finalLocationName)}" />
-								<h:outputText value="#{d.LOCATION_NAME}"
-									rendered="#{(not empty d.LOCATION_NAME) and 
-										(d.LOCATION_NAME ne searchView.finalLocationName)}" />
-							</p:column>
-
-
-							<p:column rendered="true">
-								<f:facet name="header">
-									<h:outputText value="Status" style="#{msgs.column_header_font}" />
-								</f:facet>
-								<h:graphicImage library="img" name="warn.gif"
-									rendered="#{(not empty d.ITEM_STATUS_DESC) and 
-										(d.ITEM_STATUS_DESC ne 'Not Charged') and (d.ITEM_STATUS_DESC ne 'Discharged') and (d.ITEM_STATUS_DESC ne 'Circulation Review') and (d.ITEM_STATUS_DESC ne 'Discharged') and (d.ITEM_STATUS_DATE lt searchView.scanDate)}" />
-								<h:outputText value="#{d.ITEM_STATUS_DESC}" />
-							</p:column>
-
-
-
-
-							<p:column rendered="true">
-								<f:facet name="header">
-									<h:outputText value="SizeErr"
-										style="#{msgs.column_header_font}" />
-								</f:facet>
-								<h:graphicImage library="img" name="warn.gif"
-									rendered="#{(searchView.oversize != 'Intermixed') and d.OVERSIZE ne searchView.oversize}" />
-							</p:column>
-							<!--  MISSHELF DIFF -->
-							<!-- <p:column style="#{searchView.finalLocationName eq 'sml' ? 'color:red; background-color:#ffc' : 'color:blue' }"> -->
-							<p:column rendered="true">
-								<f:facet name="header">
-									<h:outputText value="Misshelf"
-										style="#{msgs.column_header_font}" />
-								</f:facet>
-								<h:outputText value="#{d.text}"
-									rendered="#{d.text ne 0 and d.text ne 5555}">
-								</h:outputText>
-							</p:column>
-							<!-- 
-							<p:column rendered="false">
-								<f:facet name="header">
-									<h:outputText value="PBP" style="#{msgs.column_header_font}" />
-								</f:facet>
-								<h:outputText style="color:#000000; "
-									value="#{d.physicalPrior.ITEM_BARCODE}" />
-							</p:column>
-							<p:column rendered="false">
-								<f:facet name="header">
-									<h:outputText value="Prior Sorted Call Number"
-										style="#{msgs.column_header_font}" />
-								</f:facet>
-								<h:outputText value="#{d.prior}" />
-							</p:column>
-							-->
-							<p:column rendered="true">
-								<f:facet name="header">
-									<h:outputText value="Preceding"
-										style="#{msgs.column_header_font}" />
-								</f:facet>
-								<h:outputText value="#{d.priorPhysical}" />
-							</p:column>
-							<p:column rendered="true">
-								<f:facet name="header">
-									<h:outputText value="Enum" style="#{msgs.column_header_font}" />
-								</f:facet>
-								<h:outputText value="#{d.priorPhysicalEnum}" />
-							</p:column>
-							<p:column rendered="true">
-								<f:facet name="header">
-									<h:outputText value="Chron" style="#{msgs.column_header_font}" />
-								</f:facet>
-								<h:outputText value="#{d.priorPhysicalChron}" />
-							</p:column>
-						</p:dataTable>
-					</div>
-					<!--  END OF SCREEN RESULTS -->
-
-
-
-
-
-					<!--  PRINT SECTION -->
-					<!--  UI for PRINT , no paginator, min. font size -->
-					<!--  KEEPING IT IN SYNC W/ THE ACTUAL UI DATABLE IS A PAIN -->
-
-					<div id="printed_div" style="display: none">
-
-						<p:dataTable id="sorted_report_for_printing"
-							value="#{searchView.engine.reportLists.culpritList}" var="p"
-							paginator="false" paginatorPosition="bottom"
-							emptyMessage="No errors found."
-							rendered="#{(not empty searchView.engine.reportLists.culpritList)}">
-
-							<f:facet name="header">
-								<br />
-								<table align="center">
-									<tr>
-										<td style="text-align: left"><h:outputText
-												style="color:#000000; " value="Scanned File: " /> <h:outputText
-												value="#{searchView.fileName}" /></td>
-										<td style="text-align: right"><h:outputText
-												style="color:#000000; " value="Discharge Errors: " /> <h:outputText
-												value="#{searchView.engine.shelvingError.status_errors}" /></td>
-									</tr>
-									<tr>
-										<td style="text-align: left"><h:outputText
-												style="color:#000000; " value="Starting Call Num.: " /> <h:outputText
-												value="#{rules.getFirstValidDisplayCallNum(searchView.engine.reportLists.catalogAsList)}" /></td>
-										<td style="text-align: right"><h:outputText
-												style="color:#000000; " value="Oversize Errors: " /> <h:outputText
-												value="#{searchView.engine.shelvingError.oversize_errors}" /></td>
-									</tr>
-
-									<tr>
-										<td style="text-align: left"><h:outputText
-												style="color:#000000; " value="Ending Call Num.: " /> <h:outputText
-												value="#{rules.getLastValidDisplayCallNum(searchView.engine.reportLists.catalogAsList)}" /></td>
-										<td style="text-align: right"><h:outputText
-												style="color:#000000; " value="Bad Barcodes: " /> <h:outputText
-												value="#{fn:length(searchView.badBarcodes)}" /></td>
-									</tr>
-
-									<tr>
-										<td style="text-align: left"><h:outputText
-												style="color:#000000; " value="Scan Location: " /> <h:outputText
-												value="#{searchView.finalLocationName}" /></td>
-										<td style="text-align: right"><h:outputText
-												style="color:#000000; " value="Accuracy (Misshelf > 2): " />
-											<h:outputText
-												value="#{searchView.engine.shelvingError.misshelf_threshold_errors}" />
-										</td>
-									</tr>
-									<tr>
-										<td style="text-align: left"><h:outputText
-												style="color:#000000; " value="Oversize Material: " /> <h:outputText
-												value="#{searchView.oversize}" /></td>
-										<td style="text-align: right"><h:outputText
-												style="color:#000000; " value="Shelving (+ Loc.) Errors: " />
-											<h:outputText
-												value="#{searchView.engine.shelvingError.accuracy_errors}" /></td>
-									</tr>
-									<tr>
-										<td style="text-align: left"><h:outputText
-												style="color:#000000; " value="Scan Date: " /> <h:outputText
-												value="#{searchView.scanDate}">
-												<f:convertDateTime pattern="M-d-yyyy" />
-											</h:outputText></td>
-										<td style="text-align: right"><h:outputText
-												style="color:#000000; " value="Shelving Warnings: " /> <h:outputText
-												value="#{searchView.engine.shelvingError.enum_warnings}" /></td>
-									</tr>
-									<tr>
-										<td style="text-align: left">Page: #{view.viewId} ?id=
-											#{param['id']}</td>
-
-										<td style="text-align: right"><h:outputLink id="sup"
-												style="color:#000000; " value="Suppress Error: "> Suppress Errors:
-													</h:outputLink> <h:outputText
-												value="#{searchView.engine.shelvingError.suppress_errors}" />
-											<!-- <p:commandButton id="sup1" value="Basic" type="button" />   -->
-											<!-- <p:commandButton id="basicSupres" value="Show" onclick="suppressDlg.show()" type="button"/>
-												--> <p:overlayPanel id="imgPanel" for="sup"
-												showEffect="blind" hideEffect="explode"
-												showEvent="mouseover" hideEvent="mousedown"
-												styleClass="ui-helper-clearfix">
-
-												<p:dataTable id="suppressed_list_report"
-													value="#{searchView.engine.reportLists.suppressedList}"
-													var="t" paginator="true" rows="15"
-													paginatorPosition="bottom" emptyMessage="None  found.">
-													<p:column>
-														<f:facet name="header">
-															<h:outputText value="Suppressed Barcode"
-																style="#{msgs.column_header_font}" />
-														</f:facet>
-														<!--  <h:outputText style="#{searchView.finalLocationName eq 'sml' ? 'color:red; background-color:#ffc' : 'color:blue' }" value="#{d.NORMALIZED_CALL_NO}"/> -->
-														<h:outputText value="#{t.ITEM_BARCODE}" />
-													</p:column>
-													<p:column>
-														<f:facet name="header">
-															<h:outputText value="Display Call #"
-																style="#{msgs.column_header_font}" />
-														</f:facet>
-														<!--  <h:outputText style="#{searchView.finalLocationName eq 'sml' ? 'color:red; background-color:#ffc' : 'color:blue' }" value="#{d.NORMALIZED_CALL_NO}"/> -->
-														<h:outputText value="#{t.DISPLAY_CALL_NO}" />
-													</p:column>
-												</p:dataTable>
-											</p:overlayPanel></td>
-									</tr>
-								</table>
-								<br />
-								<br />
-							</f:facet>
-
-							<!--  PRINT COLUMNS -->
-
-							<p:column rendered="true">
-								<f:facet name="header">
-									<h:outputText value="Resolution"
-										style="#{msgs.column_header_font}" />
-								</f:facet>
-
-							</p:column>
-							<p:column rendered="true">
-								<f:facet name="header">
-									<h:outputText value="Barcode"
-										style="#{msgs.column_header_font}" />
-								</f:facet>
-								<h:graphicImage library="img" name="warn.gif"
-									rendered="#{p.DISPLAY_CALL_NO.contains('REPEAT')}" />
-								<h:outputText style="color:#000000;" value="#{p.ITEM_BARCODE}" />
-							</p:column>
-
-
-							<p:column rendered="true">
-								<f:facet name="header">
-									<h:outputText value="Call Number"
-										style="#{msgs.column_header_font}" />
-								</f:facet>
-								<h:outputText
-									value="#{p.DISPLAY_CALL_NO.replace('REPEAT', '').replace('*','')}" />
-							</p:column>
-
-
-							<p:column rendered="true">
-								<f:facet name="header">
-									<h:outputText value="CN Type"
-										style="#{msgs.column_header_font}" />
-								</f:facet>
-								<h:outputText value="#{p.CALL_NO_TYPE}" />
-							</p:column>
-
-							<p:column rendered="true">
-								<f:facet name="header">
-									<h:outputText value="Enum" style="#{msgs.column_header_font}" />
-								</f:facet>
-								<h:outputText value="#{p.ITEM_ENUM}" />
-							</p:column>
-							<p:column rendered="false">
-								<f:facet name="header">
-									<h:outputText value="Y" style="#{msgs.column_header_font}" />
-								</f:facet>
-								<h:outputText style="color:#000000" value="#{p.YEAR}" />
-							</p:column>
-							<p:column rendered="true">
-								<f:facet name="header">
-									<h:outputText value="Chron." style="#{msgs.column_header_font}" />
-								</f:facet>
-								<h:outputText value="#{p.CHRON}" />
-							</p:column>
-							<p:column rendered="true">
-								<f:facet name="header">
-									<h:outputText value="LocErr" style="#{msgs.column_header_font}" />
-								</f:facet>
-								<!--  do not display if there's no value of location, e.g. bad barcode. 
-									What if an item has no perm_location in Orbis?  -->
-
-								<h:graphicImage library="img" name="warn.gif"
-									rendered="#{(not empty p.LOCATION_NAME) and 
-											(p.LOCATION_NAME ne searchView.finalLocationName)}" />
-								<h:outputText value="#{p.LOCATION_NAME}"
-									rendered="#{(not empty p.LOCATION_NAME) and 
-											(p.LOCATION_NAME ne searchView.finalLocationName)}" />
-
-							</p:column>
-
-							<p:column rendered="true">
-								<f:facet name="header">
-									<h:outputText value="Status" style="#{msgs.column_header_font}" />
-								</f:facet>
-								<h:graphicImage library="img" name="warn.gif"
-									rendered="#{(not empty p.ITEM_STATUS_DESC) and 
-											(p.ITEM_STATUS_DESC ne 'Not Charged') and (p.ITEM_STATUS_DESC ne 'Discharged') and (p.ITEM_STATUS_DESC ne 'Circulation Review') and (p.ITEM_STATUS_DATE lt searchView.scanDate)}" />
-								<h:outputText value="#{p.ITEM_STATUS_DESC}" />
-							</p:column>
-
-
-							<p:column rendered="true">
-								<f:facet name="header">
-									<h:outputText value="SizeErr"
-										style="#{msgs.column_header_font}" />
-								</f:facet>
-								<h:graphicImage library="img" name="warn.gif"
-									rendered="#{(searchView.oversize != 'Intermixed') and p.OVERSIZE ne searchView.oversize}" />
-							</p:column>
-							<p:column rendered="true">
-								<f:facet name="header">
-									<h:outputText value="Misshelf"
-										style="#{msgs.column_header_font}" />
-								</f:facet>
-								<h:outputText value="#{p.text}"
-									rendered="#{p.text ne 0 and p.text ne 5555}">
-									<!--  returns as a string 
-								       	<f:converter converterId="edu.yale.sml.logic.IntegerConverter" />
-							       	-->
-								</h:outputText>
-							</p:column>
-
-
-							<!--  check aug 14 2013 -->
-							<p:column rendered="false">
-								<f:facet name="header">
-									<h:outputText value="PBP" style="#{msgs.column_header_font}" />
-								</f:facet>
-								<h:outputText style="color:#000000; font-size:0.80em"
-									value="#{p.physicalPrior.ITEM_BARCODE}" />
-							</p:column>
-							<!--  prior sorted ignored -->
-							<p:column rendered="false">
-								<f:facet name="header">
-									<h:outputText value="Prior Call Number"
-										style="#{msgs.column_header_font}" />
-								</f:facet>
-								<h:outputText value="#{p.prior}" />
-							</p:column>
-							<p:column rendered="true">
-								<f:facet name="header">
-									<h:outputText value="Preceding"
-										style="#{msgs.column_header_font}" />
-								</f:facet>
-								<h:outputText value="#{p.priorPhysical}" />
-							</p:column>
-							<p:column rendered="true">
-								<f:facet name="header">
-									<h:outputText value="Enum" style="#{msgs.column_header_font}" />
-								</f:facet>
-								<h:outputText value="#{p.priorPhysicalEnum}" />
-							</p:column>
-							<p:column rendered="true">
-								<f:facet name="header">
-									<h:outputText value="Chron." style="#{msgs.column_header_font}" />
-								</f:facet>
-								<h:outputText value="#{p.priorPhysicalChron}" />
-							</p:column>
-						</p:dataTable>
-					</div>
-					<br />
-				</p:tab>
-				<!--  end of results for printing -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				<!--  VOYAGER QUERY RESULTS -->
-				<p:tab id="raw" title="Voyager Query Results">
-					<h:panelGrid columns="2" cellpadding="10">
-
-						<p:dataTable id="unsortedreport"
-							value="#{searchView.engine.reportLists.catalogAsList}" var="c"
-							lazy="false" rows="500" resizableColumns="true"
-							paginatorPosition="bottom" scrollable="true" scrollHeight="550">
-
-							<p:column headerText="Barcode" width="125">
-								<h:outputText value="#{c.ITEM_BARCODE}" />
-							</p:column>
-							<p:column headerText="Display. Call #" width="125">
-								<h:outputText value="#{c.DISPLAY_CALL_NO}" />
-							</p:column>
-							<p:column width="30">
-								<f:facet name="header">
-									<h:outputText value="Call # Type" />
-								</f:facet>
-								<h:outputText value="#{c.CALL_NO_TYPE}" />
-							</p:column>
-							<p:column headerText="Enum" width="75">
-								<h:outputText value="#{c.ITEM_ENUM}" />
-							</p:column>
-							<p:column headerText="Chron" width="50">
-								<h:outputText value="#{c.CHRON}" />
-							</p:column>
-							<p:column headerText="Loc." width="60">
-								<h:outputText value="#{c.LOCATION_NAME}" />
-							</p:column>
-							<p:column headerText="Display. Call #" width="125"
-								rendered="false">
-								<h:outputText style="color:#000000" value="" />
-							</p:column>
-							<p:column headerText="Item Id" width="65">
-								<h:outputText value="#{c.ITEM_ID}" />
-							</p:column>
-							<p:column headerText="Status Date" width="90">
-								<h:outputText value="#{c.ITEM_STATUS_DATE}" />
-							</p:column>
-							<p:column headerText="Status Desc" width="105">
-								<h:outputText value="#{c.ITEM_STATUS_DESC}" />
-							</p:column>
-							<p:column headerText="MFHD_ID" width="60">
-								<h:outputText value="#{c.MFHD_ID}" />
-							</p:column>
-							<p:column headerText="Enc." width="50">
-								<h:outputText value="#{c.ENCODING_LEVEL}" />
-							</p:column>
-							<p:column headerText="Supp." width="50">
-								<h:outputText value="#{c.SUPPRESS_IN_OPAC}" />
-							</p:column>
-						</p:dataTable>
-					</h:panelGrid>
-				</p:tab>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				<!--  TAB: modal results -->
-				<!--  modal helper results for comparision -->
-				<p:tab id="comparison" title="Barcode Comparison">
-					<h:panelGrid id="comparisonGrid" columns="4" cellpadding="10">
-						<!--  DATATABLE 1 -->
-
-						<p:dataTable id="justsorted"
-							value="#{searchView.engine.reportLists.catalogSortedRaw}" var="c"
-							lazy="false" resizableColumns="true" paginatorPosition="bottom"
-							binding="#{table}" scrollable="true" scrollHeight="550">
-							<f:facet name="header">
-								Sorted Records Table
-							</f:facet>
-							<p:column headerText="No." width="30">
-								<h:outputText value="#{table.rowIndex}" />
-							</p:column>
-							<p:column headerText="File #" width="40">
-								<h:outputText
-									value="#{searchView.engine.reportLists.catalogAsList.indexOf(c)}" />
-							</p:column>
-							<p:column headerText="Barcode" width="120">
-								<h:outputText value="#{c.ITEM_BARCODE}" />
-							</p:column>
-							<p:column headerText="Display Call. No." width="120">
-								<h:outputText value="#{c.DISPLAY_CALL_NO}"
-									rendered="#{not edu.yale.sml.model.ReportHelper.reportContains(c)}" />
-							</p:column>
-						</p:dataTable>
-						<!--  DATATABLE 2 -->
-						<p:dataTable id="justsorted2"
-							value="#{searchView.engine.reportLists.markedCatalogAsList}"
-							var="c" lazy="false" resizableColumns="true"
-							paginatorPosition="bottom" scrollable="true" scrollHeight="550"
-							binding="#{table2}">
-							<f:facet name="header">
-								File Order Table
-							 </f:facet>
-							<p:column headerText="No." width="30">
-								<h:outputText value="#{table2.rowIndex}" />
-							</p:column>
-							<p:column headerText="Sort #" width="40">
-								<h:outputText
-									value="#{searchView.engine.reportLists.catalogSortedRaw.indexOf(c)}" />
-							</p:column>
-							<p:column headerText="Barcode" width="120">
-								<h:outputText value="#{c.ITEM_BARCODE}" />
-							</p:column>
-							<p:column headerText="Display Call. No." width="135">
-								<h:outputText value="#{c.DISPLAY_CALL_NO}"
-									rendered="#{!fn:contains(c.DISPLAY_CALL_NO, '*')}" />
+                            value="#{rules.getLastValidDisplayCallNum(searchView.engine.reportLists.catalogAsList)}"/>
+                    </td>
+
+                    <td style="text-align: right"><h:outputLink
+                            id="nullResult" style="color:#000000; "
+                            value="Null Result: "> Null Result:
+                    </h:outputLink> <h:outputText
+                            value="#{searchView.engine.reportLists.nullResultBarcodes.size()}"/>
+                        <p:overlayPanel id="imgPanel2" for="nullResult"
+                                        showEffect="blind" hideEffect="explode"
+                                        showEvent="mouseover" hideEvent="mousedown"
+                                        styleClass="ui-helper-clearfix">
+
+                            <p:dataTable id="null_result_datatable"
+                                         value="#{searchView.engine.reportLists.nullResultBarcodes}"
+                                         var="n" paginator="true" rows="15"
+                                         paginatorPosition="bottom" emptyMessage="None  found.">
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Null Result Barcode"
+                                                      style="#{msgs.column_header_font}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{n.ITEM_BARCODE}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Previous Call. #"
+                                                      style="#{msgs.column_header_font}"/>
+                                    </f:facet>
+                                    <h:outputText value="N/A"/>
+                                </p:column>
+                            </p:dataTable>
+                        </p:overlayPanel></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left"><h:outputText
+                            style="color:#000000; " value="Scan Location: "/> <h:outputText
+                            value="#{searchView.finalLocationName}"/></td>
+                    <td style="text-align: right"><h:outputText
+                            style="color:#000000; " value="Accuracy (Misshelf > 2): "/>
+                        <h:outputText
+                                value="#{searchView.engine.shelvingError.misshelf_threshold_errors}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left"><h:outputText
+                            style="color:#000000; " value="Oversize Material: "/> <h:outputText
+                            value="#{searchView.oversize}"/></td>
+                    <td style="text-align: right"><h:outputText
+                            style="color:#000000; " value="Shelving (+ Loc.) Errors: "/>
+                        <h:outputText
+                                value="#{searchView.engine.shelvingError.accuracy_errors}"/></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left"><h:outputText
+                            style="color:#000000; " value="Scan Date: "/> <h:outputText
+                            value="#{searchView.scanDate}">
+                        <f:convertDateTime pattern="M-d-yyyy"/>
+                    </h:outputText></td>
+                    <td style="text-align: right"><h:outputText
+                            style="color:#000000; " value="Shelving Warnings: "/> <h:outputText
+                            value="#{searchView.engine.shelvingError.enum_warnings}"/></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left">Page: #{view.viewId} ?id=
+                        #{param['id']}</td>
+                    <td style="text-align: right"><h:outputLink id="sup"
+                                                                style="color:#000000; "
+                                                                value="Suppress Error: "> Suppress Errors:
+                    </h:outputLink> <h:outputText
+                            value="#{searchView.engine.shelvingError.suppress_errors}"/>
+                        <!-- <p:commandButton id="sup1" value="Basic" type="button" />   -->
+                        <!-- <p:commandButton id="basicSupres" value="Show" onclick="suppressDlg.show()" type="button"/>
+                --> <p:overlayPanel id="imgPanel" for="sup"
+                                                                showEffect="blind" hideEffect="explode"
+                                                                showEvent="mouseover" hideEvent="mousedown"
+                                                                styleClass="ui-helper-clearfix">
+
+                            <p:dataTable id="suppressed_list_report"
+                                         value="#{searchView.engine.reportLists.suppressedList}"
+                                         var="s" paginator="true" rows="15"
+                                         paginatorPosition="bottom" emptyMessage="None  found.">
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Suppressed Barcode"
+                                                      style="#{msgs.column_header_font}"/>
+                                    </f:facet>
+                                    <!--  <h:outputText style="#{searchView.finalLocationName eq 'sml' ? 'color:red; background-color:#ffc' : 'color:blue' }" value="#{d.NORMALIZED_CALL_NO}"/> -->
+                                    <h:outputText value="#{s.ITEM_BARCODE}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Display Call #"
+                                                      style="#{msgs.column_header_font}"/>
+                                    </f:facet>
+                                    <!--  <h:outputText style="#{searchView.finalLocationName eq 'sml' ? 'color:red; background-color:#ffc' : 'color:blue' }" value="#{d.NORMALIZED_CALL_NO}"/> -->
+                                    <h:outputText value="#{s.DISPLAY_CALL_NO}"/>
+                                </p:column>
+                            </p:dataTable>
+                        </p:overlayPanel></td>
+                </tr>
+            </table>
+        </p:tab>
+    </p:tabView>
+</f:facet>
+
+<p:column rendered="true">
+    <f:facet name="header">
+        <h:outputText value="Barcode"
+                      style="#{msgs.column_header_font}"/>
+    </f:facet>
+    <h:graphicImage library="img" name="warn.gif"
+                    rendered="#{d.DISPLAY_CALL_NO.contains('REPEAT')}"/>
+    <h:outputText style="color:#000000;" value="#{d.ITEM_BARCODE}"/>
+</p:column>
+
+
+<p:column rendered="true">
+    <f:facet name="header">
+        <h:outputText value="Call Number"
+                      style="#{msgs.column_header_font}"/>
+    </f:facet>
+    <h:outputText
+            value="#{d.DISPLAY_CALL_NO.replace('REPEAT', '').replace('*','')}"/>
+</p:column>
+<p:column rendered="true">
+    <f:facet name="header">
+        <h:outputText value=" CN Type"
+                      style="#{msgs.column_header_font}"/>
+    </f:facet>
+    <h:outputText value="#{d.CALL_NO_TYPE}"
+                  rendered="#{!d.CALL_NO_TYPE.equals('0')}" style="color:red;"/>
+    <h:outputText value="#{d.CALL_NO_TYPE}"
+                  rendered="#{d.CALL_NO_TYPE.equals('0')}"/>
+
+</p:column>
+<p:column rendered="true">
+    <f:facet name="header">
+        <h:outputText value="Enum" style="#{msgs.column_header_font}"/>
+    </f:facet>
+    <h:outputText value="#{d.ITEM_ENUM}"/>
+</p:column>
+<p:column rendered="true">
+    <f:facet name="header">
+        <h:outputText value="Chron" style="#{msgs.column_header_font}"/>
+    </f:facet>
+    <h:outputText value="#{d.CHRON}"/>
+</p:column>
+
+
+<p:column rendered="true">
+    <f:facet name="header">
+        <h:outputText value="LocErr" style="#{msgs.column_header_font}"/>
+    </f:facet>
+    <!--  do not display if there's no value of location, e.g. bad barcode.
+    What if an item has no perm_location in Orbis?  -->
+
+    <h:graphicImage library="img" name="warn.gif"
+                    rendered="#{(not empty d.LOCATION_NAME) and
+										(d.LOCATION_NAME ne searchView.finalLocationName)}"/>
+    <h:outputText value="#{d.LOCATION_NAME}"
+                  rendered="#{(not empty d.LOCATION_NAME) and
+										(d.LOCATION_NAME ne searchView.finalLocationName)}"/>
+</p:column>
+
+
+<p:column rendered="true">
+    <f:facet name="header">
+        <h:outputText value="Status" style="#{msgs.column_header_font}"/>
+    </f:facet>
+    <h:graphicImage library="img" name="warn.gif"
+                    rendered="#{(not empty d.ITEM_STATUS_DESC) and
+										(d.ITEM_STATUS_DESC ne 'Not Charged') and (d.ITEM_STATUS_DESC ne 'Discharged') and (d.ITEM_STATUS_DESC ne 'Circulation Review') and (d.ITEM_STATUS_DESC ne 'Discharged') and (d.ITEM_STATUS_DATE lt searchView.scanDate)}"/>
+    <h:outputText value="#{d.ITEM_STATUS_DESC}"/>
+</p:column>
+
+
+<p:column rendered="true">
+    <f:facet name="header">
+        <h:outputText value="SizeErr"
+                      style="#{msgs.column_header_font}"/>
+    </f:facet>
+    <h:graphicImage library="img" name="warn.gif"
+                    rendered="#{(searchView.oversize != 'Intermixed') and d.OVERSIZE ne searchView.oversize}"/>
+</p:column>
+<!--  MISSHELF DIFF -->
+<!-- <p:column style="#{searchView.finalLocationName eq 'sml' ? 'color:red; background-color:#ffc' : 'color:blue' }"> -->
+<p:column rendered="true">
+    <f:facet name="header">
+        <h:outputText value="Misshelf"
+                      style="#{msgs.column_header_font}"/>
+    </f:facet>
+    <h:outputText value="#{d.text}"
+                  rendered="#{d.text ne 0 and d.text ne 5555}">
+    </h:outputText>
+</p:column>
+<!--
+<p:column rendered="false">
+    <f:facet name="header">
+        <h:outputText value="PBP" style="#{msgs.column_header_font}" />
+    </f:facet>
+    <h:outputText style="color:#000000; "
+        value="#{d.physicalPrior.ITEM_BARCODE}" />
+</p:column>
+<p:column rendered="false">
+    <f:facet name="header">
+        <h:outputText value="Prior Sorted Call Number"
+            style="#{msgs.column_header_font}" />
+    </f:facet>
+    <h:outputText value="#{d.prior}" />
+</p:column>
+-->
+<p:column rendered="true">
+    <f:facet name="header">
+        <h:outputText value="Preceding"
+                      style="#{msgs.column_header_font}"/>
+    </f:facet>
+    <h:outputText value="#{d.priorPhysical}"/>
+</p:column>
+<p:column rendered="true">
+    <f:facet name="header">
+        <h:outputText value="Enum" style="#{msgs.column_header_font}"/>
+    </f:facet>
+    <h:outputText value="#{d.priorPhysicalEnum}"/>
+</p:column>
+<p:column rendered="true">
+    <f:facet name="header">
+        <h:outputText value="Chron" style="#{msgs.column_header_font}"/>
+    </f:facet>
+    <h:outputText value="#{d.priorPhysicalChron}"/>
+</p:column>
+</p:dataTable>
+</div>
+<!--  END OF SCREEN RESULTS -->
+
+
+<!--  PRINT SECTION -->
+<!--  UI for PRINT , no paginator, min. font size -->
+<!--  KEEPING IT IN SYNC W/ THE ACTUAL UI DATABLE IS A PAIN -->
+
+<div id="printed_div" style="display: none">
+
+<p:dataTable id="sorted_report_for_printing"
+             value="#{searchView.engine.reportLists.culpritList}" var="p"
+             paginator="false" paginatorPosition="bottom"
+             emptyMessage="No errors found."
+             rendered="#{(not empty searchView.engine.reportLists.culpritList)}">
+
+<f:facet name="header">
+    <br/>
+    <table align="center">
+        <tr>
+            <td style="text-align: left"><h:outputText
+                    style="color:#000000; " value="Scanned File: "/> <h:outputText
+                    value="#{searchView.fileName}"/></td>
+            <td style="text-align: right"><h:outputText
+                    style="color:#000000; " value="Discharge Errors: "/> <h:outputText
+                    value="#{searchView.engine.shelvingError.status_errors}"/></td>
+        </tr>
+        <tr>
+            <td style="text-align: left"><h:outputText
+                    style="color:#000000; " value="Starting Call Num.: "/> <h:outputText
+                    value="#{rules.getFirstValidDisplayCallNum(searchView.engine.reportLists.catalogAsList)}"/></td>
+            <td style="text-align: right"><h:outputText
+                    style="color:#000000; " value="Oversize Errors: "/> <h:outputText
+                    value="#{searchView.engine.shelvingError.oversize_errors}"/></td>
+        </tr>
+
+        <tr>
+            <td style="text-align: left"><h:outputText
+                    style="color:#000000; " value="Ending Call Num.: "/> <h:outputText
+                    value="#{rules.getLastValidDisplayCallNum(searchView.engine.reportLists.catalogAsList)}"/></td>
+            <td style="text-align: right"><h:outputText
+                    style="color:#000000; " value="Bad Barcodes: "/> <h:outputText
+                    value="#{fn:length(searchView.badBarcodes)}"/></td>
+        </tr>
+
+        <tr>
+            <td style="text-align: left"><h:outputText
+                    style="color:#000000; " value="Scan Location: "/> <h:outputText
+                    value="#{searchView.finalLocationName}"/></td>
+            <td style="text-align: right"><h:outputText
+                    style="color:#000000; " value="Accuracy (Misshelf > 2): "/>
+                <h:outputText
+                        value="#{searchView.engine.shelvingError.misshelf_threshold_errors}"/>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: left"><h:outputText
+                    style="color:#000000; " value="Oversize Material: "/> <h:outputText
+                    value="#{searchView.oversize}"/></td>
+            <td style="text-align: right"><h:outputText
+                    style="color:#000000; " value="Shelving (+ Loc.) Errors: "/>
+                <h:outputText
+                        value="#{searchView.engine.shelvingError.accuracy_errors}"/></td>
+        </tr>
+        <tr>
+            <td style="text-align: left"><h:outputText
+                    style="color:#000000; " value="Scan Date: "/> <h:outputText
+                    value="#{searchView.scanDate}">
+                <f:convertDateTime pattern="M-d-yyyy"/>
+            </h:outputText></td>
+            <td style="text-align: right"><h:outputText
+                    style="color:#000000; " value="Shelving Warnings: "/> <h:outputText
+                    value="#{searchView.engine.shelvingError.enum_warnings}"/></td>
+        </tr>
+        <tr>
+            <td style="text-align: left">Page: #{view.viewId} ?id=
+                #{param['id']}</td>
+
+            <td style="text-align: right"><h:outputLink id="sup"
+                                                        style="color:#000000; "
+                                                        value="Suppress Error: "> Suppress Errors:
+            </h:outputLink> <h:outputText
+                    value="#{searchView.engine.shelvingError.suppress_errors}"/>
+                <!-- <p:commandButton id="sup1" value="Basic" type="button" />   -->
+                <!-- <p:commandButton id="basicSupres" value="Show" onclick="suppressDlg.show()" type="button"/>
+                    --> <p:overlayPanel id="imgPanel" for="sup"
+                                                                    showEffect="blind" hideEffect="explode"
+                                                                    showEvent="mouseover" hideEvent="mousedown"
+                                                                    styleClass="ui-helper-clearfix">
+
+                    <p:dataTable id="suppressed_list_report"
+                                 value="#{searchView.engine.reportLists.suppressedList}"
+                                 var="t" paginator="true" rows="15"
+                                 paginatorPosition="bottom" emptyMessage="None  found.">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Suppressed Barcode"
+                                              style="#{msgs.column_header_font}"/>
+                            </f:facet>
+                            <!--  <h:outputText style="#{searchView.finalLocationName eq 'sml' ? 'color:red; background-color:#ffc' : 'color:blue' }" value="#{d.NORMALIZED_CALL_NO}"/> -->
+                            <h:outputText value="#{t.ITEM_BARCODE}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Display Call #"
+                                              style="#{msgs.column_header_font}"/>
+                            </f:facet>
+                            <!--  <h:outputText style="#{searchView.finalLocationName eq 'sml' ? 'color:red; background-color:#ffc' : 'color:blue' }" value="#{d.NORMALIZED_CALL_NO}"/> -->
+                            <h:outputText value="#{t.DISPLAY_CALL_NO}"/>
+                        </p:column>
+                    </p:dataTable>
+                </p:overlayPanel></td>
+        </tr>
+    </table>
+    <br/>
+    <br/>
+</f:facet>
+
+<!--  PRINT COLUMNS -->
+
+<p:column rendered="true">
+    <f:facet name="header">
+        <h:outputText value="Resolution"
+                      style="#{msgs.column_header_font}"/>
+    </f:facet>
+
+</p:column>
+<p:column rendered="true">
+    <f:facet name="header">
+        <h:outputText value="Barcode"
+                      style="#{msgs.column_header_font}"/>
+    </f:facet>
+    <h:graphicImage library="img" name="warn.gif"
+                    rendered="#{p.DISPLAY_CALL_NO.contains('REPEAT')}"/>
+    <h:outputText style="color:#000000;" value="#{p.ITEM_BARCODE}"/>
+</p:column>
+
+
+<p:column rendered="true">
+    <f:facet name="header">
+        <h:outputText value="Call Number"
+                      style="#{msgs.column_header_font}"/>
+    </f:facet>
+    <h:outputText
+            value="#{p.DISPLAY_CALL_NO.replace('REPEAT', '').replace('*','')}"/>
+</p:column>
+
+
+<p:column rendered="true">
+    <f:facet name="header">
+        <h:outputText value="CN Type"
+                      style="#{msgs.column_header_font}"/>
+    </f:facet>
+    <h:outputText value="#{p.CALL_NO_TYPE}"/>
+</p:column>
+
+<p:column rendered="true">
+    <f:facet name="header">
+        <h:outputText value="Enum" style="#{msgs.column_header_font}"/>
+    </f:facet>
+    <h:outputText value="#{p.ITEM_ENUM}"/>
+</p:column>
+<p:column rendered="false">
+    <f:facet name="header">
+        <h:outputText value="Y" style="#{msgs.column_header_font}"/>
+    </f:facet>
+    <h:outputText style="color:#000000" value="#{p.YEAR}"/>
+</p:column>
+<p:column rendered="true">
+    <f:facet name="header">
+        <h:outputText value="Chron." style="#{msgs.column_header_font}"/>
+    </f:facet>
+    <h:outputText value="#{p.CHRON}"/>
+</p:column>
+<p:column rendered="true">
+    <f:facet name="header">
+        <h:outputText value="LocErr" style="#{msgs.column_header_font}"/>
+    </f:facet>
+    <!--  do not display if there's no value of location, e.g. bad barcode.
+        What if an item has no perm_location in Orbis?  -->
+
+    <h:graphicImage library="img" name="warn.gif"
+                    rendered="#{(not empty p.LOCATION_NAME) and
+											(p.LOCATION_NAME ne searchView.finalLocationName)}"/>
+    <h:outputText value="#{p.LOCATION_NAME}"
+                  rendered="#{(not empty p.LOCATION_NAME) and
+											(p.LOCATION_NAME ne searchView.finalLocationName)}"/>
+
+</p:column>
+
+<p:column rendered="true">
+    <f:facet name="header">
+        <h:outputText value="Status" style="#{msgs.column_header_font}"/>
+    </f:facet>
+    <h:graphicImage library="img" name="warn.gif"
+                    rendered="#{(not empty p.ITEM_STATUS_DESC) and
+											(p.ITEM_STATUS_DESC ne 'Not Charged') and (p.ITEM_STATUS_DESC ne 'Discharged') and (p.ITEM_STATUS_DESC ne 'Circulation Review') and (p.ITEM_STATUS_DATE lt searchView.scanDate)}"/>
+    <h:outputText value="#{p.ITEM_STATUS_DESC}"/>
+</p:column>
+
+
+<p:column rendered="true">
+    <f:facet name="header">
+        <h:outputText value="SizeErr"
+                      style="#{msgs.column_header_font}"/>
+    </f:facet>
+    <h:graphicImage library="img" name="warn.gif"
+                    rendered="#{(searchView.oversize != 'Intermixed') and p.OVERSIZE ne searchView.oversize}"/>
+</p:column>
+<p:column rendered="true">
+    <f:facet name="header">
+        <h:outputText value="Misshelf"
+                      style="#{msgs.column_header_font}"/>
+    </f:facet>
+    <h:outputText value="#{p.text}"
+                  rendered="#{p.text ne 0 and p.text ne 5555}">
+        <!--  returns as a string
+               <f:converter converterId="edu.yale.sml.logic.IntegerConverter" />
+           -->
+    </h:outputText>
+</p:column>
+
+
+<!--  check aug 14 2013 -->
+<p:column rendered="false">
+    <f:facet name="header">
+        <h:outputText value="PBP" style="#{msgs.column_header_font}"/>
+    </f:facet>
+    <h:outputText style="color:#000000; font-size:0.80em"
+                  value="#{p.physicalPrior.ITEM_BARCODE}"/>
+</p:column>
+<!--  prior sorted ignored -->
+<p:column rendered="false">
+    <f:facet name="header">
+        <h:outputText value="Prior Call Number"
+                      style="#{msgs.column_header_font}"/>
+    </f:facet>
+    <h:outputText value="#{p.prior}"/>
+</p:column>
+<p:column rendered="true">
+    <f:facet name="header">
+        <h:outputText value="Preceding"
+                      style="#{msgs.column_header_font}"/>
+    </f:facet>
+    <h:outputText value="#{p.priorPhysical}"/>
+</p:column>
+<p:column rendered="true">
+    <f:facet name="header">
+        <h:outputText value="Enum" style="#{msgs.column_header_font}"/>
+    </f:facet>
+    <h:outputText value="#{p.priorPhysicalEnum}"/>
+</p:column>
+<p:column rendered="true">
+    <f:facet name="header">
+        <h:outputText value="Chron." style="#{msgs.column_header_font}"/>
+    </f:facet>
+    <h:outputText value="#{p.priorPhysicalChron}"/>
+</p:column>
+</p:dataTable>
+</div>
+<br/>
+</p:tab>
+<!--  end of results for printing -->
+
+
+<!--  VOYAGER QUERY RESULTS -->
+<p:tab id="raw" title="Voyager Query Results">
+    <h:panelGrid columns="2" cellpadding="10">
+
+        <p:dataTable id="unsortedreport"
+                     value="#{searchView.engine.reportLists.catalogAsList}" var="c"
+                     lazy="false" rows="500" resizableColumns="true"
+                     paginatorPosition="bottom" scrollable="true" scrollHeight="550">
+
+            <p:column headerText="Barcode" width="125">
+                <h:outputText value="#{c.ITEM_BARCODE}"/>
+            </p:column>
+            <p:column headerText="Display. Call #" width="125">
+                <h:outputText value="#{c.DISPLAY_CALL_NO}"/>
+            </p:column>
+            <p:column width="30">
+                <f:facet name="header">
+                    <h:outputText value="Call # Type"/>
+                </f:facet>
+                <h:outputText value="#{c.CALL_NO_TYPE}"/>
+            </p:column>
+            <p:column headerText="Enum" width="75">
+                <h:outputText value="#{c.ITEM_ENUM}"/>
+            </p:column>
+            <p:column headerText="Chron" width="50">
+                <h:outputText value="#{c.CHRON}"/>
+            </p:column>
+            <p:column headerText="Loc." width="60">
+                <h:outputText value="#{c.LOCATION_NAME}"/>
+            </p:column>
+            <p:column headerText="Display. Call #" width="125"
+                      rendered="false">
+                <h:outputText style="color:#000000" value=""/>
+            </p:column>
+            <p:column headerText="Item Id" width="65">
+                <h:outputText value="#{c.ITEM_ID}"/>
+            </p:column>
+            <p:column headerText="Status Date" width="90">
+                <h:outputText value="#{c.ITEM_STATUS_DATE}"/>
+            </p:column>
+            <p:column headerText="Status Desc" width="105">
+                <h:outputText value="#{c.ITEM_STATUS_DESC}"/>
+            </p:column>
+            <p:column headerText="MFHD_ID" width="60">
+                <h:outputText value="#{c.MFHD_ID}"/>
+            </p:column>
+            <p:column headerText="Enc." width="50">
+                <h:outputText value="#{c.ENCODING_LEVEL}"/>
+            </p:column>
+            <p:column headerText="Supp." width="50">
+                <h:outputText value="#{c.SUPPRESS_IN_OPAC}"/>
+            </p:column>
+        </p:dataTable>
+    </h:panelGrid>
+</p:tab>
+
+
+<!--  TAB: modal results -->
+<!--  modal helper results for comparision -->
+<p:tab id="comparison" title="Barcode Comparison">
+    <h:panelGrid id="comparisonGrid" columns="4" cellpadding="10">
+        <!--  DATATABLE 1 -->
+
+        <p:dataTable id="justsorted"
+                     value="#{searchView.engine.reportLists.catalogSortedRaw}" var="c"
+                     lazy="false" resizableColumns="true" paginatorPosition="bottom"
+                     binding="#{table}" scrollable="true" scrollHeight="550">
+            <f:facet name="header">
+                Sorted Records Table
+            </f:facet>
+            <p:column headerText="No." width="30">
+                <h:outputText value="#{table.rowIndex}"/>
+            </p:column>
+            <p:column headerText="File #" width="40">
+                <h:outputText
+                        value="#{searchView.engine.reportLists.catalogAsList.indexOf(c)}"/>
+            </p:column>
+            <p:column headerText="Barcode" width="120">
+                <h:outputText value="#{c.ITEM_BARCODE}"/>
+            </p:column>
+            <p:column headerText="Display Call. No." width="120">
+                <h:outputText value="#{c.DISPLAY_CALL_NO}"
+                              rendered="#{not edu.yale.sml.model.ReportHelper.reportContains(c)}"/>
+            </p:column>
+        </p:dataTable>
+        <!--  DATATABLE 2 -->
+        <p:dataTable id="justsorted2"
+                     value="#{searchView.engine.reportLists.markedCatalogAsList}"
+                     var="c" lazy="false" resizableColumns="true"
+                     paginatorPosition="bottom" scrollable="true" scrollHeight="550"
+                     binding="#{table2}">
+            <f:facet name="header">
+                File Order Table
+            </f:facet>
+            <p:column headerText="No." width="30">
+                <h:outputText value="#{table2.rowIndex}"/>
+            </p:column>
+            <p:column headerText="Sort #" width="40">
+                <h:outputText
+                        value="#{searchView.engine.reportLists.catalogSortedRaw.indexOf(c)}"/>
+            </p:column>
+            <p:column headerText="Barcode" width="120">
+                <h:outputText value="#{c.ITEM_BARCODE}"/>
+            </p:column>
+            <p:column headerText="Display Call. No." width="135">
+                <h:outputText value="#{c.DISPLAY_CALL_NO}"
+                              rendered="#{!fn:contains(c.DISPLAY_CALL_NO, '*')}"/>
 								<span id="#{searchView.getReferenceLink(table2.rowIndex)}">
 									<h:link id="wrong" style="color:red"
-										value="#{c.DISPLAY_CALL_NO}"
-										rendered="#{fn:contains(c.DISPLAY_CALL_NO, '*')}" />
+                                            value="#{c.DISPLAY_CALL_NO}"
+                                            rendered="#{fn:contains(c.DISPLAY_CALL_NO, '*')}"/>
 								</span>
-							</p:column>
-						</p:dataTable>
+            </p:column>
+        </p:dataTable>
 
-						<!--  DATATABLE 3 -->
+        <!--  DATATABLE 3 -->
 
-						<p:dataTable id="justsorted3"
-							value="#{searchView.engine.reportLists.markedCatalogAsList}"
-							var="c" lazy="false" resizableColumns="true"
-							paginatorPosition="bottom" scrollable="true" scrollHeight="550"
-							binding="#{table3}">
-							<f:facet name="header">
-								Flagged in File Order Table
-							 </f:facet>
-							<p:column headerText="Check Prior" width="200"
-								rendered="#{fn:contains(c.DISPLAY_CALL_NO, '*')}">
-								<h:outputText value="#{c.DISPLAY_CALL_NO}" rendered="false" />
-								<h:outputLink id="wrong3" style="color:#0055AF"
-									value="#{searchView.getReferenceLink(table3.rowIndex)}"
-									rendered="#{fn:contains(c.DISPLAY_CALL_NO, '*')}">
-									#{c.DISPLAY_CALL_NO}
-								</h:outputLink>
-							</p:column>
-						</p:dataTable>
+        <p:dataTable id="justsorted3"
+                     value="#{searchView.engine.reportLists.markedCatalogAsList}"
+                     var="c" lazy="false" resizableColumns="true"
+                     paginatorPosition="bottom" scrollable="true" scrollHeight="550"
+                     binding="#{table3}">
+            <f:facet name="header">
+                Flagged in File Order Table
+            </f:facet>
+            <p:column headerText="Check Prior" width="200"
+                      rendered="#{fn:contains(c.DISPLAY_CALL_NO, '*')}">
+                <h:outputText value="#{c.DISPLAY_CALL_NO}" rendered="false"/>
+                <h:outputLink id="wrong3" style="color:#0055AF"
+                              value="#{searchView.getReferenceLink(table3.rowIndex)}"
+                              rendered="#{fn:contains(c.DISPLAY_CALL_NO, '*')}">
+                    #{c.DISPLAY_CALL_NO}
+                </h:outputLink>
+            </p:column>
+        </p:dataTable>
 
-						<!--  DATATABLE 4 -->
+        <!--  DATATABLE 4 -->
 
-						<p:dataTable id="comparison2"
-							value="#{searchView.engine.reportLists.catalogSortedRaw}" var="c"
-							lazy="false" resizableColumns="true" paginatorPosition="bottom"
-							binding="#{table4}" scrollable="true" scrollHeight="550"
-							rendered="false">
-							<f:facet name="header">
-								Sorted Records Table
-							</f:facet>
-							<p:column headerText="" width="200"
-								rendered="#{not edu.yale.sml.model.ReportHelper.reportContains(c)}">
-								<h:link id="raw2" style="color:blue"
-									value="#{c.DISPLAY_CALL_NO}"
-									rendered="#{not edu.yale.sml.model.ReportHelper.reportContains(c)}" />
-							</p:column>
-						</p:dataTable>
-					</h:panelGrid>
-				</p:tab>
-				<!-- end: modal helper results for comparision -->
-
-
+        <p:dataTable id="comparison2"
+                     value="#{searchView.engine.reportLists.catalogSortedRaw}" var="c"
+                     lazy="false" resizableColumns="true" paginatorPosition="bottom"
+                     binding="#{table4}" scrollable="true" scrollHeight="550"
+                     rendered="false">
+            <f:facet name="header">
+                Sorted Records Table
+            </f:facet>
+            <p:column headerText="" width="200"
+                      rendered="#{not edu.yale.sml.model.ReportHelper.reportContains(c)}">
+                <h:link id="raw2" style="color:blue"
+                        value="#{c.DISPLAY_CALL_NO}"
+                        rendered="#{not edu.yale.sml.model.ReportHelper.reportContains(c)}"/>
+            </p:column>
+        </p:dataTable>
+    </h:panelGrid>
+</p:tab>
+<!-- end: modal helper results for comparision -->
 
 
+<!--  TAB: ENUM WARNING -->
+<!--  new enum section -->
+<p:tab id="warnings" title="Warnings">
+    <h:panelGrid columns="2" cellpadding="10">
 
+        <p:dataTable id="enum_warnings"
+                     value="#{searchView.engine.reportLists.enumWarnings}" var="f"
+                     lazy="false" rows="500" resizableColumns="true"
+                     paginatorPosition="bottom" scrollable="true" scrollHeight="550">
+            <f:facet name="header">
+                Enum Comparison
+            </f:facet>
 
+            <p:column headerText="Barcode" width="125"
+                      rendered="#{f.text eq 5555}">
+                <h:outputText value="#{f.ITEM_BARCODE}"
+                              rendered="#{f.text eq 5555}"/>
+            </p:column>
+            <p:column headerText="Display. Call #" width="125"
+                      rendered="#{f.text eq 5555}">
+                <h:outputText value="#{f.DISPLAY_CALL_NO}"
+                              rendered="#{f.text eq 5555}"/>
+            </p:column>
+            <p:column headerText="Enum" width="75"
+                      rendered="#{f.text eq 5555}">
+                <h:outputText value="#{f.ITEM_ENUM}"
+                              rendered="#{f.text eq 5555}"/>
+            </p:column>
+            <p:column headerText="Chron" width="50"
+                      rendered="#{f.text eq 5555}">
+                <h:outputText value="#{f.CHRON}" rendered="#{f.text eq 5555}"/>
+            </p:column>
 
+            <p:column headerText="Barcode" width="125"
+                      rendered="#{f.text eq 5555}">
+                <h:outputText value="#{f.physicalPrior.ITEM_BARCODE}"
+                              rendered="#{f.text eq 5555}"/>
+            </p:column>
+            <p:column headerText="Display. Call #" width="125"
+                      rendered="#{f.text eq 5555}">
+                <h:outputText value="#{f.physicalPrior.DISPLAY_CALL_NO}"
+                              rendered="#{f.text eq 5555}"/>
+            </p:column>
+            <p:column headerText="Enum" width="75"
+                      rendered="#{f.text eq 5555}">
+                <h:outputText value="#{f.physicalPrior.ITEM_ENUM}"
+                              rendered="#{f.text eq 5555}"/>
+            </p:column>
+            <p:column headerText="Chron" width="50"
+                      rendered="#{f.text eq 5555}">
+                <h:outputText value="#{f.physicalPrior.CHRON}"
+                              rendered="#{f.text eq 5555}"/>
+            </p:column>
 
+        </p:dataTable>
+    </h:panelGrid>
+</p:tab>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				<!--  TAB: ENUM WARNING -->
-				<!--  new enum section -->
-				<p:tab id="warnings" title="Warnings">
-					<h:panelGrid columns="2" cellpadding="10">
-
-						<p:dataTable id="enum_warnings"
-							value="#{searchView.engine.reportLists.enumWarnings}" var="f"
-							lazy="false" rows="500" resizableColumns="true"
-							paginatorPosition="bottom" scrollable="true" scrollHeight="550">
-							<f:facet name="header">
-								Enum Comparison
-							</f:facet>
-
-							<p:column headerText="Barcode" width="125"
-								rendered="#{f.text eq 5555}">
-								<h:outputText value="#{f.ITEM_BARCODE}"
-									rendered="#{f.text eq 5555}" />
-							</p:column>
-							<p:column headerText="Display. Call #" width="125"
-								rendered="#{f.text eq 5555}">
-								<h:outputText value="#{f.DISPLAY_CALL_NO}"
-									rendered="#{f.text eq 5555}" />
-							</p:column>
-							<p:column headerText="Enum" width="75"
-								rendered="#{f.text eq 5555}">
-								<h:outputText value="#{f.ITEM_ENUM}"
-									rendered="#{f.text eq 5555}" />
-							</p:column>
-							<p:column headerText="Chron" width="50"
-								rendered="#{f.text eq 5555}">
-								<h:outputText value="#{f.CHRON}" rendered="#{f.text eq 5555}" />
-							</p:column>
-
-							<p:column headerText="Barcode" width="125"
-								rendered="#{f.text eq 5555}">
-								<h:outputText value="#{f.physicalPrior.ITEM_BARCODE}"
-									rendered="#{f.text eq 5555}" />
-							</p:column>
-							<p:column headerText="Display. Call #" width="125"
-								rendered="#{f.text eq 5555}">
-								<h:outputText value="#{f.physicalPrior.DISPLAY_CALL_NO}"
-									rendered="#{f.text eq 5555}" />
-							</p:column>
-							<p:column headerText="Enum" width="75"
-								rendered="#{f.text eq 5555}">
-								<h:outputText value="#{f.physicalPrior.ITEM_ENUM}"
-									rendered="#{f.text eq 5555}" />
-							</p:column>
-							<p:column headerText="Chron" width="50"
-								rendered="#{f.text eq 5555}">
-								<h:outputText value="#{f.physicalPrior.CHRON}"
-									rendered="#{f.text eq 5555}" />
-							</p:column>
-
-						</p:dataTable>
-					</h:panelGrid>
-				</p:tab>
-
-			</p:tabView>
-		</h:form>
-	</ui:define>
+</p:tabView>
+</h:form>
+</ui:define>
 </ui:composition>
 </html>
