@@ -23,8 +23,15 @@
                 style="align:right; background-color:#fff;
 			border: 1px solid #bbb; border-radius: 0.4em; overflow:hidden;">
 
+            Enter the report item to see its contents and delete the report.
+
+            <br/><br/>
+
             <p:inputText id="reportId" value="#{deleteOptionsView.redirect_id}"
                          size="2" styleClass="inputBox" required="true"/>
+
+            <br/>
+
             <h:commandButton id="jump_link" value="Delete Report"
                              style="background-color:#fff" action="#{deleteOptionsView.jump}"
                              ajax="false">

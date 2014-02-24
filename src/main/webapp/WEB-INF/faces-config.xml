@@ -1,87 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <faces-config xmlns="http://java.sun.com/xml/ns/javaee"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
-	version="2.0">
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+              version="2.0">
 
-	<navigation-rule>
-		<from-view-id>/pages/search.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>ok</from-outcome>
-			<to-view-id>/pages/results.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>nullfile</from-outcome>
-			<to-view-id>/pages/error/oops_file.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
+    <navigation-rule>
+        <from-view-id>/pages/search.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>ok</from-outcome>
+            <to-view-id>/pages/results.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>nullfile</from-outcome>
+            <to-view-id>/pages/error/oops_file.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 
 
-	<navigation-rule>
-		<from-view-id>/pages/shelving.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>ok</from-outcome>
-			<to-view-id>/pages/shelving_history.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-	</navigation-rule>
+    <navigation-rule>
+        <from-view-id>/pages/shelving.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>ok</from-outcome>
+            <to-view-id>/pages/shelving_history.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
 
-	<navigation-rule>
-		<from-view-id>/pages/advanced_search.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>ok</from-outcome>
-			<to-view-id>/pages/files_search_results.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-	</navigation-rule>
+    <navigation-rule>
+        <from-view-id>/pages/advanced_search.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>ok</from-outcome>
+            <to-view-id>/pages/files_search_results.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
 
-	<navigation-rule>
-		<from-view-id>/pages/search_min.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>ok</from-outcome>
-			<to-view-id>/pages/results.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>nullfile</from-outcome>
-			<to-view-id>/pages/error/500.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<from-view-id>/pages/edit.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>ok</from-outcome>
-			<to-view-id>/pages/history_min.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<from-view-id>/pages/edit_shelving.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>ok</from-outcome>
-			<to-view-id>/pages/shelving_history.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<from-view-id>/pages/settings.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>ok</from-outcome>
-			<to-view-id>/pages/saved.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-	</navigation-rule>
-
-	<managed-bean>
-		<managed-bean-name>currentDate</managed-bean-name>
-		<managed-bean-class>java.util.Date</managed-bean-class>
-		<managed-bean-scope>request</managed-bean-scope>
-	</managed-bean>
-	<application>
-		<resource-bundle>
-			<base-name>messages</base-name>
-			<var>msgs</var>
-		</resource-bundle>
-	</application>
+    <navigation-rule>
+        <from-view-id>/pages/search_min.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>ok</from-outcome>
+            <to-view-id>/pages/results.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>nullfile</from-outcome>
+            <to-view-id>/pages/error/500.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/pages/edit.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>ok</from-outcome>
+            <to-view-id>/pages/history_min.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/pages/edit_shelving.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>ok</from-outcome>
+            <to-view-id>/pages/shelving_history.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/pages/settings.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>ok</from-outcome>
+            <to-view-id>/pages/saved.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/pages/remove.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>ok</from-outcome>
+            <to-view-id>/pages/delete_ok.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>failed</from-outcome>
+            <to-view-id>/pages/error/500.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <managed-bean>
+        <managed-bean-name>currentDate</managed-bean-name>
+        <managed-bean-class>java.util.Date</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <application>
+        <resource-bundle>
+            <base-name>messages</base-name>
+            <var>msgs</var>
+        </resource-bundle>
+    </application>
 </faces-config>

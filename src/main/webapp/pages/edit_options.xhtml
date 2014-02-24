@@ -17,18 +17,24 @@
     <ui:define name="content">
         <f:metadata></f:metadata>
 
-        <h3> Edit History Item </h3>
+        <h3> Navigate Item </h3>
 
         <h:form id="link" styleClass="form-horizontal"
                 style="align:right; background-color:#fff;
 			border: 1px solid #bbb; border-radius: 0.4em; overflow:hidden;">
 
+            Enter the report item to jump to its edit view.
+
+            <br/><br/>
+
             <p:inputText id="reportId" value="#{editOptionsView.redirect_id}"
                          size="2" styleClass="inputBox" required="true"/>
+
+            <br/>
+
             <h:commandButton id="jump_link" value="Jump to edit item page"
                              style="background-color:#fff" action="#{editOptionsView.jump}"
-                             ajax="false">
-            </h:commandButton>
+                             ajax="false"/>
 
             <h:message for="reportId" style="color:red"/>
 

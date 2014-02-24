@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+
+<ui:composition template="../templates/formtemplate.xhtml">
+    <ui:define name="nav_list">
+        <ui:include src="../templates/bootstrap/nav_top.xhtml"/>
+    </ui:define>
+    <ui:define name="content">
+
+        <f:metadata>
+        </f:metadata>
+
+        <h3> Remove History Report </h3>
+
+        <h:form id="HistoryNotes" enctype="multipart/form-data"
+                styleClass="form-horizontal" style="margin:0 auto; background-color:#fff;
+			border: 1px solid #bbb; border-radius: 0.4em; overflow:hidden;">
+
+            <br/>
+
+            <div class="control-group" id="options_div">
+                <label class="control-label" for="oversize">File </label>
+
+                <div class="controls">
+                    <h:outputText id="filename" value="#{editHistoryView.historyCatalog.FILENAME} "/>
+                </div>
+            </div>
+
+
+            <div class="control-group" id="options_div">
+                <label class="control-label" for="oversize">Run Date </label>
+
+                <div class="controls">
+                    <h:outputText id="rundate" value="#{editHistoryView.historyCatalog.RUNDATE}"/>
+                </div>
+            </div>
+
+            <div class="control-group" id="options_div">
+                <label class="control-label" for="oversize">Call Number Range </label>
+
+                <div class="controls">
+                    <h:outputText id="range"
+                                  value="#{editHistoryView.historyCatalog.FIRSTCALLNUMBER} to #{editHistoryView.historyCatalog.LASTCALLNUMBER} "/>
+                </div>
+            </div>
+
+            <div class="control-group" id="options_div">
+                <label class="control-label" for="oversize">Netid </label>
+
+                <div class="controls">
+                    <h:outputText id="netid"
+                                  value="#{editHistoryView.historyCatalog.NETID}" required="true"/>
+                </div>
+            </div>
+
+            <div class="control-group" id="options_div">
+                <label class="control-label" for="oversize">Time</label>
+
+                <div class="controls">
+                    <h:outputText id="time" value="#{editHistoryView.historyCatalog.TIMESPENT}"/>
+                </div>
+            </div>
+
+            <div class="control-group" id="options_div">
+                <label class="control-label" for="oversize">Oversize</label>
+
+                <div class="controls">
+                    <h:outputText id="oversize" value="#{editHistoryView.historyCatalog.OVERSIZE}"/>
+                </div>
+            </div>
+
+
+            <div class="control-group" id="options_div">
+                <label class="control-label" for="oversize">Accuracy</label>
+
+                <div class="controls">
+                    <h:outputText id="acc" value="#{editHistoryView.historyCatalog.ACCURACY}"/>
+                </div>
+            </div>
+
+            <div class="control-group" id="options_div">
+                <label class="control-label" for="oversize">Suppress</label>
+
+                <div class="controls">
+                    <h:outputText id="supres"
+                                  value="#{editHistoryView.historyCatalog.SUPPRESS}"/>
+                </div>
+            </div>
+
+            <div class="control-group" id="options_div">
+                <label class="control-label" for="oversize">Status </label>
+
+                <div class="controls">
+                    <h:outputText id="status" value="#{editHistoryView.historyCatalog.STATUS}"/>
+                </div>
+            </div>
+
+            <div class="control-group" id="options_div">
+                <label class="control-label" for="oversize">Location Error</label>
+
+                <div class="controls">
+                    <h:outputText id="locerrorss" value="#{editHistoryView.historyCatalog.LOCATIONERROR}"/>
+                </div>
+            </div>
+            <div class="control-group" id="options_div">
+                <label class="control-label" for="oversize">Notes </label>
+
+                <div class="controls">
+                    <p:inputTextarea id="notes"
+                                     value="#{editHistoryView.historyCatalog.NOTES}" rows="10" cols="40"
+                                     autoResize="false"/>
+                </div>
+            </div>
+            <div class="control-group" id="options_div">
+                <label class="control-label" for="oversize">Mislabelled </label>
+
+                <div class="controls">
+                    <h:outputText id="mislabelled" value="#{editHistoryView.historyCatalog.MISLABELLED}"/>
+                </div>
+            </div>
+
+            <h:messages style="color:red;margin:8px;"/>
+
+            <!--  submit link, causes ajax  -->
+            <div class="control-group" id="button_div">
+                <div class="controls">
+                    <h:commandButton id="submit_link" value="Delete"
+                                     action="#{removeReportView.save(editHistoryView.historyCatalog)}" ajax="false"/>
+                </div>
+            </div>
+
+        </h:form>
+
+    </ui:define>
+</ui:composition>
+</html>
