@@ -1,25 +1,26 @@
-
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
 
 
 <ui:composition template="../templates/dashboardtemplate.xhtml">
-	<ui:define name="appBanner" />
+    <ui:define name="appBanner"/>
 
-	<ui:define name="title"> Logout </ui:define>
-	<!--  not ideal solution for logout problem since it relies on having dashboard element 'meta' Find a way to redirect through listener or filter -->
-	<ui:define name="content">
-		<h3>Permissions Error</h3>
-		<br />
-		<br />
-		<div class="row">
-			<div class="span2">You don't have permissions to access this
-				page.</div>
-		</div>
-	</ui:define>
+    <ui:define name="title"> Logout </ui:define>
+    <!--  not ideal solution for logout problem since it relies on having dashboard element 'meta' Find a way to redirect through listener or filter -->
+    <ui:define name="content">
+        <h3>Permissions Error</h3>
+        <br/>
+        <br/>
+
+        <div class="row">
+            <div class="span2">You don't have permissions to access this
+                page.
+            </div>
+        </div>
+    </ui:define>
 </ui:composition>
 </html>

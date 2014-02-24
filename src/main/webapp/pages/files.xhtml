@@ -1,109 +1,108 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 <ui:composition template="../templates/formtemplate_scan.xhtml">
-	<ui:define name="content">
-		<h:outputStylesheet library="css" name="style.css" />
-		<style type="text/css">
-		.ui-widget-header
-		{
-			background: #fff;
-		}
-		</style>
+    <ui:define name="content">
+        <h:outputStylesheet library="css" name="style.css"/>
+        <style type="text/css">
+            .ui-widget-header {
+                background: #fff;
+            }
+        </style>
 
-		<h3>Uploaded Files</h3>
+        <h3>Uploaded Files</h3>
 
-		<h:form id="FilesForm" styleClass="form-horizontal"
-			style="margin:0 auto; background-color:#fff;
+        <h:form id="FilesForm" styleClass="form-horizontal"
+                style="margin:0 auto; background-color:#fff;
 			border: 1px solid #bbb; border-radius: 0.4em; overflow:hidden;">
-			<br />
+            <br/>
 
-			<div style="padding: 2em;">
-				<p:dataTable id="filesDatatable" value="#{fileView.inputFileAsList}"
-					var="c" rowKey="#{c.id}" paginator="true" rows="20"
-					paginatorPosition="bottom" selection="#{fileView.selectedFile}"
-					selectionMode="single">
+            <div style="padding: 2em;">
+                <p:dataTable id="filesDatatable" value="#{fileView.inputFileAsList}"
+                             var="c" rowKey="#{c.id}" paginator="true" rows="20"
+                             paginatorPosition="bottom" selection="#{fileView.selectedFile}"
+                             selectionMode="single">
 
-					<p:ajax event="rowToggle" />
+                    <p:ajax event="rowToggle"/>
 
-					<f:facet name="header">
-						<div align="left">
-							<h:graphicImage library="img" name="information.png" />
-							<h:outputText
-								value="#{messagesView.hashMap.get('form.files.instructions')}" />
-						</div>
-					</f:facet>
-					<p:column style="width:2%">
-						<p:rowToggler />
-					</p:column>
-					<p:column rendered="false">
-						<f:facet name="header">
-							<h:outputText value="View" />
-						</f:facet>
-						<p:button icon="ui-icon-search" outcome="results.xhtml">
-							<f:param name="id" value="#{c.id}" />
-						</p:button>
-					</p:column>
-					<p:column sortBy="#{c.name}" style="width:2%">
-						<f:facet name="header">
-							<h:outputText value="Title" />
-						</f:facet>
-						<h:outputText value="#{c.name}" style="#{msgs.small_font}" />
-					</p:column>
-					<p:column style="width:12%">
-						<f:facet name="header">
-							<h:outputText value="md5" />
-						</f:facet>
-						<h:outputText value="#{c.md5}" style="#{msgs.small_font}" />
-					</p:column>
-					<p:column style="width:12%" sortBy="#{c.date}">
-						<f:facet name="header">
-							<h:outputText value="Scan Date" />
-						</f:facet>
-						<h:outputText value="#{c.date}" style="#{msgs.small_font}" />
-					</p:column>
-					<p:column style="width:12%" rendered="false">
-						<f:facet name="header">
-							<h:outputText value="Contents" />
-						</f:facet>
-						<h:outputText value="#{c.contents}" />
-					</p:column>
-					<p:column style="width:42%" rendered="false">
-						<f:facet name="header">
-							<h:outputText value="Editor" />
-						</f:facet>
-						<h:outputText value="N/A" />
-					</p:column>
-					<p:column>
-						<h:commandButton id="downloadLink" value="Download" ajax="false"
-							icon="ui-icon-arrowthichk-s">
-							<p:fileDownload value="#{fileDownloadController.file}">
-							</p:fileDownload>
-							<f:param name="id" value="#{c.name}" />
-						</h:commandButton>
+                    <f:facet name="header">
+                        <div align="left">
+                            <h:graphicImage library="img" name="information.png"/>
+                            <h:outputText
+                                    value="#{messagesView.hashMap.get('form.files.instructions')}"/>
+                        </div>
+                    </f:facet>
+                    <p:column style="width:2%">
+                        <p:rowToggler/>
+                    </p:column>
+                    <p:column rendered="false">
+                        <f:facet name="header">
+                            <h:outputText value="View"/>
+                        </f:facet>
+                        <p:button icon="ui-icon-search" outcome="results.xhtml">
+                            <f:param name="id" value="#{c.id}"/>
+                        </p:button>
+                    </p:column>
+                    <p:column sortBy="#{c.name}" style="width:2%">
+                        <f:facet name="header">
+                            <h:outputText value="Title"/>
+                        </f:facet>
+                        <h:outputText value="#{c.name}" style="#{msgs.small_font}"/>
+                    </p:column>
+                    <p:column style="width:12%">
+                        <f:facet name="header">
+                            <h:outputText value="md5"/>
+                        </f:facet>
+                        <h:outputText value="#{c.md5}" style="#{msgs.small_font}"/>
+                    </p:column>
+                    <p:column style="width:12%" sortBy="#{c.date}">
+                        <f:facet name="header">
+                            <h:outputText value="Scan Date"/>
+                        </f:facet>
+                        <h:outputText value="#{c.date}" style="#{msgs.small_font}"/>
+                    </p:column>
+                    <p:column style="width:12%" rendered="false">
+                        <f:facet name="header">
+                            <h:outputText value="Contents"/>
+                        </f:facet>
+                        <h:outputText value="#{c.contents}"/>
+                    </p:column>
+                    <p:column style="width:42%" rendered="false">
+                        <f:facet name="header">
+                            <h:outputText value="Editor"/>
+                        </f:facet>
+                        <h:outputText value="N/A"/>
+                    </p:column>
+                    <p:column>
+                        <h:commandButton id="downloadLink" value="Download" ajax="false"
+                                         icon="ui-icon-arrowthichk-s">
+                            <p:fileDownload value="#{fileDownloadController.file}">
+                            </p:fileDownload>
+                            <f:param name="id" value="#{c.name}"/>
+                        </h:commandButton>
 
-					</p:column>
+                    </p:column>
 
-					<p:rowExpansion>
-						<h:panelGrid id="display" columns="2" cellpadding="4"
-							style="height:400px; width:400px;">
-							<f:facet name="header">  
-                			Contents
-               			 </f:facet>
-							<p:inputTextarea value="#{c.contents}"
-								style="overflow:scroll; height:400px; width:400px" />
-						</h:panelGrid>
-					</p:rowExpansion>
-					
-				</p:dataTable>
-			</div>
-		</h:form>
-	</ui:define>
+                    <p:rowExpansion>
+                        <h:panelGrid id="display" columns="2" cellpadding="4"
+                                     style="height:400px; width:400px;">
+                            <f:facet name="header">
+                                Contents
+                            </f:facet>
+                            <p:inputTextarea value="#{c.contents}"
+                                             style="overflow:scroll; height:400px; width:400px"/>
+                        </h:panelGrid>
+                    </p:rowExpansion>
+
+                </p:dataTable>
+            </div>
+        </h:form>
+    </ui:define>
 </ui:composition>
 
 </html>

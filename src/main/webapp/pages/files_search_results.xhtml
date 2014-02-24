@@ -1,114 +1,114 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 <ui:composition template="../templates/formtemplate_scan.xhtml">
-	
-	<ui:define name="content">
 
-		<h:outputStylesheet library="css" name="style.css" />
-		
-			<style type="text/css">
-				.ui-widget-header {
-					background:#fff;
-		
-			}
-		</style>
-		
-		<h2>Search Results</h2>
-		
-		<h:form id="FilesSearchResults" styleClass="form-horizontal"  style="margin:0 auto; background-color:#fff;
+    <ui:define name="content">
+
+        <h:outputStylesheet library="css" name="style.css"/>
+
+        <style type="text/css">
+            .ui-widget-header {
+                background: #fff;
+
+            }
+        </style>
+
+        <h2>Search Results</h2>
+
+        <h:form id="FilesSearchResults" styleClass="form-horizontal" style="margin:0 auto; background-color:#fff;
 			border: 1px solid #bbb; border-radius: 0.4em; overflow:hidden;">
 
-			<p:dataTable id="filesDatatable"
-				value="#{historySearchView.inputFileAsList}" var="c"
-				rowKey="#{c.id}" paginator="true" rows="20"
-				paginatorPosition="bottom"
-				selection="#{historySearchView.selectedFile}" selectionMode="single">
+            <p:dataTable id="filesDatatable"
+                         value="#{historySearchView.inputFileAsList}" var="c"
+                         rowKey="#{c.id}" paginator="true" rows="20"
+                         paginatorPosition="bottom"
+                         selection="#{historySearchView.selectedFile}" selectionMode="single">
 
-				<p:ajax event="rowToggle" />
+                <p:ajax event="rowToggle"/>
 
-				<p:column style="width:2%">
-					<p:rowToggler />
-				</p:column>
-				<p:column rendered="false">
-					<f:facet name="header">
-						<h:outputText value="View" />
-					</f:facet>
-					<p:button icon="ui-icon-search" outcome="results.xhtml">
-						<f:param name="id" value="#{c.id}" />
-					</p:button>
-				</p:column>
-				<p:column sortBy="#{c.name}" style="width:2%">
-					<f:facet name="header">
-						<h:outputText value="Title" />
-					</f:facet>
-					<h:outputText value="#{c.name}" style="#{msgs.small_font}" />
-				</p:column>
-				<p:column style="width:12%">
-					<f:facet name="header">
-						<h:outputText value="Report(s)" />
-					</f:facet>
-					<!-- 	<h:outputText value="#{c.historyList.toString()}" style="#{msgs.small_font}" /> -->
-					<ui:repeat var="m" value="#{c.historyList}">
-							<h:link value="#{m}" outcome="results">
-							 	<f:param name="id" value="#{m}" /> 
-							</h:link>
-							 , 
-					</ui:repeat>
-					
-					<h:outputText value="No corresponding processed reports found." rendered="#{empty c.historyList}"/>
+                <p:column style="width:2%">
+                    <p:rowToggler/>
+                </p:column>
+                <p:column rendered="false">
+                    <f:facet name="header">
+                        <h:outputText value="View"/>
+                    </f:facet>
+                    <p:button icon="ui-icon-search" outcome="results.xhtml">
+                        <f:param name="id" value="#{c.id}"/>
+                    </p:button>
+                </p:column>
+                <p:column sortBy="#{c.name}" style="width:2%">
+                    <f:facet name="header">
+                        <h:outputText value="Title"/>
+                    </f:facet>
+                    <h:outputText value="#{c.name}" style="#{msgs.small_font}"/>
+                </p:column>
+                <p:column style="width:12%">
+                    <f:facet name="header">
+                        <h:outputText value="Report(s)"/>
+                    </f:facet>
+                    <!-- 	<h:outputText value="#{c.historyList.toString()}" style="#{msgs.small_font}" /> -->
+                    <ui:repeat var="m" value="#{c.historyList}">
+                        <h:link value="#{m}" outcome="results">
+                            <f:param name="id" value="#{m}"/>
+                        </h:link>
+                        ,
+                    </ui:repeat>
 
-				</p:column>
+                    <h:outputText value="No corresponding processed reports found." rendered="#{empty c.historyList}"/>
 
-				
-				<p:column style="width:12%" sortBy="#{c.date}">
-					<f:facet name="header">
-						<h:outputText value="First Scan Date" />
-					</f:facet>
-					<h:outputText value="#{c.date}" style="#{msgs.small_font}" />
-				</p:column>
-				
-				<p:column style="width:8%">
-					<f:facet name="header">
-						<h:outputText value="md5" />
-					</f:facet>
-					<h:outputText value="#{c.md5}" style="#{msgs.small_font}" />
-				</p:column>
-				
-				<p:column style="width:12%" rendered="false">
-					<f:facet name="header">
-						<h:outputText value="Contents" />
-					</f:facet>
-					<h:outputText value="#{c.contents}" />
-				</p:column>
-				<p:column style="width:42%" rendered="false">
-					<f:facet name="header">
-						<h:outputText value="Editor" />
-					</f:facet>
-					<h:outputText value="N/A" />
-				</p:column>
+                </p:column>
 
-				<p:rowExpansion>
-					<h:panelGrid id="display" columns="2" cellpadding="4"
-						style="width:400px;" styleClass=" ui-widget-content grid">
-						<f:facet name="header">  
-                			Contents
-               			 </f:facet>
-						<p:inputTextarea value="#{c.contents}" style="width:200px" />
-					</h:panelGrid>
-				</p:rowExpansion>
-			</p:dataTable>
-		</h:form>
 
-		<script type="text/javascript">
-			var redirectLoc = "#{msgs.search_url}";
-		</script>
-	</ui:define>
+                <p:column style="width:12%" sortBy="#{c.date}">
+                    <f:facet name="header">
+                        <h:outputText value="First Scan Date"/>
+                    </f:facet>
+                    <h:outputText value="#{c.date}" style="#{msgs.small_font}"/>
+                </p:column>
+
+                <p:column style="width:8%">
+                    <f:facet name="header">
+                        <h:outputText value="md5"/>
+                    </f:facet>
+                    <h:outputText value="#{c.md5}" style="#{msgs.small_font}"/>
+                </p:column>
+
+                <p:column style="width:12%" rendered="false">
+                    <f:facet name="header">
+                        <h:outputText value="Contents"/>
+                    </f:facet>
+                    <h:outputText value="#{c.contents}"/>
+                </p:column>
+                <p:column style="width:42%" rendered="false">
+                    <f:facet name="header">
+                        <h:outputText value="Editor"/>
+                    </f:facet>
+                    <h:outputText value="N/A"/>
+                </p:column>
+
+                <p:rowExpansion>
+                    <h:panelGrid id="display" columns="2" cellpadding="4"
+                                 style="width:400px;" styleClass=" ui-widget-content grid">
+                        <f:facet name="header">
+                            Contents
+                        </f:facet>
+                        <p:inputTextarea value="#{c.contents}" style="width:200px"/>
+                    </h:panelGrid>
+                </p:rowExpansion>
+            </p:dataTable>
+        </h:form>
+
+        <script type="text/javascript">
+            var redirectLoc = "#{msgs.search_url}";
+        </script>
+    </ui:define>
 </ui:composition>
 
 </html>

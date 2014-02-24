@@ -1,158 +1,160 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="../templates/formtemplate.xhtml">
-	<ui:define name="nav_list">
-		<ui:include src="../templates/bootstrap/nav_top.xhtml" />
-	</ui:define>
-	<ui:define name="content">
-		<h:outputStylesheet library="css" name="style.css" />
+    <ui:define name="nav_list">
+        <ui:include src="../templates/bootstrap/nav_top.xhtml"/>
+    </ui:define>
+    <ui:define name="content">
+        <h:outputStylesheet library="css" name="style.css"/>
 
-		<h3>Manage User Permissions</h3>
+        <h3>Manage User Permissions</h3>
 
-		<style type="text/css">
-			.ui-widget-header {
-				background: #fff;
-			}
-			
-			.ui-datatable thead th {
-				font-weight: normal;
-				color: #bbb;
-			}
-			
-			.indent-text {
-				padding: 4px 4.5em 2px .6em;
-			}
-		</style>
+        <style type="text/css">
+            .ui-widget-header {
+                background: #fff;
+            }
 
-		<h:form id="AdminForm" enctype="multipart/form-data"
-			styleClass="form-horizontal"
-			style="margin:0 auto; background-color:#fff;
+            .ui-datatable thead th {
+                font-weight: normal;
+                color: #bbb;
+            }
+
+            .indent-text {
+                padding: 4px 4.5em 2px .6em;
+            }
+        </style>
+
+        <h:form id="AdminForm" enctype="multipart/form-data"
+                styleClass="form-horizontal"
+                style="margin:0 auto; background-color:#fff;
 			border: 1px solid #bbb; border-radius: 0.4em; overflow:hidden; min-height:600px;">
 
-			<br />
+            <br/>
 
-			<div style="padding: 2em;" class="row-fluid">
+            <div style="padding: 2em;" class="row-fluid">
 
-				<div class="span6"
-					style="margin: 0 auto; background-color: #fff; border: 1px solid #bbb; overflow: hidden; min-height: 400px;">
+                <div class="span6"
+                     style="margin: 0 auto; background-color: #fff; border: 1px solid #bbb; overflow: hidden; min-height: 400px;">
 
-					<h4 style="background-color: #eee" class="indent-text">
-						Current Admins</h4>
+                    <h4 style="background-color: #eee" class="indent-text">
+                        Current Admins</h4>
 
-					<div align="left">
-						<h:graphicImage library="img" name="information.png" />
-						<h:outputText
-							value="#{messagesView.hashMap.get('form.admin.instructions')}" />
-					</div>
-					<br />
+                    <div align="left">
+                        <h:graphicImage library="img" name="information.png"/>
+                        <h:outputText
+                                value="#{messagesView.hashMap.get('form.admin.instructions')}"/>
+                    </div>
+                    <br/>
 
-					<p:commandButton id="chartBtn" icon="ui-icon-plusthick"
-						value="New User" type="button" style="color:#103480;"
-						onclick="dlg2.show();" />
-					<br /> <br />
+                    <p:commandButton id="chartBtn" icon="ui-icon-plusthick"
+                                     value="New User" type="button" style="color:#103480;"
+                                     onclick="dlg2.show();"/>
+                    <br/> <br/>
 
-					<p:dialog id="modalDialog" header="New User" widgetVar="dlg2"
-						modal="true" height="350" width="350" resizable="false">
-						<div class="control-group">
+                    <p:dialog id="modalDialog" header="New User" widgetVar="dlg2"
+                              modal="true" height="350" width="350" resizable="false">
+                        <div class="control-group">
 							<span class="help-block"> <p:messages id="messagesAdmin"
-									showDetail="true" autoUpdate="true" closable="true" />
+                                                                  showDetail="true" autoUpdate="true" closable="true"/>
 							</span>
-						</div>
+                        </div>
 
-						<div class="control-group">
-							<label class="control-label" for="locCode">NetId</label>
-							<div class="controls">
-								<p:inputText id="name" value="#{adminView.netid}" />
-							</div>
-						</div>
+                        <div class="control-group">
+                            <label class="control-label" for="locCode">NetId</label>
 
-						<div class="control-group">
-							<label class="control-label" for="locCode">Permissions
-								Type</label>
-							<div class="controls">
-								<p:selectOneMenu id="box2" value="#{adminView.adminCode}"
-									style="width:210px;">
-									<f:selectItem itemLabel="Select One" itemValue=""></f:selectItem>
-									<f:selectItems value="#{adminView.permissionTypes}" var="loc"
-										itemLabel="#{loc}" itemValue="#{loc}" />
-								</p:selectOneMenu>
-							</div>
-						</div>
+                            <div class="controls">
+                                <p:inputText id="name" value="#{adminView.netid}"/>
+                            </div>
+                        </div>
 
-						<!--  onclick="dlg2.hide() was causing an error -->
-						<!--  or is the confilct between actionListener and onclick? -->
-						<!--  try adding a, b, c, d. removing d moves d to top, and removes a -->
-						<p:commandButton update="adminDatatable, messagesAdmin"
-							value="Submit" styleClass="btn" action="#{adminView.saveAll}"
-							actionListener="#{adminView.addInfo}">
-						</p:commandButton>
-					</p:dialog>
+                        <div class="control-group">
+                            <label class="control-label" for="locCode">Permissions
+                                Type</label>
+
+                            <div class="controls">
+                                <p:selectOneMenu id="box2" value="#{adminView.adminCode}"
+                                                 style="width:210px;">
+                                    <f:selectItem itemLabel="Select One" itemValue=""></f:selectItem>
+                                    <f:selectItems value="#{adminView.permissionTypes}" var="loc"
+                                                   itemLabel="#{loc}" itemValue="#{loc}"/>
+                                </p:selectOneMenu>
+                            </div>
+                        </div>
+
+                        <!--  onclick="dlg2.hide() was causing an error -->
+                        <!--  or is the confilct between actionListener and onclick? -->
+                        <!--  try adding a, b, c, d. removing d moves d to top, and removes a -->
+                        <p:commandButton update="adminDatatable, messagesAdmin"
+                                         value="Submit" styleClass="btn" action="#{adminView.saveAll}"
+                                         actionListener="#{adminView.addInfo}">
+                        </p:commandButton>
+                    </p:dialog>
 
 
-					<p:dataTable id="adminDatatable" value="#{adminView.adminAsList}"
-						var="c" paginator="true" rows="10"
-						tableStyle="width:80%; margin:0 auto;" paginatorPosition="bottom"
-						editable="false">
-						<p:column width="70">
-							<f:facet name="header">
-								<h:outputText value="Netid" />
-							</f:facet>
-							<h:outputText value="#{c.netid}" />
-						</p:column>
-						<p:column width="140">
-							<f:facet name="header">
-								<h:outputText value="Permission Type" />
-							</f:facet>
-							<h:outputText value="#{c.adminCode}" />
-						</p:column>
-						<p:column width="70">
-							<f:facet name="header">
-								<h:outputText value="Editor" />
-							</f:facet>
-							<h:outputText value="#{c.editor}" />
-						</p:column>
-						<p:column width="140" rendered="false">
-							<f:facet name="header">
-								<h:outputText value="Last Login" />
-							</f:facet>
-							<h:outputText value="N/A" />
-						</p:column>
-						<p:column width="140" rendered="false">
-							<f:facet name="header">
-								<h:outputText value="Num. Reports" />
-							</f:facet>
-							<h:outputText value="N/A" />
-						</p:column>
-						<p:column width="140" rendered="false">
-							<f:facet name="header">
-								<h:outputText value="Last Upload" />
-							</f:facet>
-							<h:outputText value="N/A" />
-						</p:column>
-						<p:column width="80">
-							<f:facet name="header">
-								<h:outputText value="Remove?" />
-							</f:facet>
-							<p:commandButton icon="ui-icon-close" title="remove from db"
-								actionListener="#{adminView.remove(c)}" update="adminDatatable" />
-						</p:column>
-					</p:dataTable>
-				</div>
+                    <p:dataTable id="adminDatatable" value="#{adminView.adminAsList}"
+                                 var="c" paginator="true" rows="10"
+                                 tableStyle="width:80%; margin:0 auto;" paginatorPosition="bottom"
+                                 editable="false">
+                        <p:column width="70">
+                            <f:facet name="header">
+                                <h:outputText value="Netid"/>
+                            </f:facet>
+                            <h:outputText value="#{c.netid}"/>
+                        </p:column>
+                        <p:column width="140">
+                            <f:facet name="header">
+                                <h:outputText value="Permission Type"/>
+                            </f:facet>
+                            <h:outputText value="#{c.adminCode}"/>
+                        </p:column>
+                        <p:column width="70">
+                            <f:facet name="header">
+                                <h:outputText value="Editor"/>
+                            </f:facet>
+                            <h:outputText value="#{c.editor}"/>
+                        </p:column>
+                        <p:column width="140" rendered="false">
+                            <f:facet name="header">
+                                <h:outputText value="Last Login"/>
+                            </f:facet>
+                            <h:outputText value="N/A"/>
+                        </p:column>
+                        <p:column width="140" rendered="false">
+                            <f:facet name="header">
+                                <h:outputText value="Num. Reports"/>
+                            </f:facet>
+                            <h:outputText value="N/A"/>
+                        </p:column>
+                        <p:column width="140" rendered="false">
+                            <f:facet name="header">
+                                <h:outputText value="Last Upload"/>
+                            </f:facet>
+                            <h:outputText value="N/A"/>
+                        </p:column>
+                        <p:column width="80">
+                            <f:facet name="header">
+                                <h:outputText value="Remove?"/>
+                            </f:facet>
+                            <p:commandButton icon="ui-icon-close" title="remove from db"
+                                             actionListener="#{adminView.remove(c)}" update="adminDatatable"/>
+                        </p:column>
+                    </p:dataTable>
+                </div>
 
-				<div class="span4 offset2">
-					
-				</div>
-			</div>
+                <div class="span4 offset2">
 
-		</h:form>
-	</ui:define>
+                </div>
+            </div>
+
+        </h:form>
+    </ui:define>
 </ui:composition>
 
 </html>

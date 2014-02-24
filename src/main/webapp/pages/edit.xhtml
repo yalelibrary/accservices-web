@@ -1,187 +1,195 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:pe="http://primefaces.org/ui/extensions"
-	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
 
 
 <ui:composition template="../templates/formtemplate.xhtml">
-	<ui:define name="nav_list">
-		<ui:include src="../templates/bootstrap/nav_top.xhtml" />
-	</ui:define>
-	<ui:define name="content">
+    <ui:define name="nav_list">
+        <ui:include src="../templates/bootstrap/nav_top.xhtml"/>
+    </ui:define>
+    <ui:define name="content">
 
-		<f:metadata>
-  		</f:metadata>
+        <f:metadata>
+        </f:metadata>
 
-		<h3> Edit History Item </h3>
+        <h3> Edit History Item </h3>
 
 
-		<h:form id="HistoryNotes" enctype="multipart/form-data"
-			styleClass="form-horizontal" style="margin:0 auto; background-color:#fff;
+        <h:form id="HistoryNotes" enctype="multipart/form-data"
+                styleClass="form-horizontal" style="margin:0 auto; background-color:#fff;
 			border: 1px solid #bbb; border-radius: 0.4em; overflow:hidden;">
 
-				
 
-				<br />
-				<div class="control-group" id="options_div">
-					<label class="control-label" for="oversize">File </label>
-					<div class="controls">
-						<h:outputText id="filename"
-							value="#{editHistoryView.historyCatalog.FILENAME} " />
-					</div>
-				</div>
-			
-				
-				<div class="control-group" id="options_div">
-					<label class="control-label" for="oversize">Run Date </label>
-					<div class="controls">
-						<h:outputText id="rundate"
-							value="#{editHistoryView.historyCatalog.RUNDATE}" />
-					</div>
-				</div>
-				
-				<div class="control-group" id="options_div">
-					<label class="control-label" for="oversize">Call Number Range </label>
-					<div class="controls">
-						<h:outputText id="range"
-							value="#{editHistoryView.historyCatalog.FIRSTCALLNUMBER} to #{editHistoryView.historyCatalog.LASTCALLNUMBER} " />
-					</div>
-				</div>
-				
-				<div class="control-group" id="options_div">
-					<label class="control-label" for="oversize">Netid </label>
-					<div class="controls">
-						<p:inputText id="netid"
-							value="#{editHistoryView.historyCatalog.NETID}" required="true"	>
-							<f:validateLength minimum="3" maximum="10" />
-							</p:inputText>
-						<h:message for="netid" style="color:red" />
-					</div>
-				</div>
-				
-				<div class="control-group" id="options_div">
-					<label class="control-label" for="oversize">Time</label>
-					<div class="controls">
-						<p:inputText id="time"
-							value="#{editHistoryView.historyCatalog.TIMESPENT}"	/>
-						<h:message for="time" style="color:red" />
-					</div>
-				</div>
-				
-				<div class="control-group" id="options_div">
-					<label class="control-label" for="oversize">Oversize</label>
-					<div class="controls">
-						<p:inputText id="oversize"
-							value="#{editHistoryView.historyCatalog.OVERSIZE}" 	/>
-						<h:message for="oversize" style="color:red" />
-					</div>
-				</div>
-				
-				
-				<div class="control-group" id="options_div">
-					<label class="control-label" for="oversize">Accuracy</label>
-					<div class="controls">
-						<p:inputText id="acc"
-							value="#{editHistoryView.historyCatalog.ACCURACY}" 	/>
-						<h:message for="acc" style="color:red" />
-					</div>
-				</div>
-				
-				<div class="control-group" id="options_div">
-					<label class="control-label" for="oversize">Suppress</label>
-					<div class="controls">
-						<p:inputText id="supres"
-							value="#{editHistoryView.historyCatalog.SUPPRESS}" 	/>
-						<h:message for="supres" style="color:red" />
-					</div>
-				</div>
-				
-				<div class="control-group" id="options_div">
-					<label class="control-label" for="oversize">Status </label>
-					<div class="controls">
-						<p:inputText id="status"
-							value="#{editHistoryView.historyCatalog.STATUS}" />
-						<h:message for="status" style="color:red" />
-					</div>
-				</div>
-				
-				<div class="control-group" id="options_div">
-					<label class="control-label" for="oversize">Location Error</label>
-					<div class="controls">
-						<p:inputText id="locerrorss"
-							value="#{editHistoryView.historyCatalog.LOCATIONERROR}" 	/>
-						<h:message for="locerrorss" style="color:red" />
-					</div>
-				</div>
-				<div class="control-group" id="options_div">
-					<label class="control-label" for="oversize">Notes </label>
-					<div class="controls">
-						<p:inputTextarea id="notes"
-							value="#{editHistoryView.historyCatalog.NOTES}" rows="10" cols="40" autoResize="false"	/>
-						<h:message for="notes" style="color:red" />
-					</div>
-				</div>
-				<div class="control-group" id="options_div">
-					<label class="control-label" for="oversize">Mislabelled </label>
-					<div class="controls">
-						<h:inputText id="mislabelled"
-							value="#{editHistoryView.historyCatalog.MISLABELLED}" 	>							
-							  <f:validateRegex pattern="[0-9]+" /> 
-						</h:inputText>	
-						<h:message for="misLabelled" style="color:red" />
-					</div>
-				</div>
-				
-				 <h:messages style="color:red;margin:8px;" />
-				
-					<!--  submit link, causes ajax  -->
-				<div class="control-group" id="button_div">
-					<div class="controls">
-						<h:commandButton id="submit_link" value="Save"
-							action="#{editHistoryView.save}" ajax="false">
-						</h:commandButton>
-					</div>
-				</div>
+            <br/>
 
-		</h:form>
+            <div class="control-group" id="options_div">
+                <label class="control-label" for="oversize">File </label>
 
-		<script type="text/javascript">
-	
-		function sanitycheck()
-      	{
-			var redirectLoc = "#{msgs.loggedout_url}";
-	      	
-      		 $.get('netidservlet', function(data) {
-      	        if (data == 'error')
-      	        {
-      	        	window.location=redirectLoc;
-      	        }
-      	    });
-      	}
+                <div class="controls">
+                    <h:outputText id="filename"
+                                  value="#{editHistoryView.historyCatalog.FILENAME} "/>
+                </div>
+            </div>
 
 
-    	function throwErr()
-	      	{
-	      		alert("error, status error:" + data.status);
-	      	    window.location = "https://secure.its.yale.edu/cas/logout";
-	      	}
-	      	function validate()
-	      	{
-				if ($('#Form\\:BarcodeSearchViewForm\\:locationBox_input').val() == 'null')
-				{
-					alert('null location val');
-					return false;
-				}
-				return true;
-				alert($('#locationBox_input option:selected').text());
-			}
-  		</script>
+            <div class="control-group" id="options_div">
+                <label class="control-label" for="oversize">Run Date </label>
 
-	</ui:define>
+                <div class="controls">
+                    <h:outputText id="rundate"
+                                  value="#{editHistoryView.historyCatalog.RUNDATE}"/>
+                </div>
+            </div>
+
+            <div class="control-group" id="options_div">
+                <label class="control-label" for="oversize">Call Number Range </label>
+
+                <div class="controls">
+                    <h:outputText id="range"
+                                  value="#{editHistoryView.historyCatalog.FIRSTCALLNUMBER} to #{editHistoryView.historyCatalog.LASTCALLNUMBER} "/>
+                </div>
+            </div>
+
+            <div class="control-group" id="options_div">
+                <label class="control-label" for="oversize">Netid </label>
+
+                <div class="controls">
+                    <p:inputText id="netid"
+                                 value="#{editHistoryView.historyCatalog.NETID}" required="true">
+                        <f:validateLength minimum="3" maximum="10"/>
+                    </p:inputText>
+                    <h:message for="netid" style="color:red"/>
+                </div>
+            </div>
+
+            <div class="control-group" id="options_div">
+                <label class="control-label" for="oversize">Time</label>
+
+                <div class="controls">
+                    <p:inputText id="time"
+                                 value="#{editHistoryView.historyCatalog.TIMESPENT}"/>
+                    <h:message for="time" style="color:red"/>
+                </div>
+            </div>
+
+            <div class="control-group" id="options_div">
+                <label class="control-label" for="oversize">Oversize</label>
+
+                <div class="controls">
+                    <p:inputText id="oversize"
+                                 value="#{editHistoryView.historyCatalog.OVERSIZE}"/>
+                    <h:message for="oversize" style="color:red"/>
+                </div>
+            </div>
+
+
+            <div class="control-group" id="options_div">
+                <label class="control-label" for="oversize">Accuracy</label>
+
+                <div class="controls">
+                    <p:inputText id="acc"
+                                 value="#{editHistoryView.historyCatalog.ACCURACY}"/>
+                    <h:message for="acc" style="color:red"/>
+                </div>
+            </div>
+
+            <div class="control-group" id="options_div">
+                <label class="control-label" for="oversize">Suppress</label>
+
+                <div class="controls">
+                    <p:inputText id="supres"
+                                 value="#{editHistoryView.historyCatalog.SUPPRESS}"/>
+                    <h:message for="supres" style="color:red"/>
+                </div>
+            </div>
+
+            <div class="control-group" id="options_div">
+                <label class="control-label" for="oversize">Status </label>
+
+                <div class="controls">
+                    <p:inputText id="status"
+                                 value="#{editHistoryView.historyCatalog.STATUS}"/>
+                    <h:message for="status" style="color:red"/>
+                </div>
+            </div>
+
+            <div class="control-group" id="options_div">
+                <label class="control-label" for="oversize">Location Error</label>
+
+                <div class="controls">
+                    <p:inputText id="locerrorss"
+                                 value="#{editHistoryView.historyCatalog.LOCATIONERROR}"/>
+                    <h:message for="locerrorss" style="color:red"/>
+                </div>
+            </div>
+            <div class="control-group" id="options_div">
+                <label class="control-label" for="oversize">Notes </label>
+
+                <div class="controls">
+                    <p:inputTextarea id="notes"
+                                     value="#{editHistoryView.historyCatalog.NOTES}" rows="10" cols="40"
+                                     autoResize="false"/>
+                    <h:message for="notes" style="color:red"/>
+                </div>
+            </div>
+            <div class="control-group" id="options_div">
+                <label class="control-label" for="oversize">Mislabelled </label>
+
+                <div class="controls">
+                    <h:inputText id="mislabelled"
+                                 value="#{editHistoryView.historyCatalog.MISLABELLED}">
+                        <f:validateRegex pattern="[0-9]+"/>
+                    </h:inputText>
+                    <h:message for="misLabelled" style="color:red"/>
+                </div>
+            </div>
+
+            <h:messages style="color:red;margin:8px;"/>
+
+            <!--  submit link, causes ajax  -->
+            <div class="control-group" id="button_div">
+                <div class="controls">
+                    <h:commandButton id="submit_link" value="Save"
+                                     action="#{editHistoryView.save}" ajax="false">
+                    </h:commandButton>
+                </div>
+            </div>
+
+        </h:form>
+
+        <script type="text/javascript">
+
+            function sanitycheck() {
+                var redirectLoc = "#{msgs.loggedout_url}";
+
+                $.get('netidservlet', function (data) {
+                    if (data == 'error') {
+                        window.location = redirectLoc;
+                    }
+                });
+            }
+
+
+            function throwErr() {
+                alert("error, status error:" + data.status);
+                window.location = "https://secure.its.yale.edu/cas/logout";
+            }
+            function validate() {
+                if ($('#Form\\:BarcodeSearchViewForm\\:locationBox_input').val() == 'null') {
+                    alert('null location val');
+                    return false;
+                }
+                return true;
+                alert($('#locationBox_input option:selected').text());
+            }
+        </script>
+
+    </ui:define>
 </ui:composition>
 </html>

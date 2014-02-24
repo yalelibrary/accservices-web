@@ -68,223 +68,223 @@
              selection="#{historyView.selectedHistory}" selectionMode="single"
              editable="true" editMode="row">
 
-    <!--  for edit row / cell -->
-    <p:ajax event="rowEdit" listener="#{menuView.onEdit}" update="@this"/>
-    <p:ajax event="rowEditCancel" listener="#{menuView.onCancel}"/>
+<!--  for edit row / cell -->
+<p:ajax event="rowEdit" listener="#{menuView.onEdit}" update="@this"/>
+<p:ajax event="rowEditCancel" listener="#{menuView.onCancel}"/>
 
-    <p:ajax event="cellEdit" listener="#{locationView.onCellEdit}"
-            update="@this"/>
+<p:ajax event="cellEdit" listener="#{locationView.onCellEdit}"
+        update="@this"/>
 
-    <p:column width="2%">
-        <f:facet name="header">
-            <h:outputText value=" "/>
+<p:column width="2%">
+    <f:facet name="header">
+        <h:outputText value=" "/>
+    </f:facet>
+    <p:button icon="ui-icon-search" outcome="results.xhtml">
+        <f:param name="id" value="#{c.ID}"/>
+    </p:button>
+</p:column>
+<p:column width="7%" sortBy="#{c.RUNDATE}">
+    <f:facet name="header">
+        <h:outputText value="Run Time"/>
+    </f:facet>
+    <h:outputText value="#{c.RUNDATE}" style="#{msgs.small_font}">
+        <f:convertDateTime pattern="yyyy-MM-d HH:mm"/>
+    </h:outputText>
+</p:column>
+<p:column width="10%">
+    <f:facet name="header">
+        <h:outputText value="File"/>
+    </f:facet>
+    <h:outputText value="#{c.FILENAME}" style="#{msgs.small_font}"/>
+</p:column>
+<p:column width="5%" sortBy="#{c.SCANDATE}">
+    <f:facet name="header">
+        <h:outputText value="Scan Date"/>
+    </f:facet>
+    <h:outputText value="#{c.SCANDATE}" style="#{msgs.small_font}">
+        <f:convertDateTime pattern="yyyy-MM-d"/>
+    </h:outputText>
+</p:column>
+<p:column width="5%" headerText="NetId" filterBy="#{c.NETID}"
+          filterOptions="#{historyView.netidOptions}" filterMatchMode="exact"
+          rendered="true">
+    <p:cellEditor>
+        <f:facet name="output">
+            <h:outputText value="#{c.NETID}"/>
         </f:facet>
-        <p:button icon="ui-icon-search" outcome="results.xhtml">
-            <f:param name="id" value="#{c.ID}"/>
-        </p:button>
-    </p:column>
-    <p:column width="7%" sortBy="#{c.RUNDATE}">
-        <f:facet name="header">
-            <h:outputText value="Run Time"/>
+        <f:facet name="input">
+            <p:inputText value="#{c.NETID}"/>
         </f:facet>
-        <h:outputText value="#{c.RUNDATE}" style="#{msgs.small_font}">
-            <f:convertDateTime pattern="yyyy-MM-d HH:mm"/>
-        </h:outputText>
-    </p:column>
-    <p:column width="10%">
-        <f:facet name="header">
-            <h:outputText value="File"/>
-        </f:facet>
-        <h:outputText value="#{c.FILENAME}" style="#{msgs.small_font}"/>
-    </p:column>
-    <p:column width="5%" sortBy="#{c.SCANDATE}">
-        <f:facet name="header">
-            <h:outputText value="Scan Date"/>
-        </f:facet>
-        <h:outputText value="#{c.SCANDATE}" style="#{msgs.small_font}">
-            <f:convertDateTime pattern="yyyy-MM-d"/>
-        </h:outputText>
-    </p:column>
-    <p:column width="5%" headerText="NetId" filterBy="#{c.NETID}"
-              filterOptions="#{historyView.netidOptions}" filterMatchMode="exact"
-              rendered="true">
-        <p:cellEditor>
-            <f:facet name="output">
-                <h:outputText value="#{c.NETID}"/>
-            </f:facet>
-            <f:facet name="input">
-                <p:inputText value="#{c.NETID}"/>
-            </f:facet>
-        </p:cellEditor>
-    </p:column>
-    <p:column width="3%">
-        <f:facet name="header">
-            <h:outputText value="Time"/>
-        </f:facet>
-        <h:outputText value="#{c.TIMESPENT}"/>
-    </p:column>
-    <p:column width="7%" sortBy="#{c.FIRSTCALLNUMBER}">
-        <f:facet name="header">
-            <h:outputText value="Call No."/>
-        </f:facet>
+    </p:cellEditor>
+</p:column>
+<p:column width="3%">
+    <f:facet name="header">
+        <h:outputText value="Time"/>
+    </f:facet>
+    <h:outputText value="#{c.TIMESPENT}"/>
+</p:column>
+<p:column width="7%" sortBy="#{c.FIRSTCALLNUMBER}">
+    <f:facet name="header">
+        <h:outputText value="Call No."/>
+    </f:facet>
 
-        <ul>
-            <li>
-                <h:outputText value="First :" escape="false"/>
-                <h:outputText value="#{c.FIRSTCALLNUMBER}"/>
-            </li>
-            <li>
-                <h:outputText value="Last :" escape="false"/>
-                <h:outputText value="#{c.LASTCALLNUMBER}"/>
-            </li>
-        </ul>
+    <ul>
+        <li>
+            <h:outputText value="First :" escape="false"/>
+            <h:outputText value="#{c.FIRSTCALLNUMBER}"/>
+        </li>
+        <li>
+            <h:outputText value="Last :" escape="false"/>
+            <h:outputText value="#{c.LASTCALLNUMBER}"/>
+        </li>
+    </ul>
 
-        <ul>
-            <li>
-                <h:outputText value="Count:" escape="false"/>
-                <h:outputText value="#{c.NUMBERSCANNED}"/>
-            </li>
-        </ul>
-    </p:column>
+    <ul>
+        <li>
+            <h:outputText value="Count:" escape="false"/>
+            <h:outputText value="#{c.NUMBERSCANNED}"/>
+        </li>
+    </ul>
+</p:column>
 
-    <p:column width="5%" filterBy="#{c.SCANLOCATION}"
-              filterOptions="#{historyView.locationSelectOptions}"
-              filterMatchMode="exact" rendered="true">
-        <f:facet name="header">
-            <h:outputText value="Location"/>
+<p:column width="5%" filterBy="#{c.SCANLOCATION}"
+          filterOptions="#{historyView.locationSelectOptions}"
+          filterMatchMode="exact" rendered="true">
+    <f:facet name="header">
+        <h:outputText value="Location"/>
+    </f:facet>
+    <h:outputText value="#{c.SCANLOCATION}"/>
+</p:column>
+<p:column width="8%" rendered="false">
+    <f:facet name="header">
+        <h:outputText value="Errors" escape="false"/>
+    </f:facet>
+    <ul>
+        <li>
+            <h:outputText value="No Barcode :" escape="false"/>
+            <h:outputText
+                    value="#{c.NULLBARCODE}"/>
+        </li>
+        <li>
+            <h:outputText value="Oversize :"/>
+            <h:outputText
+                    value="#{c.OVERSIZE}"/>
+        </li>
+        <li>
+            <h:outputText value="Accuracy : "/>
+            <h:outputText
+                    value="#{c.ACCURACY}"/>
+        </li>
+        <li>
+            <h:outputText value="Suppress :"/>
+            <h:outputText
+                    value="#{c.SUPPRESS}"/>
+        </li>
+        <li>
+            <h:outputText value="Status : "/>
+            <h:outputText
+                    value="#{c.STATUS}"/>
+        </li>
+        <li>
+            <h:outputText value="Location : "/>
+            <h:outputText
+                    value="#{c.LOCATIONERROR}"/>
+        </li>
+    </ul>
+</p:column>
+
+<p:column width="8%">
+    <f:facet name="header">
+        <h:outputText value="Errors" escape="false"/>
+    </f:facet>
+
+    <table>
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td>No Barcode</td>
+                        <td>#{c.NULLBARCODE}</td>
+                    </tr>
+                    <tr class="d0">
+                        <td>Oversize</td>
+                        <td>#{c.OVERSIZE}</td>
+                    </tr>
+                    <tr>
+                        <td>Accuracy</td>
+                        <td>#{c.ACCURACY}</td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table>
+                    <tr class="d0">
+                        <td>Suppress</td>
+                        <td>#{c.SUPPRESS}</td>
+                    </tr>
+                    <tr>
+                        <td>Status</td>
+                        <td>#{c.STATUS}</td>
+                    </tr>
+                    <tr class="d0">
+                        <td>Location</td>
+                        <td>#{c.LOCATIONERROR}</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</p:column>
+
+<p:column width="14%" headerText="Notes" style="white-space:wrap;">
+    <p:cellEditor style="white-space:wrap;">
+        <f:facet name="output" style="white-space:wrap;">
+            <h:outputText id="notes_condensed" value="#{c.NOTES}" style="white-space:wrap;">
+                <f:converter converterId="edu.yale.sml.jsf.LongStringConverter"/>
+            </h:outputText>
+            <p:tooltip for="notes_condensed" value="#{c.NOTES}" showEffect="fade" hideEffect="fade"/>
+
+
         </f:facet>
-        <h:outputText value="#{c.SCANLOCATION}"/>
-    </p:column>
-    <p:column width="8%" rendered="false">
-        <f:facet name="header">
-            <h:outputText value="Errors" escape="false"/>
+        <f:facet name="input" style="white-space:wrap;">
+            <h:outputText value="#{c.NOTES}" style="white-space:wrap;">
+                <f:converter converterId="edu.yale.sml.jsf.LongStringConverter"/>
+            </h:outputText>
         </f:facet>
-        <ul>
-            <li>
-                <h:outputText value="No Barcode :" escape="false"/>
-                <h:outputText
-                        value="#{c.NULLBARCODE}"/>
-            </li>
-            <li>
-                <h:outputText value="Oversize :"/>
-                <h:outputText
-                        value="#{c.OVERSIZE}"/>
-            </li>
-            <li>
-                <h:outputText value="Accuracy : "/>
-                <h:outputText
-                        value="#{c.ACCURACY}"/>
-            </li>
-            <li>
-                <h:outputText value="Suppress :"/>
-                <h:outputText
-                        value="#{c.SUPPRESS}"/>
-            </li>
-            <li>
-                <h:outputText value="Status : "/>
-                <h:outputText
-                        value="#{c.STATUS}"/>
-            </li>
-            <li>
-                <h:outputText value="Location : "/>
-                <h:outputText
-                        value="#{c.LOCATIONERROR}"/>
-            </li>
-        </ul>
-    </p:column>
-
-    <p:column width="8%">
-        <f:facet name="header">
-            <h:outputText value="Errors" escape="false"/>
+    </p:cellEditor>
+</p:column>
+<p:column width="3%" headerText="Mislabelled">
+    <p:cellEditor>
+        <f:facet name="output">
+            <h:outputText value="#{c.MISLABELLED}">
+                <f:converter converterId="edu.yale.sml.jsf.LongStringConverter"/>
+            </h:outputText>
         </f:facet>
-
-        <table>
-            <tr>
-                <td>
-                    <table>
-                        <tr>
-                            <td>No Barcode</td>
-                            <td>#{c.NULLBARCODE}</td>
-                        </tr>
-                        <tr class="d0">
-                            <td>Oversize</td>
-                            <td>#{c.OVERSIZE}</td>
-                        </tr>
-                        <tr>
-                            <td>Accuracy</td>
-                            <td>#{c.ACCURACY}</td>
-                        </tr>
-                    </table>
-                </td>
-                <td>
-                    <table>
-                        <tr class="d0">
-                            <td>Suppress</td>
-                            <td>#{c.SUPPRESS}</td>
-                        </tr>
-                        <tr>
-                            <td>Status</td>
-                            <td>#{c.STATUS}</td>
-                        </tr>
-                        <tr class="d0">
-                            <td>Location</td>
-                            <td>#{c.LOCATIONERROR}</td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-        </table>
-    </p:column>
-
-    <p:column width="14%" headerText="Notes" style="white-space:wrap;">
-        <p:cellEditor style="white-space:wrap;">
-            <f:facet name="output" style="white-space:wrap;">
-                <h:outputText id="notes_condensed" value="#{c.NOTES}" style="white-space:wrap;">
-                    <f:converter converterId="edu.yale.sml.jsf.LongStringConverter"/>
-                </h:outputText>
-                <p:tooltip for="notes_condensed" value="#{c.NOTES}" showEffect="fade" hideEffect="fade"/>
-
-
-            </f:facet>
-            <f:facet name="input" style="white-space:wrap;">
-                <h:outputText value="#{c.NOTES}" style="white-space:wrap;">
-                    <f:converter converterId="edu.yale.sml.jsf.LongStringConverter"/>
-                </h:outputText>
-            </f:facet>
-        </p:cellEditor>
-    </p:column>
-    <p:column width="3%" headerText="Mislabelled">
-        <p:cellEditor>
-            <f:facet name="output">
-                <h:outputText value="#{c.MISLABELLED}">
-                    <f:converter converterId="edu.yale.sml.jsf.LongStringConverter"/>
-                </h:outputText>
-            </f:facet>
-            <f:facet name="input">
-                <h:outputText value="#{c.MISLABELLED}">
-                    <f:converter converterId="edu.yale.sml.jsf.LongStringConverter"/>
-                </h:outputText>
-            </f:facet>
-        </p:cellEditor>
-    </p:column>
-    <p:column rendered="false">
-        <f:facet name="header">
-            <h:outputText value="Edit"/>
+        <f:facet name="input">
+            <h:outputText value="#{c.MISLABELLED}">
+                <f:converter converterId="edu.yale.sml.jsf.LongStringConverter"/>
+            </h:outputText>
         </f:facet>
-        <p:button icon="ui-icon-pencil" outcome="edit.xhtml">
-            <f:param name="id" value="#{c.ID}"/>
-        </p:button>
-    </p:column>
-    <p:column width="40" rendered="false">
-        <f:facet name="header">
-            <h:outputText value="Delete"/>
-        </f:facet>
-        <p:commandButton icon="ui-icon-close" title="remove from db"
-                         actionListener="#{historyView.remove(c)}" update="history"/>
-    </p:column>
-    <p:column width="80" headerText="Edit" rendered="false">
-        <p:rowEditor/>
-    </p:column>
+    </p:cellEditor>
+</p:column>
+<p:column rendered="false">
+    <f:facet name="header">
+        <h:outputText value="Edit"/>
+    </f:facet>
+    <p:button icon="ui-icon-pencil" outcome="edit.xhtml">
+        <f:param name="id" value="#{c.ID}"/>
+    </p:button>
+</p:column>
+<p:column width="40" rendered="false">
+    <f:facet name="header">
+        <h:outputText value="Delete"/>
+    </f:facet>
+    <p:commandButton icon="ui-icon-close" title="remove from db"
+                     actionListener="#{historyView.remove(c)}" update="history"/>
+</p:column>
+<p:column width="80" headerText="Edit" rendered="false">
+    <p:rowEditor/>
+</p:column>
 </p:dataTable>
 
 
