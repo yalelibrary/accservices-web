@@ -40,15 +40,23 @@
 					style="font-weight:normal;" rendered="true">
 
 					<div class="row">
-						<div class="span8">
+						<div class="span4">
 							<h2>
 								<h:outputText value="#{searchView.fileName}" />
 							</h2>
 						</div>
-						<div class="span2 offset2">
+						<div class="span2">
 							<h:graphicImage library="img" name="add.png" />
-							<h:link value=" Create New Report           " outcome="search" />
+							<h:link value=" Create New Report" outcome="search" />
 						</div>
+                        <div class="span2">
+                            <h:graphicImage library="img" name="edit.png" />
+                            <h:link value=" Edit Other Reports" outcome="edit_options" />
+                        </div>
+                        <div class="span2">
+                            <h:graphicImage library="img" name="delete.png" />
+                            <h:link value=" Delete Other Reports" outcome="delete_options" />
+                        </div>
 						<div class="span2">
 							<p:commandButton value="Print" type="button" icon="ui-icon-print"
 								rendered="#{not empty searchView.engine.reportLists.reportCatalogAsList}">

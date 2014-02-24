@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+
+<ui:composition template="../templates/formtemplate.xhtml">
+    <ui:define name="nav_list">
+        <ui:include src="../templates/bootstrap/nav_top.xhtml"/>
+    </ui:define>
+
+    <ui:define name="content">
+        <f:metadata></f:metadata>
+
+        <h3> Edit History Item </h3>
+
+        <h:form id="link" styleClass="form-horizontal"
+                style="align:right; background-color:#fff;
+			border: 1px solid #bbb; border-radius: 0.4em; overflow:hidden;">
+
+            <p:inputText id="reportId" value="#{editOptionsView.redirect_id}"
+                         size="2" styleClass="inputBox" required="true"/>
+            <h:commandButton id="jump_link" value="Jump to edit item page"
+                             style="background-color:#fff" action="#{editOptionsView.jump}"
+                             ajax="false">
+            </h:commandButton>
+
+            <h:message for="reportId" style="color:red"/>
+
+            <p:tooltip for="reportId" value="Jump to history report's edit notes if you know the report #"
+                       showEffect="fade" hideEffect="fade"/>
+
+        </h:form>
+
+    </ui:define>
+</ui:composition>
+</html>
