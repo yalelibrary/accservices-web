@@ -48,6 +48,16 @@
     <h:graphicImage library="img" name="information.png"/>
     <h:outputText
             value="#{messagesView.hashMap.get('form.history.instructions')}"/>
+
+    <div class="span2">
+        <h:graphicImage library="img" name="edit.png"/>
+        <h:link value=" Edit Other Reports" outcome="edit_options"/>
+    </div>
+    <div class="span2">
+        <h:graphicImage library="img" name="delete.png"/>
+        <h:link value=" Delete Other Reports" outcome="delete_options"/>
+    </div>
+
 </div>
 <br/>
 
