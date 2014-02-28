@@ -30,32 +30,31 @@
 
 <h2>ShelfScan History</h2>
 
-<h:form id="HistoryForm" styleClass="form-horizontal"
-        style="margin:0 auto; background-color:#fff;
-			border: 1px solid #bbb; border-radius: 0.4em; overflow-x:scroll;">
+<h:form id="HistoryForm" styleClass="form-horizontal" style="margin:0 auto; background-color:#fff;
+        border: 1px solid #bbb; border-radius: 0.4em; overflow-x:scroll;">
 
 <br/>
 
 <div style="float: right;">
     <p:splitButton icon="ui-icon-gear">
-
         <p:menuitem value="Export Options" url="history_export.xhtml"
                     icon="ui-icon-note"/>
     </p:splitButton>
 </div>
 
 <div style="margin-left: 30px;">
-    <h:graphicImage library="img" name="information.png"/>
-    <h:outputText
-            value="#{messagesView.hashMap.get('form.history.instructions')}"/>
+    <div class="span2">
+        <h:graphicImage library="img" name="information.png"/>
+        <h:outputText value="#{messagesView.hashMap.get('form.history.instructions')}"/>
+    </div>
 
     <div class="span2">
         <h:graphicImage library="img" name="edit.png"/>
-        <h:link value=" Edit Other Reports" outcome="edit_options"/>
+        <h:link value=" Edit Reports" outcome="edit_options"/>
     </div>
     <div class="span2">
         <h:graphicImage library="img" name="delete.png"/>
-        <h:link value=" Delete Other Reports" outcome="delete_options"/>
+        <h:link value=" Delete Reports" outcome="delete_options"/>
     </div>
 
 </div>

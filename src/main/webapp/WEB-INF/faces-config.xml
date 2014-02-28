@@ -48,6 +48,7 @@
             <to-view-id>/pages/error/500.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+
     <navigation-rule>
         <from-view-id>/pages/edit.xhtml</from-view-id>
         <navigation-case>
@@ -56,6 +57,7 @@
             <redirect/>
         </navigation-case>
     </navigation-rule>
+
     <navigation-rule>
         <from-view-id>/pages/edit_shelving.xhtml</from-view-id>
         <navigation-case>
@@ -64,6 +66,7 @@
             <redirect/>
         </navigation-case>
     </navigation-rule>
+
     <navigation-rule>
         <from-view-id>/pages/settings.xhtml</from-view-id>
         <navigation-case>
@@ -72,6 +75,7 @@
             <redirect/>
         </navigation-case>
     </navigation-rule>
+
     <navigation-rule>
         <from-view-id>/pages/remove.xhtml</from-view-id>
         <navigation-case>
@@ -85,6 +89,7 @@
             <redirect/>
         </navigation-case>
     </navigation-rule>
+
     <managed-bean>
         <managed-bean-name>currentDate</managed-bean-name>
         <managed-bean-class>java.util.Date</managed-bean-class>

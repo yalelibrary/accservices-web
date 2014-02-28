@@ -48,14 +48,19 @@
         <h:graphicImage library="img" name="add.png"/>
         <h:link value=" Create New Report" outcome="search"/>
     </div>
+    <!--
     <div class="span2">
         <h:graphicImage library="img" name="edit.png"/>
-        <h:link value=" Edit Report" outcome="edit_options"/>
+        <h:link value=" Edit Report" outcome="edit">
+            <f:param name="id" value="#{requestScope['id']}"/>
+        </h:link>
     </div>
+
     <div class="span2">
         <h:graphicImage library="img" name="delete.png"/>
         <h:link value=" Delete Report" outcome="delete_options"/>
     </div>
+    -->
     <div class="span2">
         <p:commandButton value="Print" type="button" icon="ui-icon-print"
                          rendered="#{not empty searchView.engine.reportLists.reportCatalogAsList}">
