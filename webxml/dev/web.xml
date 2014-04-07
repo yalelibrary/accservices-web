@@ -1,198 +1,199 @@
 <?xml version="1.0" encoding="utf-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
-	<display-name>Bass Shelf Scan App</display-name>
-	<context-param>
-		<param-name>facelets.LIBRARIES</param-name>
-		<param-value>/WEB-INF/corejsf.taglib.xml</param-value>
-	</context-param>
-	<context-param>
-		<param-name>facelets.SKIP_COMMENTS</param-name>
-		<param-value>true</param-value>
-	</context-param>
-	<context-param>
-		<param-name>javax.faces.PROJECT_STAGE</param-name>
-		<param-value>Production</param-value>
-	</context-param>
-	<!-- context params -->
-	<context-param>
-		<description>State saving method: 'client' or 'server' (=default). See JSF Specification 2.5.2</description>
-		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
-		<param-value>client</param-value>
-	</context-param>
-	<context-param>
-		<param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
-		<param-value>resources.application</param-value>
-	</context-param>
-	
-	<context-param>
-		<param-name>primefaces.THEME</param-name>
-		<param-value>bootstrap</param-value>
-	</context-param>
-	
-	<!-- Filters -->
-	<filter>
-		<filter-name>PrimeFaces FileUpload Filter</filter-name>
-		<filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
-		<init-param>
-			<param-name>thresholdSize</param-name>
-			<param-value>1000000</param-value>
-		</init-param>
-	</filter>
-	<!-- JASIG CAS filter -->
-	<filter>
-		<filter-name>JASIG-CAS Authentication Filter</filter-name>
-		<filter-class>org.jasig.cas.client.authentication.AuthenticationFilter</filter-class>
-		<init-param>
-			<param-name>casServerLoginUrl</param-name>
-			<param-value>https://secure.its.yale.edu/cas/login</param-value>
-		</init-param>
-		<init-param>
-			<param-name>serverName</param-name>
-			<param-value>http://130.132.146.207:8080</param-value> 
-		</init-param>
-	</filter>
-	<filter>
-		<filter-name>CAS HttpServletRequest Wrapper Filter</filter-name>
-		<filter-class>org.jasig.cas.client.util.HttpServletRequestWrapperFilter</filter-class>
-	</filter>
-	<filter>
-		<filter-name>CAS Checked Filter</filter-name>
-		<filter-class>edu.yale.sml.servlet.CasNetIdFilter</filter-class>
-	</filter>
-	<filter>
-		<filter-name>Netid Auth Filter</filter-name>
-		<filter-class>edu.yale.sml.servlet.SessionNetIdFilter</filter-class>
-	</filter>
-	<!-- log out filter -->
-	<filter>
-		<filter-name>Logout Filter</filter-name>
-		<filter-class>edu.yale.sml.servlet.LogoutFilter</filter-class>
-	</filter>
-	<filter>
-		<filter-name>DBCheckFilter</filter-name>
-		<filter-class>edu.yale.sml.servlet.DBCheckFilter</filter-class>
-	</filter>
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <display-name>Bass Shelf Scan App</display-name>
+    <context-param>
+        <param-name>facelets.LIBRARIES</param-name>
+        <param-value>/WEB-INF/corejsf.taglib.xml</param-value>
+    </context-param>
+    <context-param>
+        <param-name>facelets.SKIP_COMMENTS</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Production</param-value>
+    </context-param>
+    <!-- context params -->
+    <context-param>
+        <description>State saving method: 'client' or 'server' (=default). See JSF Specification 2.5.2</description>
+        <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+        <param-value>server</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
+        <param-value>resources.application</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>primefaces.THEME</param-name>
+        <param-value>bootstrap</param-value>
+    </context-param>
+
+    <!-- Filters -->
+    <filter>
+        <filter-name>PrimeFaces FileUpload Filter</filter-name>
+        <filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
+        <init-param>
+            <param-name>thresholdSize</param-name>
+            <param-value>1000000</param-value>
+        </init-param>
+    </filter>
+    <!-- JASIG CAS filter -->
+    <filter>
+        <filter-name>JASIG-CAS Authentication Filter</filter-name>
+        <filter-class>org.jasig.cas.client.authentication.AuthenticationFilter</filter-class>
+        <init-param>
+            <param-name>casServerLoginUrl</param-name>
+            <param-value>https://secure.its.yale.edu/cas/login</param-value>
+        </init-param>
+        <init-param>
+            <param-name>serverName</param-name>
+            <param-value>http://130.132.146.207:8080</param-value>
+        </init-param>
+    </filter>
+    <filter>
+        <filter-name>CAS HttpServletRequest Wrapper Filter</filter-name>
+        <filter-class>org.jasig.cas.client.util.HttpServletRequestWrapperFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>CAS Checked Filter</filter-name>
+        <filter-class>edu.yale.sml.servlet.CasNetIdFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>Netid Auth Filter</filter-name>
+        <filter-class>edu.yale.sml.servlet.SessionNetIdFilter</filter-class>
+    </filter>
+    <!-- log out filter -->
+    <filter>
+        <filter-name>Logout Filter</filter-name>
+        <filter-class>edu.yale.sml.servlet.LogoutFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>DBCheckFilter</filter-name>
+        <filter-class>edu.yale.sml.servlet.DBCheckFilter</filter-class>
+    </filter>
 
 
-	<!-- end of cas and custom auth filter admin filter to admin, locations, 
-		history -->
-	<filter>
-		<filter-name>Admin Filter</filter-name>
-		<filter-class>edu.yale.sml.servlet.PageAccessAuthorizationFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>PrimeFaces FileUpload Filter</filter-name>
-		<servlet-name>Faces Servlet</servlet-name>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>JASIG-CAS Authentication Filter</filter-name>
-		<url-pattern>/pages/index.xhtml</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>CAS Checked Filter</filter-name>
-		<url-pattern>/pages/index.xhtml</url-pattern>
-	</filter-mapping>
+    <!-- end of cas and custom auth filter admin filter to admin, locations,
+        history -->
+    <filter>
+        <filter-name>Admin Filter</filter-name>
+        <filter-class>edu.yale.sml.servlet.PageAccessAuthorizationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>PrimeFaces FileUpload Filter</filter-name>
+        <servlet-name>Faces Servlet</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>JASIG-CAS Authentication Filter</filter-name>
+        <url-pattern>/pages/index.xhtml</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CAS Checked Filter</filter-name>
+        <url-pattern>/pages/index.xhtml</url-pattern>
+    </filter-mapping>
 
-	<filter-mapping>
-		<filter-name>Netid Auth Filter</filter-name>
-		<url-pattern>/pages/search.xhtml</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>Netid Auth Filter</filter-name>
-		<url-pattern>/pages/historytable.xhtml</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>Netid Auth Filter</filter-name>
-		<url-pattern>/pages/admin.xhtml</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>Netid Auth Filter</filter-name>
-		<url-pattern>/pages/settings.xhtml</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>Netid Auth Filter</filter-name>
-		<url-pattern>/pages/locations.xhtml</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>DBCheckFilter</filter-name>
-		<url-pattern>/pages/locations.xhtml</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>DBCheckFilter</filter-name>
-		<url-pattern>/pages/search.xhtml</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>DBCheckFilter</filter-name>
-		<url-pattern>/pages/files.xhtml</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>DBCheckFilter</filter-name>
-		<url-pattern>/pages/settings.xhtml</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>DBCheckFilter</filter-name>
-		<url-pattern>/pages/results.xhtml</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>Logout Filter</filter-name>
-		<url-pattern>/pages/logout.xhtml</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>Admin Filter</filter-name>
-		<url-pattern>/pages/admin.xhtml</url-pattern>
-	</filter-mapping>
-	<!-- listeners -->
-	<listener>
-		<listener-class>com.sun.faces.config.ConfigureListener</listener-class>
-	</listener>
-	<listener>
-		<listener-class>edu.yale.sml.servlet.AppContextListener</listener-class>
-	</listener>
-	<!-- servlet -->
-	<servlet>
-		<servlet-name>Faces Servlet</servlet-name>
-		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
+    <filter-mapping>
+        <filter-name>Netid Auth Filter</filter-name>
+        <url-pattern>/pages/search.xhtml</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>Netid Auth Filter</filter-name>
+        <url-pattern>/pages/historytable.xhtml</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>Netid Auth Filter</filter-name>
+        <url-pattern>/pages/admin.xhtml</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>Netid Auth Filter</filter-name>
+        <url-pattern>/pages/settings.xhtml</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>Netid Auth Filter</filter-name>
+        <url-pattern>/pages/locations.xhtml</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>DBCheckFilter</filter-name>
+        <url-pattern>/pages/locations.xhtml</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>DBCheckFilter</filter-name>
+        <url-pattern>/pages/search.xhtml</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>DBCheckFilter</filter-name>
+        <url-pattern>/pages/files.xhtml</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>DBCheckFilter</filter-name>
+        <url-pattern>/pages/settings.xhtml</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>DBCheckFilter</filter-name>
+        <url-pattern>/pages/results.xhtml</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>Logout Filter</filter-name>
+        <url-pattern>/pages/logout.xhtml</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>Admin Filter</filter-name>
+        <url-pattern>/pages/admin.xhtml</url-pattern>
+    </filter-mapping>
+    <!-- listeners -->
+    <listener>
+        <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>edu.yale.sml.servlet.AppContextListener</listener-class>
+    </listener>
+    <!-- servlet -->
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
 
-	
-	<servlet-mapping>
-		<servlet-name>Faces Servlet</servlet-name>
-		<url-pattern>/faces/*</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>Faces Servlet</servlet-name>
-		<url-pattern>*.jsf</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>Faces Servlet</servlet-name>
-		<url-pattern>*.faces</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>Faces Servlet</servlet-name>
-		<url-pattern>*.xhtml</url-pattern>
-	</servlet-mapping>
 
-	<welcome-file-list>
-		<welcome-file>/pages/index.xhtml</welcome-file>
-	</welcome-file-list>
-	<!-- error pages -->
-	<error-page>
-		<error-code>500</error-code>
-		<location>/pages/error/500.xhtml</location>
-	</error-page>
-	<error-page>
-		<error-code>404</error-code>
-		<location>/pages/error/404.xhtml</location>
-	</error-page>
-	<error-page>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.jsf</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.faces</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>/pages/index.xhtml</welcome-file>
+    </welcome-file-list>
+    <!-- error pages -->
+    <error-page>
+        <error-code>500</error-code>
+        <location>/pages/error/500.xhtml</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/pages/error/404.xhtml</location>
+    </error-page>
+    <error-page>
         <exception-type>java.io.FileNotFoundException</exception-type>
         <location>/pages/error/404.xhtml</location>
     </error-page>
 
-	<session-config>
-      <session-timeout>10</session-timeout>    <!-- 30 minutes -->
+    <session-config>
+        <session-timeout>10</session-timeout>
+        <!-- 30 minutes -->
     </session-config>
 </web-app>

@@ -114,9 +114,12 @@
         <f:convertDateTime pattern="yyyy-MM-d"/>
     </h:outputText>
 </p:column>
+<!--
 <p:column width="5%" headerText="NetId" filterBy="#{c.NETID}"
           filterOptions="#{historyView.netidOptions}" filterMatchMode="exact"
           rendered="true">
+          -->
+<p:column width="5%" headerText="NetId">
     <p:cellEditor>
         <f:facet name="output">
             <h:outputText value="#{c.NETID}"/>
@@ -156,9 +159,12 @@
     </ul>
 </p:column>
 
+<!--
 <p:column width="5%" filterBy="#{c.SCANLOCATION}"
           filterOptions="#{historyView.locationSelectOptions}"
           filterMatchMode="exact" rendered="true">
+          -->
+<p:column width="5%">
     <f:facet name="header">
         <h:outputText value="Location"/>
     </f:facet>

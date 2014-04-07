@@ -134,9 +134,12 @@
         )
     </p:column>
 
+    <!--
     <p:column width="5%" headerText="NetId" filterBy="#{c.NETID}"
               filterOptions="#{shelvingApplication.netidOptions}"
               filterMatchMode="exact" rendered="true">
+              -->
+    <p:column width="5%" headerText="NetId">
         <p:cellEditor>
             <f:facet name="output">
                 <h:outputText value="#{c.NETID}"/>
@@ -201,19 +204,21 @@
             <li><h:outputText value="First :" escape="false"/>
                 <h:graphicImage library="img" name="warn.gif"
                                 rendered="#{(not empty c.startItemStatus) and
-										(c.startItemStatus ne 'Not Charged') and (c.startItemStatus ne 'Discharged') and (c.startItemStatusDate lt c.formDate)}"/>
+                                (c.startItemStatus ne 'Not Charged') and (c.startItemStatus ne 'Discharged') and (c.startItemStatusDate lt c.formDate)}"/>
                 #{c.startItemStatus} / #{c.startItemStatusDate} </li>
             <li><h:outputText value="Last :" escape="false"/>
                 <h:graphicImage library="img" name="warn.gif"
                                 rendered="#{(not empty c.endItemStatus) and
-										(c.endItemStatus ne 'Not Charged') and (c.endItemStatus ne 'Discharged') and (c.endItemStatusDate lt c.formDate)}"/>
+                                 (c.endItemStatus ne 'Not Charged') and (c.endItemStatus ne 'Discharged') and (c.endItemStatusDate lt c.formDate)}"/>
                 #{c.endItemStatus} / #{c.endItemStatusDate} </li>
         </ul>
     </p:column>
 
-    <p:column width="5%" filterBy="#{c.SCANLOCATION}"
+    <!--<p:column width="5%" filterBy="#{c.SCANLOCATION}"
               filterOptions="#{shelvingApplication.locationSelectOptions}"
               filterMatchMode="exact" rendered="true">
+              -->
+    <p:column width="5%" filterBy="#{c.SCANLOCATION}">
         <f:facet name="header">
             <h:outputText value="Location"/>
         </f:facet>
