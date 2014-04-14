@@ -614,58 +614,113 @@
 
 <!--  VOYAGER QUERY RESULTS -->
 <p:tab id="raw" title="Voyager Query Results">
-    <h:panelGrid columns="2" cellpadding="10">
+    <!-- <h:panelGrid columns="2" cellpadding="10"> -->
 
         <p:dataTable id="unsortedreport"
                      value="#{searchView.engine.reportLists.catalogAsList}" var="c"
-                     lazy="false" rows="500" resizableColumns="true"
+                     lazy="false"
                      paginatorPosition="bottom" scrollable="true" scrollHeight="550">
 
-            <p:column headerText="Barcode" width="125">
+            <!--
+             <p:column width="55">
+                 <f:facet name="header">
+                    <h:outputText value="Accuracy"/>
+                </f:facet>
+                <h:outputText value="#{c.ACCURACY}"/>
+            </p:column>
+            -->
+
+            <p:column width="10%">
+                <f:facet name="header">
+                    <h:outputText value="Barcode"/>
+                </f:facet>
                 <h:outputText value="#{c.ITEM_BARCODE}"/>
             </p:column>
-            <p:column headerText="Display. Call #" width="125">
+
+
+            <p:column width="20%">
+                <f:facet name="header">
+                    <h:outputText value="Display Call #"/>
+                </f:facet>
                 <h:outputText value="#{c.DISPLAY_CALL_NO}"/>
             </p:column>
-            <p:column width="30">
+
+
+
+            <p:column width="7%">
                 <f:facet name="header">
                     <h:outputText value="Call # Type"/>
                 </f:facet>
                 <h:outputText value="#{c.CALL_NO_TYPE}"/>
             </p:column>
-            <p:column headerText="Enum" width="75">
+
+            <p:column width="5%">
+                <f:facet name="header">
+                    <h:outputText value="Enum"/>
+                </f:facet>
                 <h:outputText value="#{c.ITEM_ENUM}"/>
             </p:column>
-            <p:column headerText="Chron" width="50">
+
+            <p:column width="5%">
+                <f:facet name="header">
+                    <h:outputText value="Chron"/>
+                </f:facet>
                 <h:outputText value="#{c.CHRON}"/>
             </p:column>
-            <p:column headerText="Loc." width="60">
+
+            <p:column width="5%">
+                <f:facet name="header">
+                    <h:outputText value="Loc."/>
+                </f:facet>
                 <h:outputText value="#{c.LOCATION_NAME}"/>
             </p:column>
-            <p:column headerText="Display. Call #" width="125"
-                      rendered="false">
-                <h:outputText style="color:#000000" value=""/>
-            </p:column>
-            <p:column headerText="Item Id" width="65">
+
+            <p:column width="7%">
+                <f:facet name="header">
+                    <h:outputText value="Item Id"/>
+                </f:facet>
                 <h:outputText value="#{c.ITEM_ID}"/>
             </p:column>
-            <p:column headerText="Status Date" width="90">
+
+
+            <p:column width="7%">
+                <f:facet name="header">
+                    <h:outputText value="Status Date"/>
+                </f:facet>
                 <h:outputText value="#{c.ITEM_STATUS_DATE}"/>
             </p:column>
-            <p:column headerText="Status Desc" width="105">
+
+            <p:column width="10%">
+                <f:facet name="header">
+                    <h:outputText value="Status Desc"/>
+                </f:facet>
                 <h:outputText value="#{c.ITEM_STATUS_DESC}"/>
             </p:column>
-            <p:column headerText="MFHD_ID" width="60">
+
+            <p:column width="7%">
+                <f:facet name="header">
+                    <h:outputText value="MFHD_ID"/>
+                </f:facet>
                 <h:outputText value="#{c.MFHD_ID}"/>
             </p:column>
-            <p:column headerText="Enc." width="50">
+
+
+            <p:column width="7%">
+                <f:facet name="header">
+                    <h:outputText value="Enc."/>
+                </f:facet>
                 <h:outputText value="#{c.ENCODING_LEVEL}"/>
             </p:column>
-            <p:column headerText="Supp." width="50">
+
+            <p:column width="5%">
+                <f:facet name="header">
+                    <h:outputText value="Supp."/>
+                </f:facet>
                 <h:outputText value="#{c.SUPPRESS_IN_OPAC}"/>
             </p:column>
+
         </p:dataTable>
-    </h:panelGrid>
+    <!-- </h:panelGrid> -->
 </p:tab>
 
 
