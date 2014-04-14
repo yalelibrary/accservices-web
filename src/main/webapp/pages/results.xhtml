@@ -774,11 +774,17 @@
             <p:column headerText="Display Call. No." width="135">
                 <h:outputText value="#{c.DISPLAY_CALL_NO}"
                               rendered="#{!fn:contains(c.DISPLAY_CALL_NO, '*')}"/>
-								<span id="#{searchView.getReferenceLink(table2.rowIndex)}">
+				<!--
+                <span id="#{searchView.getReferenceLink(table2.rowIndex)}">
 									<h:link id="wrong" style="color:red"
                                             value="#{c.DISPLAY_CALL_NO}"
                                             rendered="#{fn:contains(c.DISPLAY_CALL_NO, '*')}"/>
 								</span>
+								-->
+                <h:outputText
+                        id="wrong" style="color:red"
+                value="#{c.DISPLAY_CALL_NO}"
+                rendered="#{fn:contains(c.DISPLAY_CALL_NO, '*')}"/>
             </p:column>
         </p:dataTable>
 
@@ -794,12 +800,14 @@
             </f:facet>
             <p:column headerText="Check Prior" width="200"
                       rendered="#{fn:contains(c.DISPLAY_CALL_NO, '*')}">
-                <h:outputText value="#{c.DISPLAY_CALL_NO}" rendered="false"/>
+                <h:outputText value="#{c.DISPLAY_CALL_NO}" rendered="#{fn:contains(c.DISPLAY_CALL_NO, '*')}"/>
+                <!--
                 <h:outputLink id="wrong3" style="color:#0055AF"
                               value="#{searchView.getReferenceLink(table3.rowIndex)}"
                               rendered="#{fn:contains(c.DISPLAY_CALL_NO, '*')}">
                     #{c.DISPLAY_CALL_NO}
                 </h:outputLink>
+                -->
             </p:column>
         </p:dataTable>
 
