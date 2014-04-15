@@ -181,7 +181,8 @@
                             value="#{searchView.engine.shelvingError.enum_warnings}"/></td>
                 </tr>
                 <tr>
-                    <td style="text-align: left">Page: http://chron.library.yale.edu:8080/shelfscan/#{view.viewId}?id=#{param['id']}</td>
+                    <td style="text-align: left">Page: http://chron.library.yale.edu:8080/shelfscan/#{view.viewId}?id=
+                    <h:outputText value="#{param['id']}"/><h:outputText value="#{flash['initId']}" rendered="#{empty param['id']}" /></td>
                     <td style="text-align: right"><h:outputLink id="sup"
                                                                 style="color:#000000; "
                                                                 value="Suppress Error: "> Suppress Errors:
@@ -423,8 +424,8 @@
                     value="#{searchView.engine.shelvingError.enum_warnings}"/></td>
         </tr>
         <tr>
-            <td style="text-align: left">Page: http://chron.library.yale.edu:8080/shelfscan/#{view.viewId}?id=#{param['id']}</td>
-
+            <td style="text-align: left">Page: http://chron.library.yale.edu:8080/shelfscan/#{view.viewId}?id=<h:outputText value="#{param['id']}"/>
+                <h:outputText value="#{flash['initId']}" rendered="#{empty param['id']}"></h:outputText> </td>
             <td style="text-align: right"><h:outputLink id="sup"
                                                         style="color:#000000; "
                                                         value="Suppress Error: "> Suppress Errors:
