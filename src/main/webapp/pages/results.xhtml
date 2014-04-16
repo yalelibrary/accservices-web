@@ -181,8 +181,17 @@
                             value="#{searchView.engine.shelvingError.enum_warnings}"/></td>
                 </tr>
                 <tr>
+                    <!--
                     <td style="text-align: left">Page: http://chron.library.yale.edu:8080/shelfscan/#{view.viewId}?id=
                     <h:outputText value="#{param['id']}"/><h:outputText value="#{flash['initId']}" rendered="#{empty param['id']}" /></td>
+                    -->
+
+                    <td style="text-align: left">
+                        <h:outputText value="Page: http://chron.library.yale.edu:8080/shelfscan/#{view.viewId}?id=#{param['id']}" rendered="#{not empty param['id']}"/>
+                        <h:outputText value="Page: http://chron.library.yale.edu:8080/shelfscan/#{view.viewId}?id=#{flash['initId']}" rendered="#{empty param['id']}"/>
+                    </td>
+
+
                     <td style="text-align: right"><h:outputLink id="sup"
                                                                 style="color:#000000; "
                                                                 value="Suppress Error: "> Suppress Errors:
@@ -313,22 +322,7 @@
                   rendered="#{d.text ne 0 and d.text ne 5555}">
     </h:outputText>
 </p:column>
-<!--
-<p:column rendered="false">
-    <f:facet name="header">
-        <h:outputText value="PBP" style="#{msgs.column_header_font}" />
-    </f:facet>
-    <h:outputText style="color:#000000; "
-        value="#{d.physicalPrior.ITEM_BARCODE}" />
-</p:column>
-<p:column rendered="false">
-    <f:facet name="header">
-        <h:outputText value="Prior Sorted Call Number"
-            style="#{msgs.column_header_font}" />
-    </f:facet>
-    <h:outputText value="#{d.prior}" />
-</p:column>
--->
+
 <p:column rendered="true">
     <f:facet name="header">
         <h:outputText value="Preceding"
@@ -424,8 +418,10 @@
                     value="#{searchView.engine.shelvingError.enum_warnings}"/></td>
         </tr>
         <tr>
-            <td style="text-align: left">Page: http://chron.library.yale.edu:8080/shelfscan/#{view.viewId}?id=<h:outputText value="#{param['id']}"/>
-                <h:outputText value="#{flash['initId']}" rendered="#{empty param['id']}"></h:outputText> </td>
+            <td style="text-align: left">
+                <h:outputText value="Page: http://chron.library.yale.edu:8080/shelfscan/#{view.viewId}?id=#{param['id']}" rendered="#{not empty param['id']}"/>
+                <h:outputText value="Page: http://chron.library.yale.edu:8080/shelfscan/#{view.viewId}?id=#{flash['initId']}" rendered="#{empty param['id']}"/>
+            </td>
             <td style="text-align: right"><h:outputLink id="sup"
                                                         style="color:#000000; "
                                                         value="Suppress Error: "> Suppress Errors:
@@ -620,18 +616,11 @@
         <p:dataTable id="unsortedreport"
                      value="#{searchView.engine.reportLists.catalogAsList}" var="c"
                      lazy="false"
-                     paginatorPosition="bottom" scrollable="true" scrollHeight="550">
+                     paginatorPosition="bottom"
+                     tableStyle="width:100%;" tableStyleClass="table">
 
-            <!--
-             <p:column width="55">
-                 <f:facet name="header">
-                    <h:outputText value="Accuracy"/>
-                </f:facet>
-                <h:outputText value="#{c.ACCURACY}"/>
-            </p:column>
-            -->
 
-            <p:column width="10%">
+            <p:column>
                 <f:facet name="header">
                     <h:outputText value="Barcode"/>
                 </f:facet>
@@ -639,7 +628,7 @@
             </p:column>
 
 
-            <p:column width="20%">
+            <p:column >
                 <f:facet name="header">
                     <h:outputText value="Display Call #"/>
                 </f:facet>
@@ -648,35 +637,35 @@
 
 
 
-            <p:column width="7%">
+            <p:column >
                 <f:facet name="header">
                     <h:outputText value="Call # Type"/>
                 </f:facet>
                 <h:outputText value="#{c.CALL_NO_TYPE}"/>
             </p:column>
 
-            <p:column width="5%">
+            <p:column >
                 <f:facet name="header">
                     <h:outputText value="Enum"/>
                 </f:facet>
                 <h:outputText value="#{c.ITEM_ENUM}"/>
             </p:column>
 
-            <p:column width="5%">
+            <p:column >
                 <f:facet name="header">
                     <h:outputText value="Chron"/>
                 </f:facet>
                 <h:outputText value="#{c.CHRON}"/>
             </p:column>
 
-            <p:column width="5%">
+            <p:column >
                 <f:facet name="header">
                     <h:outputText value="Loc."/>
                 </f:facet>
                 <h:outputText value="#{c.LOCATION_NAME}"/>
             </p:column>
 
-            <p:column width="7%">
+            <p:column >
                 <f:facet name="header">
                     <h:outputText value="Item Id"/>
                 </f:facet>
@@ -684,21 +673,21 @@
             </p:column>
 
 
-            <p:column width="7%">
+            <p:column >
                 <f:facet name="header">
                     <h:outputText value="Status Date"/>
                 </f:facet>
                 <h:outputText value="#{c.ITEM_STATUS_DATE}"/>
             </p:column>
 
-            <p:column width="10%">
+            <p:column >
                 <f:facet name="header">
                     <h:outputText value="Status Desc"/>
                 </f:facet>
                 <h:outputText value="#{c.ITEM_STATUS_DESC}"/>
             </p:column>
 
-            <p:column width="7%">
+            <p:column >
                 <f:facet name="header">
                     <h:outputText value="MFHD_ID"/>
                 </f:facet>
@@ -706,14 +695,14 @@
             </p:column>
 
 
-            <p:column width="7%">
+            <p:column >
                 <f:facet name="header">
                     <h:outputText value="Enc."/>
                 </f:facet>
                 <h:outputText value="#{c.ENCODING_LEVEL}"/>
             </p:column>
 
-            <p:column width="5%">
+            <p:column >
                 <f:facet name="header">
                     <h:outputText value="Supp."/>
                 </f:facet>
