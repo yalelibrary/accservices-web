@@ -1,172 +1,172 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<artifactId>shelfscan-dev-war</artifactId>
-	<packaging>war</packaging>
-	<description>Bass Shelf Scan Application</description>
-	<distributionManagement>
-		<snapshotRepository>
-			<id>snappy</id>
-			<name>Maven2 Snapshot Repository</name>
-			<url>http://130.132.146.30:8081/nexus/content/repositories/snapshots</url>
-			<uniqueVersion>true</uniqueVersion>
-		</snapshotRepository>
-	</distributionManagement>
-	<dependencies>
-		<dependency>
-			<groupId>edu.yale.sml</groupId>
-			<artifactId>shelfscan-main-dev</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<exclusions>
-				<exclusion>
-					<groupId>javax.servlet</groupId>
-					<artifactId>servlet-api</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-	</dependencies>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>shelfscan-dev-war</artifactId>
+    <packaging>war</packaging>
+    <description>Bass Shelf Scan Application</description>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>snappy</id>
+            <name>Maven2 Snapshot Repository</name>
+            <url>http://130.132.146.30:8081/nexus/content/repositories/snapshots</url>
+            <uniqueVersion>true</uniqueVersion>
+        </snapshotRepository>
+    </distributionManagement>
+    <dependencies>
+        <dependency>
+            <groupId>edu.yale.sml</groupId>
+            <artifactId>shelfscan-main-dev</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>servlet-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
 
-	<!-- repos -->
-	<repositories>
-		<repository>
-			<id>java.net</id>
-			<url>http://download.java.net/maven/2</url>
-		</repository>
-		<repository>
-			<id>jboss</id>
-			<url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
-		</repository>
-		<repository>
-			<id>prime-repo</id>
-			<name>PrimeFaces Maven Repository</name>
-			<url>http://repository.primefaces.org</url>
-			<layout>default</layout>
-		</repository>
-		<repository>
-			<id>nexus</id>
-			<url>http://130.132.146.30:8081/nexus/content/repositories/snapshots</url>
-		</repository>
-		<repository>
-			<id>snappys</id>
-			<url>http://130.132.146.30:8081/nexus/content/repositories/thirdparty</url>
-		</repository>
-	</repositories>
+    <!-- repos -->
+    <repositories>
+        <repository>
+            <id>java.net</id>
+            <url>http://download.java.net/maven/2</url>
+        </repository>
+        <repository>
+            <id>jboss</id>
+            <url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+        </repository>
+        <repository>
+            <id>prime-repo</id>
+            <name>PrimeFaces Maven Repository</name>
+            <url>http://repository.primefaces.org</url>
+            <layout>default</layout>
+        </repository>
+        <repository>
+            <id>nexus</id>
+            <url>http://130.132.146.30:8081/nexus/content/repositories/snapshots</url>
+        </repository>
+        <repository>
+            <id>snappys</id>
+            <url>http://130.132.146.30:8081/nexus/content/repositories/thirdparty</url>
+        </repository>
+    </repositories>
 
-	<profiles>
-	
+    <profiles>
 
-		<!-- PROFILE: dev-->
 
-		<profile>
-			<id>localhost</id>
-			<build>
-				<plugins>
-				<!--  web app directory -->
-				<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>tomcat-maven-plugin</artifactId>
-						<configuration>
-							<url>http://localhost:8080/manager/text</url>
-							<server>macmini</server>
-							<path>/powershelf</path>
-						</configuration>
-					</plugin>
-					
-					<!--  resources (css, img..) -->
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-war-plugin</artifactId>
-						<configuration>
-							<webResources>
-								<resource>
-									<directory>${basedir}/src/main/resources</directory>
-									<targetPath>resources</targetPath>
-								</resource>
-								<!--  for cfg.xml and msgs.properties -->
-								<resource>
-									<directory>${basedir}/src/main/uncommon/dev</directory>
-									<filtering>true</filtering>
-									<targetPath>WEB-INF/classes</targetPath>
-								</resource>
+        <!-- PROFILE: dev-->
 
-								<!-- for web.xml -->
-								<resource>
-									<directory>webxml/dev</directory>
-									<!-- override the destination directory for this resource -->
-									<targetPath>WEB-INF</targetPath>
-									<!-- enable filtering -->
-									<filtering>true</filtering>
-									<includes>
-										<include>**/*.xml</include>
-									</includes>
-									<excludes>
-										<exclude>**/properties</exclude>
-									</excludes>
-								</resource>
-							</webResources>
-						</configuration>
-					</plugin>					
-				</plugins>
-			</build>
-		</profile>
+        <profile>
+            <id>localhost</id>
+            <build>
+                <plugins>
+                    <!--  web app directory -->
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>tomcat-maven-plugin</artifactId>
+                        <configuration>
+                            <url>http://localhost:8080/manager/text</url>
+                            <server>macmini</server>
+                            <path>/powershelf</path>
+                        </configuration>
+                    </plugin>
 
-		<!-- PROFILE: REMOTE /PROD BUILD (on macmini) -->
+                    <!--  resources (css, img..) -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <configuration>
+                            <webResources>
+                                <resource>
+                                    <directory>${basedir}/src/main/resources</directory>
+                                    <targetPath>resources</targetPath>
+                                </resource>
+                                <!--  for cfg.xml and msgs.properties -->
+                                <resource>
+                                    <directory>${basedir}/src/main/uncommon/dev</directory>
+                                    <filtering>true</filtering>
+                                    <targetPath>WEB-INF/classes</targetPath>
+                                </resource>
 
-		<profile>
-			<id> macmini </id>
-			<build>
-				<plugins>
-					<!--  web app directory -->
-				
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>tomcat-maven-plugin</artifactId>
-						<configuration>
-							<url>http://130.132.146.30:8080/manager/text</url>
-							<server>macmini</server>
-							<path>/shelfscan</path>
-						</configuration>
-					</plugin>
-					<!--  resources (css, img..) -->
-					
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-war-plugin</artifactId>
-						<configuration>
-							<webResources>
-								<resource>
-									<directory>${basedir}/src/main/resources</directory>
-									<targetPath>resources</targetPath>
-								</resource>
-								<resource>
-									<directory>${basedir}/src/main/uncommon/remote</directory>
-									<filtering>true</filtering>
-									<targetPath>WEB-INF/classes</targetPath>
-								</resource>
-							
-								<!-- for web.xml -->
-								<resource>
-									<directory>webxml/dev-remote</directory>
-									<targetPath>WEB-INF</targetPath>
-									<!-- enable filtering -->
-									<filtering>true</filtering>
-									<includes>
-										<include>**/*.xml</include>
-									</includes>
-									<excludes>
-										<exclude>**/properties</exclude>
-									</excludes>
-								</resource>
-							</webResources>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
-	<parent>
-		<groupId>edu.yale.sml</groupId>
-		<artifactId>shelfscan-parent-dev</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-	</parent>
+                                <!-- for web.xml -->
+                                <resource>
+                                    <directory>webxml/dev</directory>
+                                    <!-- override the destination directory for this resource -->
+                                    <targetPath>WEB-INF</targetPath>
+                                    <!-- enable filtering -->
+                                    <filtering>true</filtering>
+                                    <includes>
+                                        <include>**/*.xml</include>
+                                    </includes>
+                                    <excludes>
+                                        <exclude>**/properties</exclude>
+                                    </excludes>
+                                </resource>
+                            </webResources>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- PROFILE: REMOTE /PROD BUILD (on macmini) -->
+
+        <profile>
+            <id>macmini</id>
+            <build>
+                <plugins>
+                    <!--  web app directory -->
+
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>tomcat-maven-plugin</artifactId>
+                        <configuration>
+                            <url>http://130.132.146.30:8080/manager/text</url>
+                            <server>macmini</server>
+                            <path>/shelfscan</path>
+                        </configuration>
+                    </plugin>
+                    <!--  resources (css, img..) -->
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <configuration>
+                            <webResources>
+                                <resource>
+                                    <directory>${basedir}/src/main/resources</directory>
+                                    <targetPath>resources</targetPath>
+                                </resource>
+                                <resource>
+                                    <directory>${basedir}/src/main/uncommon/remote</directory>
+                                    <filtering>true</filtering>
+                                    <targetPath>WEB-INF/classes</targetPath>
+                                </resource>
+
+                                <!-- for web.xml -->
+                                <resource>
+                                    <directory>webxml/dev-remote</directory>
+                                    <targetPath>WEB-INF</targetPath>
+                                    <!-- enable filtering -->
+                                    <filtering>true</filtering>
+                                    <includes>
+                                        <include>**/*.xml</include>
+                                    </includes>
+                                    <excludes>
+                                        <exclude>**/properties</exclude>
+                                    </excludes>
+                                </resource>
+                            </webResources>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+    <parent>
+        <groupId>edu.yale.sml</groupId>
+        <artifactId>shelfscan-parent-dev</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
 </project>

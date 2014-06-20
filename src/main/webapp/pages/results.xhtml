@@ -298,7 +298,8 @@
     </f:facet>
     <h:graphicImage library="img" name="warn.gif"
                     rendered="#{(not empty d.ITEM_STATUS_DESC) and
-										(d.ITEM_STATUS_DESC ne 'Not Charged') and (d.ITEM_STATUS_DESC ne 'Discharged') and (d.ITEM_STATUS_DESC ne 'Circulation Review') and (d.ITEM_STATUS_DESC ne 'Discharged') and (d.ITEM_STATUS_DATE lt searchView.scanDate)}"/>
+										(d.ITEM_STATUS_DESC ne 'Not Charged') and (d.ITEM_STATUS_DESC ne 'Discharged') and (d.ITEM_STATUS_DESC ne 'Circulation Review')
+										and (d.ITEM_STATUS_DESC ne 'Discharged')}"/>
     <h:outputText value="#{d.ITEM_STATUS_DESC}"/>
 </p:column>
 
@@ -540,7 +541,7 @@
     </f:facet>
     <h:graphicImage library="img" name="warn.gif"
                     rendered="#{(not empty p.ITEM_STATUS_DESC) and
-											(p.ITEM_STATUS_DESC ne 'Not Charged') and (p.ITEM_STATUS_DESC ne 'Discharged') and (p.ITEM_STATUS_DESC ne 'Circulation Review') and (p.ITEM_STATUS_DATE lt searchView.scanDate)}"/>
+											(p.ITEM_STATUS_DESC ne 'Not Charged') and (p.ITEM_STATUS_DESC ne 'Discharged') and (p.ITEM_STATUS_DESC ne 'Circulation Review')}"/>
     <h:outputText value="#{p.ITEM_STATUS_DESC}"/>
 </p:column>
 
