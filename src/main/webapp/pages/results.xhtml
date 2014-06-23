@@ -28,7 +28,7 @@
 <h:form id="BarcodeSearchViewFormResult" enctype="multipart/form-data"
         styleClass="form-horizontal"
         style="margin:0 auto; background-color:#fff;
-			border: 1px solid #bbb; border-radius: 0.4em; overflow:hidden;"
+         border: 1px solid #bbb; border-radius: 0.4em; overflow:hidden;"
         rendered="#{not empty searchView.engine.reportLists.catalogAsList}">
 <!--  printer button -->
 
@@ -114,9 +114,8 @@
 
                 <tr>
                     <td style="text-align: left"><h:outputText
-                            style="color:#000000; " value="Ending Call Num.: "/> <!--  <h:outputText
-														value="#{searchView.engine.reportLists.catalogAsList.get(fn:length(searchView.engine.reportLists.catalogAsList) - 1).DISPLAY_CALL_NO}" /></td>
-														--> <h:outputText
+                            style="color:#000000; " value="Ending Call Num.: "/>
+                        <h:outputText
                             value="#{rules.getLastValidDisplayCallNum(searchView.engine.reportLists.catalogAsList)}"/>
                     </td>
 
@@ -285,10 +284,10 @@
 
     <h:graphicImage library="img" name="warn.gif"
                     rendered="#{(not empty d.LOCATION_NAME) and
-										(d.LOCATION_NAME ne searchView.finalLocationName)}"/>
+                  (d.LOCATION_NAME ne searchView.finalLocationName)}"/>
     <h:outputText value="#{d.LOCATION_NAME}"
                   rendered="#{(not empty d.LOCATION_NAME) and
-										(d.LOCATION_NAME ne searchView.finalLocationName)}"/>
+      (d.LOCATION_NAME ne searchView.finalLocationName)}"/>
 </p:column>
 
 
@@ -298,8 +297,8 @@
     </f:facet>
     <h:graphicImage library="img" name="warn.gif"
                     rendered="#{(not empty d.ITEM_STATUS_DESC) and
-										(d.ITEM_STATUS_DESC ne 'Not Charged') and (d.ITEM_STATUS_DESC ne 'Discharged') and (d.ITEM_STATUS_DESC ne 'Circulation Review')
-										and (d.ITEM_STATUS_DESC ne 'Discharged')}"/>
+    (d.ITEM_STATUS_DESC ne 'Not Charged') and (d.ITEM_STATUS_DESC ne 'Discharged') and (d.ITEM_STATUS_DESC ne 'Circulation Review')
+    and (d.ITEM_STATUS_DESC ne 'Discharged')}"/>
     <h:outputText value="#{d.ITEM_STATUS_DESC}"/>
 </p:column>
 
@@ -528,10 +527,10 @@
 
     <h:graphicImage library="img" name="warn.gif"
                     rendered="#{(not empty p.LOCATION_NAME) and
-											(p.LOCATION_NAME ne searchView.finalLocationName)}"/>
+                    (p.LOCATION_NAME ne searchView.finalLocationName)}"/>
     <h:outputText value="#{p.LOCATION_NAME}"
                   rendered="#{(not empty p.LOCATION_NAME) and
-											(p.LOCATION_NAME ne searchView.finalLocationName)}"/>
+        (p.LOCATION_NAME ne searchView.finalLocationName)}"/>
 
 </p:column>
 
@@ -541,7 +540,7 @@
     </f:facet>
     <h:graphicImage library="img" name="warn.gif"
                     rendered="#{(not empty p.ITEM_STATUS_DESC) and
-											(p.ITEM_STATUS_DESC ne 'Not Charged') and (p.ITEM_STATUS_DESC ne 'Discharged') and (p.ITEM_STATUS_DESC ne 'Circulation Review')}"/>
+       (p.ITEM_STATUS_DESC ne 'Not Charged') and (p.ITEM_STATUS_DESC ne 'Discharged') and (p.ITEM_STATUS_DESC ne 'Circulation Review')}"/>
     <h:outputText value="#{p.ITEM_STATUS_DESC}"/>
 </p:column>
 
@@ -765,13 +764,6 @@
             <p:column headerText="Display Call. No." width="135">
                 <h:outputText value="#{c.DISPLAY_CALL_NO}"
                               rendered="#{!fn:contains(c.DISPLAY_CALL_NO, '*')}"/>
-				<!--
-                <span id="#{searchView.getReferenceLink(table2.rowIndex)}">
-									<h:link id="wrong" style="color:red"
-                                            value="#{c.DISPLAY_CALL_NO}"
-                                            rendered="#{fn:contains(c.DISPLAY_CALL_NO, '*')}"/>
-								</span>
-								-->
                 <h:outputText
                         id="wrong" style="color:red"
                 value="#{c.DISPLAY_CALL_NO}"

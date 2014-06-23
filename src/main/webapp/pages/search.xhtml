@@ -25,7 +25,7 @@
 <div style="float: right">
     <h:form id="link" styleClass="form-horizontal"
             style="align:right; background-color:#fff;
-			border: 1px solid #bbb; border-radius: 0.4em; overflow:hidden;">
+         border: 1px solid #bbb; border-radius: 0.4em; overflow:hidden;">
 
         <p:inputText id="reportId" value="#{searchView.redirect_id}"
                      size="2" styleClass="inputBox" required="true"/>
@@ -58,10 +58,10 @@
 
     <div
             style="width: 40%; padding: 8px 35px 8px 14px; margin-left: 30px; margin-bottom: 20px; text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5); background-color: #fcf8e3; border: 1px solid #fbeed5; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px;">
-				<span class="help-block"> &nbsp; <h:graphicImage
+            <span class="help-block"> &nbsp; <h:graphicImage
                         library="img" name="information.png"/> <h:outputText
                         value="#{messagesView.hashMap.get('form.search.instructions')}"/>
-				</span>
+      </span>
     </div>
 
 
@@ -94,9 +94,9 @@
                               fileLimitMessage="Uploaded file cannot exceed 100KB."
                               update="fileNameInput">
 
-							<span id="doneimg" style="display: none"> <h:graphicImage
+         <span id="doneimg" style="display: none"> <h:graphicImage
                                     id="doneimg1" library="img" name="accept.png"/>
-							</span>
+</span>
                 </p:fileUpload>
                 <h:message for="upload" style="color:red"/>
             </div>
@@ -168,7 +168,6 @@
             </div>
         </div>
 
-        <!--  submit link, causes ajax -->
         <div class="control-group" id="button_div"
              style="margin-left: 20px; margin-right: 20px; border-top: 1px solid rgb(221, 221, 221)">
             <div class="controls">
@@ -177,19 +176,18 @@
                                  style="background-color:#fff" onerror="throwErr();"
                                  action="#{searchView.process}" ajax="false"
                                  onclick="showProgressBar(); showFile();">
-                    <!-- <f:ajax event="click" execute= "@form" render="fileNameInput"/>						-->
                 </h:commandButton>
             </div>
         </div>
 
         <div class="control-group" id="button_div">
             <div class="controls">
-						<span id="loadingimg" style="display: none"> <h:graphicImage
+             <span id="loadingimg" style="display: none"> <h:graphicImage
                                 id="loadingimg" library="img" name="loading.gif"/> <span
                                 style="color: blue">Processing File : </span> <h:outputText
                                 id="fileNameInput"
                                 value="#{sessionScope['PrimeFacesUploadedFileName']}"/> . . .
-						</span>
+         </span>
             </div>
         </div>
     </div>

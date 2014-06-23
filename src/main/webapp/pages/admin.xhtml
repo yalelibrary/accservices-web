@@ -34,7 +34,7 @@
         <h:form id="AdminForm" enctype="multipart/form-data"
                 styleClass="form-horizontal"
                 style="margin:0 auto; background-color:#fff;
-			border: 1px solid #bbb; border-radius: 0.4em; overflow:hidden; min-height:600px;">
+            border: 1px solid #bbb; border-radius: 0.4em; overflow:hidden; min-height:600px;">
 
             <br/>
 
@@ -61,9 +61,9 @@
                     <p:dialog id="modalDialog" header="New User" widgetVar="dlg2"
                               modal="true" height="350" width="350" resizable="false">
                         <div class="control-group">
-							<span class="help-block"> <p:messages id="messagesAdmin"
+                            <span class="help-block"> <p:messages id="messagesAdmin"
                                                                   showDetail="true" autoUpdate="true" closable="true"/>
-							</span>
+                        </span>
                         </div>
 
                         <div class="control-group">
@@ -88,9 +88,7 @@
                             </div>
                         </div>
 
-                        <!--  onclick="dlg2.hide() was causing an error -->
-                        <!--  or is the confilct between actionListener and onclick? -->
-                        <!--  try adding a, b, c, d. removing d moves d to top, and removes a -->
+
                         <p:commandButton update="adminDatatable, messagesAdmin"
                                          value="Submit" styleClass="btn" action="#{adminView.saveAll}"
                                          actionListener="#{adminView.addInfo}">
