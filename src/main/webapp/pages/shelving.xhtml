@@ -10,228 +10,228 @@
 
 <ui:composition template="../templates/formtemplate_shelving.xhtml">
 
-<ui:define name="content">
+    <ui:define name="content">
 
-<h:outputStylesheet library="css" name="style.css"/>
-<!-- <h2>Shelving Module</h2> -->
+        <h:outputStylesheet library="css" name="style.css"/>
+        <!-- <h2>Shelving Module</h2> -->
 
-<!--  overide original change to PF css  -->
-<style type="text/css">
-    .ui-widget-header {
-        background: #fff;
-    }
-</style>
+        <!--  overide original change to PF css  -->
+        <style type="text/css">
+            .ui-widget-header {
+                background: #fff;
+            }
+        </style>
 
-<h:form id="BarcodeshelvingApplicationForm"
-        enctype="multipart/form-data" styleClass="form-horizontal"
-        style="margin:0 auto; background-color:#fff;
-        border: 1px solid #bbb; border-radius: 0.4em; overflow:hidden;">
+        <h:form id="BarcodeshelvingApplicationForm"
+                enctype="multipart/form-data" styleClass="form-horizontal"
+                style="margin:0 auto; background-color:#fff;
+                border: 1px solid #bbb; border-radius: 0.4em; overflow:hidden;">
 
-<!--  FORM -->
-&nbsp; &nbsp;
-<!--  css class -->
-<div
-        style="margin-left: 20px; margin-right: 20px; border-bottom: 1px solid rgb(221, 221, 221)">
-    <h5>Shelving</h5>
-</div>
-<br/>
-
-<div
-        style="width: 40%; padding: 8px 35px 8px 14px; margin-left: 30px; margin-bottom: 20px; text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5); background-color: #fcf8e3; border: 1px solid #fbeed5; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px;">
-               <span class="help-block"> &nbsp; <h:graphicImage
-                        library="img" name="information.png"/> <h:outputText
-                        value="#{messagesView.hashMap.get('form.shelving.instructions')}"/>
-                </span>
-</div>
-
-<div id="border_div" style="background-color: #fff">
-    <br/>
-
-    <div class="control-group" id="date_div">
-        <label class="control-label" for="scandate">Shelver </label>
-
-        <div class="controls">
-            <p:inputText id="netid" value="#{shelvingApplication.item.NETID}"
-                         style="width:5%" styleClass="inputBox" required="true">
-                <f:validateLength minimum="3" maximum="10"/>
-            </p:inputText>
-
-            <h:message for="netid" style="color:red"/>
+        <!--  FORM -->
+        &nbsp; &nbsp;
+        <!--  css class -->
+        <div
+                style="margin-left: 20px; margin-right: 20px; border-bottom: 1px solid rgb(221, 221, 221)">
+            <h5>Shelving</h5>
         </div>
-    </div>
-
-
-    <div class="control-group" id="date_div">
-        <label class="control-label" for="scandate">Shelving Date </label>
-
-        <div class="controls">
-            <p:calendar id="cal" effect="fadeIn"
-                        value="#{shelvingApplication.item.formDate}" readonlyInput="true"
-                        required="true" requiredMessage=" Date required."
-                        styleClass="inputBox" mode="popup" popupIconOnly="true"/>
-            <h:graphicImage library="img" name="calendarIcon.png"/>
-            <h:message for="cal" style="color:red"/>
-        </div>
-    </div>
-
-    <div class="control-group" id="location_div">
-        <label class="control-label" for="locCode">Location Code </label>
-
-        <div class="controls">
-            <p:selectOneMenu id="locationBox"
-                             value="#{shelvingApplication.item.SCANLOCATION}" required="true"
-                             requiredMessage=" Location required."
-                             validatorMessage="Location required!" style="width:10%;">
-                <f:selectItems value="#{shelvingApplication.locationNames}"
-                               var="loc" itemLabel="#{loc}" itemValue="#{loc}"/>
-            </p:selectOneMenu>
-            <h:message for="locationBox" style="color:red"/>
-        </div>
-    </div>
-
-    <div class="control-group" id="location_div">
-        <label class="control-label" for="locCode">Floor Code </label>
-
-        <div class="controls">
-            <p:selectOneMenu id="floorBox"
-                             value="#{shelvingApplication.item.floor}" required="true"
-                             requiredMessage=" Location required."
-                             validatorMessage="Location required!" style="width:10%;">
-                <f:selectItems value="#{shelvingApplication.floorNames}"
-                               var="loc_floor" itemLabel="#{loc_floor}" itemValue="#{loc_floor}"/>
-            </p:selectOneMenu>
-            <h:message for="floorBox" style="color:red"/>
-        </div>
-
-    </div>
-
-
-    <div class="control-group" id="oversize_div">
-        <label class="control-label" for="oversize">Oversize?</label>
-
-        <div class="controls">
-            <p:selectOneMenu id="oversiz" title="oversized"
-                             value="#{shelvingApplication.item.oversize}" required="true"
-                             requiredMessage=" Size required." style="width:10%;">
-                <f:selectItems value="#{shelvingApplication.oversizeAsList}"
-                               var="o" itemLabel="#{o}" itemValue="#{o}"/>
-            </p:selectOneMenu>
-            <h:message for="oversiz" style="color:red"/>
-        </div>
-    </div>
-</div>
-
-<div class="control-group" id="options_div">
-    <label class="control-label" for="oversize">Time Allocated
-    </label>
-
-    <div class="controls">
-        <p:inputText id="timeAllocated"
-                     value="#{shelvingApplication.item.time}" style="width:5%"
-                     styleClass="inputBox" required="true">
-            <f:validateLength minimum="1" maximum="3"/>
-        </p:inputText>
-        minutes
-        <h:message for="timeAllocated" style="color:red"/>
-    </div>
-</div>
-
-<div class="control-group" id="options_div">
-    <label class="control-label" for="oversize">Number of rows
-    </label>
-
-    <div class="controls">
-        <p:inputText id="num_rows"
-                     value="#{shelvingApplication.item.numRows}" style="width:5%"
-                     styleClass="inputBox"/>
-        <h:message for="num_rows" style="color:red"/>
-    </div>
-</div>
-
-
-<div class="control-group" id="oversize_div">
-    <label class="control-label" for="oversize">SWAT/Individual?</label>
-
-    <div class="controls">
-        <p:selectOneMenu id="group_type_team" title="team"
-                         value="#{shelvingApplication.item.team}" required="true"
-                         requiredMessage=" Team info required." style="width:7%;">
-            <f:selectItems value="#{shelvingApplication.teamAsList}" var="o"
-                           itemLabel="#{o}" itemValue="#{o}"/>
-        </p:selectOneMenu>
-        <h:inputText style="width:5%;"
-                     value="#{shelvingApplication.item.teamSize}"/>
-        member(s)
-        <h:message for="group_type_team" style="color:red"/>
-    </div>
-</div>
-
-
-<div class="control-group" id="options_div">
-    <label class="control-label" for="oversize">Notes </label>
-
-    <div class="controls">
-        <p:inputText id="notes" value="#{shelvingApplication.item.notes}"
-                     style="width:25%" styleClass="inputBox"/>
-        <h:message for="notes" style="color:red"/>
-    </div>
-</div>
-
-
-<div class="control-group" id="options_div">
-    <label class="control-label" for="oversize">Beginning
-        Barcode </label>
-
-    <div class="controls">
-        <p:inputText id="start_barcode"
-                     value="#{shelvingApplication.item.barcodeStart}"
-                     styleClass="inputBox" style="width:15%">
-        </p:inputText>
-
-        <h:message for="start_barcode" style="color:red"/>
-    </div>
-</div>
-
-<div class="control-group" id="options_div">
-    <label class="control-label" for="oversize">Ending Barcode
-    </label>
-
-    <div class="controls">
-        <p:inputText id="end_barcode"
-                     value="#{shelvingApplication.item.barcodeEnd}" size="3"
-                     styleClass="inputBox" style="width:15%">
-        </p:inputText>
-
-        <h:message for="end_barcode" style="color:red"/>
-    </div>
-</div>
-
-<!--
-<div class="control-group" id="options_div">
-    <label class="control-label" for="oversize">Misshelf items
-    </label>
-    <div class="controls">
-        <p:inputText id="misshelf_items"
-            value="#{shelvingApplication.item.timeSpent}" size="3"
-            styleClass="inputBox" />
-        <h:message for="timeAllocated" style="color:red" />
-    </div>
-</div>
--->
-
-
-<!--  submit link, causes ajax -->
-<div class="control-group" id="button_div"
-     style="margin-left: 20px; margin-right: 20px; border-top: 1px solid rgb(221, 221, 221)">
-    <div class="controls">
         <br/>
-        <p:commandButton id="submit_link" value="Submit"
-                         action="#{shelvingApplication.process}" ajax="false"> >
-        </p:commandButton>
-    </div>
-</div>
 
-</h:form>
-</ui:define>
+        <div
+                style="width: 40%; padding: 8px 35px 8px 14px; margin-left: 30px; margin-bottom: 20px; text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5); background-color: #fcf8e3; border: 1px solid #fbeed5; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px;">
+                       <span class="help-block"> &nbsp; <h:graphicImage
+                               library="img" name="information.png"/> <h:outputText
+                               value="#{messagesView.hashMap.get('form.shelving.instructions')}"/>
+                        </span>
+        </div>
+
+        <div id="border_div" style="background-color: #fff">
+            <br/>
+
+            <div class="control-group" id="date_div">
+                <label class="control-label" for="scandate">Shelver </label>
+
+                <div class="controls">
+                    <p:inputText id="netid" value="#{shelvingApplication.item.NETID}"
+                                 style="width:5%" styleClass="inputBox" required="true">
+                        <f:validateLength minimum="3" maximum="10"/>
+                    </p:inputText>
+
+                    <h:message for="netid" style="color:red"/>
+                </div>
+            </div>
+
+
+            <div class="control-group" id="date_div">
+                <label class="control-label" for="scandate">Shelving Date </label>
+
+                <div class="controls">
+                    <p:calendar id="cal" effect="fadeIn"
+                                value="#{shelvingApplication.item.formDate}" readonlyInput="true"
+                                required="true" requiredMessage=" Date required."
+                                styleClass="inputBox" mode="popup" popupIconOnly="true"/>
+                    <h:graphicImage library="img" name="calendarIcon.png"/>
+                    <h:message for="cal" style="color:red"/>
+                </div>
+            </div>
+
+            <div class="control-group" id="location_div">
+                <label class="control-label" for="locCode">Location Code </label>
+
+                <div class="controls">
+                    <p:selectOneMenu id="locationBox"
+                                     value="#{shelvingApplication.item.SCANLOCATION}" required="true"
+                                     requiredMessage=" Location required."
+                                     validatorMessage="Location required!" style="width:10%;">
+                        <f:selectItems value="#{shelvingApplication.locationNames}"
+                                       var="loc" itemLabel="#{loc}" itemValue="#{loc}"/>
+                    </p:selectOneMenu>
+                    <h:message for="locationBox" style="color:red"/>
+                </div>
+            </div>
+
+            <div class="control-group" id="location_div">
+                <label class="control-label" for="locCode">Floor Code </label>
+
+                <div class="controls">
+                    <p:selectOneMenu id="floorBox"
+                                     value="#{shelvingApplication.item.floor}" required="true"
+                                     requiredMessage=" Location required."
+                                     validatorMessage="Location required!" style="width:10%;">
+                        <f:selectItems value="#{shelvingApplication.floorNames}"
+                                       var="loc_floor" itemLabel="#{loc_floor}" itemValue="#{loc_floor}"/>
+                    </p:selectOneMenu>
+                    <h:message for="floorBox" style="color:red"/>
+                </div>
+
+            </div>
+
+
+            <div class="control-group" id="oversize_div">
+                <label class="control-label" for="oversize">Oversize?</label>
+
+                <div class="controls">
+                    <p:selectOneMenu id="oversiz" title="oversized"
+                                     value="#{shelvingApplication.item.oversize}" required="true"
+                                     requiredMessage=" Size required." style="width:10%;">
+                        <f:selectItems value="#{shelvingApplication.oversizeAsList}"
+                                       var="o" itemLabel="#{o}" itemValue="#{o}"/>
+                    </p:selectOneMenu>
+                    <h:message for="oversiz" style="color:red"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="control-group" id="options_div">
+            <label class="control-label" for="oversize">Time Allocated
+            </label>
+
+            <div class="controls">
+                <p:inputText id="timeAllocated"
+                             value="#{shelvingApplication.item.time}" style="width:5%"
+                             styleClass="inputBox" required="true">
+                    <f:validateLength minimum="1" maximum="3"/>
+                </p:inputText>
+                minutes
+                <h:message for="timeAllocated" style="color:red"/>
+            </div>
+        </div>
+
+        <div class="control-group" id="options_div">
+            <label class="control-label" for="oversize">Number of rows
+            </label>
+
+            <div class="controls">
+                <p:inputText id="num_rows"
+                             value="#{shelvingApplication.item.numRows}" style="width:5%"
+                             styleClass="inputBox"/>
+                <h:message for="num_rows" style="color:red"/>
+            </div>
+        </div>
+
+
+        <div class="control-group" id="oversize_div">
+            <label class="control-label" for="oversize">SWAT/Individual?</label>
+
+            <div class="controls">
+                <p:selectOneMenu id="group_type_team" title="team"
+                                 value="#{shelvingApplication.item.team}" required="true"
+                                 requiredMessage=" Team info required." style="width:7%;">
+                    <f:selectItems value="#{shelvingApplication.teamAsList}" var="o"
+                                   itemLabel="#{o}" itemValue="#{o}"/>
+                </p:selectOneMenu>
+                <h:inputText style="width:5%;"
+                             value="#{shelvingApplication.item.teamSize}"/>
+                member(s)
+                <h:message for="group_type_team" style="color:red"/>
+            </div>
+        </div>
+
+
+        <div class="control-group" id="options_div">
+            <label class="control-label" for="oversize">Notes </label>
+
+            <div class="controls">
+                <p:inputText id="notes" value="#{shelvingApplication.item.notes}"
+                             style="width:25%" styleClass="inputBox"/>
+                <h:message for="notes" style="color:red"/>
+            </div>
+        </div>
+
+
+        <div class="control-group" id="options_div">
+            <label class="control-label" for="oversize">Beginning
+                Barcode </label>
+
+            <div class="controls">
+                <p:inputText id="start_barcode"
+                             value="#{shelvingApplication.item.barcodeStart}"
+                             styleClass="inputBox" style="width:15%">
+                </p:inputText>
+
+                <h:message for="start_barcode" style="color:red"/>
+            </div>
+        </div>
+
+        <div class="control-group" id="options_div">
+            <label class="control-label" for="oversize">Ending Barcode
+            </label>
+
+            <div class="controls">
+                <p:inputText id="end_barcode"
+                             value="#{shelvingApplication.item.barcodeEnd}" size="3"
+                             styleClass="inputBox" style="width:15%">
+                </p:inputText>
+
+                <h:message for="end_barcode" style="color:red"/>
+            </div>
+        </div>
+
+        <!--
+        <div class="control-group" id="options_div">
+            <label class="control-label" for="oversize">Misshelf items
+            </label>
+            <div class="controls">
+                <p:inputText id="misshelf_items"
+                    value="#{shelvingApplication.item.timeSpent}" size="3"
+                    styleClass="inputBox" />
+                <h:message for="timeAllocated" style="color:red" />
+            </div>
+        </div>
+        -->
+
+
+        <!--  submit link, causes ajax -->
+        <div class="control-group" id="button_div"
+             style="margin-left: 20px; margin-right: 20px; border-top: 1px solid rgb(221, 221, 221)">
+            <div class="controls">
+                <br/>
+                <p:commandButton id="submit_link" value="Submit"
+                                 action="#{shelvingApplication.process}" ajax="false"> >
+                </p:commandButton>
+            </div>
+        </div>
+
+        </h:form>
+    </ui:define>
 </ui:composition>
 </html>
