@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="edu.yale.sml.model.MultipleLocations" table="multiple_locations" catalog="pamoja">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="primaryLocation" type="java.lang.Integer">
+            <column name="primary_location" />
+        </property>
+        <property name="allowedLocation" type="java.lang.Integer">
+            <column name="allowed_location" />
+        </property>
+    </class>
+</hibernate-mapping>
