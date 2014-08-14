@@ -154,20 +154,37 @@
                     <td style="text-align: left"><h:outputText
                             style="color:#000000; " value="Scan Location: "/> <h:outputText
                             value="#{searchView.finalLocationName}"/></td>
+
+                    <!--
                     <td style="text-align: right"><h:outputText
                             style="color:#000000; " value="Accuracy (Misshelf > 2): "/>
                         <h:outputText
                                 value="#{searchView.engine.shelvingError.misshelf_threshold_errors}"/>
+                    </td>
+                    -->
+                    <td style="text-align: right"><h:outputText
+                            style="color:#000000; " value="Misshelf Errors: "/>
+                        <h:outputText
+                                value="#{searchView.engine.shelvingError.accuracy_errors}"/>
                     </td>
                 </tr>
                 <tr>
                     <td style="text-align: left"><h:outputText
                             style="color:#000000; " value="Oversize Material: "/> <h:outputText
                             value="#{searchView.oversize}"/></td>
+
+                    <!--
                     <td style="text-align: right"><h:outputText
                             style="color:#000000; " value="Shelving (+ Loc.) Errors: "/>
                         <h:outputText
                                 value="#{searchView.engine.shelvingError.accuracy_errors}"/></td>
+                                -->
+
+                    <td style="text-align: right">
+                        <h:outputText style="color:#000000; " value="Location Errors: "/>
+                        <h:outputText value="#{searchView.engine.shelvingError.location_errors}"/>
+                    </td>
+
                 </tr>
                 <tr>
                     <td style="text-align: left"><h:outputText
@@ -404,20 +421,38 @@
             <td style="text-align: left"><h:outputText
                     style="color:#000000; " value="Scan Location: "/> <h:outputText
                     value="#{searchView.finalLocationName}"/></td>
+            <!--
             <td style="text-align: right"><h:outputText
                     style="color:#000000; " value="Accuracy (Misshelf > 2): "/>
-                <h:outputText
-                        value="#{searchView.engine.shelvingError.misshelf_threshold_errors}"/>
+                <h:outputText value="#{searchView.engine.shelvingError.misshelf_threshold_errors}"/>
             </td>
+            -->
+            <td style="text-align: right"><h:outputText
+                    style="color:#000000; " value="Misshelf Errors: "/>
+                <h:outputText value="#{searchView.engine.shelvingError.accuracy_errors}"/>
+            </td>
+
         </tr>
         <tr>
             <td style="text-align: left"><h:outputText
                     style="color:#000000; " value="Oversize Material: "/> <h:outputText
                     value="#{searchView.oversize}"/></td>
+
+            <!--
             <td style="text-align: right"><h:outputText
                     style="color:#000000; " value="Shelving (+ Loc.) Errors: "/>
                 <h:outputText
                         value="#{searchView.engine.shelvingError.accuracy_errors}"/></td>
+
+            -->
+
+
+            <td style="text-align: right"><h:outputText
+                    style="color:#000000; " value="Location Errors: "/>
+                <h:outputText
+                        value="#{searchView.engine.shelvingError.location_errors}"/></td>
+
+
         </tr>
         <tr>
             <td style="text-align: left"><h:outputText
