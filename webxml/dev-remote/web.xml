@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+88<?xml version="1.0" encoding="utf-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
@@ -29,7 +29,7 @@
         <param-name>primefaces.THEME</param-name>
         <param-value>bootstrap</param-value>
     </context-param>
-    <!-- new set time -->
+    <!-- new set time -->                                                                    delete attempt
     <context-param>
         <param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
         <param-value>true</param-value>
@@ -53,7 +53,7 @@
         </init-param>
         <init-param>
             <param-name>serverName</param-name>
-            <param-value>http://130.132.146.30:8080</param-value>
+            <param-value>130.132.119.170:8050</param-value>
         </init-param>
     </filter>
     <filter>

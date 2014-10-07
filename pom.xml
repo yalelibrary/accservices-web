@@ -121,7 +121,7 @@
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>tomcat-maven-plugin</artifactId>
                         <configuration>
-                            <url>http://130.132.146.30:8080/manager/text</url>
+                            <url>http://deleon.library.yale.edu:8050/manager/text</url>
                             <server>macmini</server>
                             <path>/shelfscan</path>
                         </configuration>
