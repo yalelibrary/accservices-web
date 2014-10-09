@@ -12,7 +12,7 @@
 
         <!-- Lucene -->
         <property name="hibernate.search.default.directory_provider">filesystem</property>
-        <property name="hibernate.search.default.indexBase">/Users/sysop/lucene/indexes</property>
+        <property name="hibernate.search.default.indexBase">/tmp/lucene/indexes</property>
 
         <mapping resource="edu/yale/sml/hbm/HistoryCatalog.hbm.xml"></mapping>
         <mapping resource="edu/yale/sml/hbm/LocationCatalog.hbm.xml"></mapping>
