@@ -112,7 +112,7 @@
         <!-- PROFILE: REMOTE /PROD BUILD (on macmini) -->
 
         <profile>
-            <id>macmini</id>
+            <id>prod</id>
             <build>
                 <plugins>
                     <!--  web app directory -->
@@ -121,7 +121,7 @@
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>tomcat-maven-plugin</artifactId>
                         <configuration>
-                            <url>http://deleon.library.yale.edu:8050/manager/text</url>
+                            <url>http://chron.library.yale.edu:8050/manager/text</url>
                             <server>macmini</server>
                             <path>/shelfscan</path>
                         </configuration>

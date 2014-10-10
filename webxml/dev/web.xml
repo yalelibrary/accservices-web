@@ -50,7 +50,7 @@
         </init-param>
         <init-param>
             <param-name>serverName</param-name>
-            <param-value>http://130.132.146.207:8080</param-value>
+            <param-value>http://130.132.146.30:8080</param-value>
         </init-param>
     </filter>
     <filter>
