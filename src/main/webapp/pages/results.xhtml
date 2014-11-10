@@ -63,7 +63,7 @@
     -->
     <div class="span2">
         <p:commandButton value="Print" type="button" icon="ui-icon-print"
-                         rendered="#{not empty searchView.engine.reportLists.reportCatalogAsList}">
+                         rendered="#{not empty searchView.engine.reportLists.culpritList}">
             <p:printer target="sorted_report_for_printing"/>
         </p:commandButton>
     </div>
@@ -72,9 +72,9 @@
 <div id="results_div">
 <div>
     <h:graphicImage library="img" name="accept.png"
-                    rendered="#{(empty searchView.engine.reportLists.reportCatalogAsList)}"/>
+                    rendered="#{(empty searchView.engine.reportLists.culpritList)}"/>
     <h:outputText value="  No errors were detected."
-                  rendered="#{empty searchView.engine.reportLists.reportCatalogAsList}"/>
+                  rendered="#{empty searchView.engine.reportLists.culpritList}"/>
 </div>
 
 <p:dialog id="suppressDialog" widgetVar="suppressDlg">
