@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+     <class name="edu.yale.sml.model.ShelvingLiveRowCount" table="ShelvingLiveRowCount" schema="dbo" catalog="">
+        <id name="floor" type="string">
+            <column name="Floor" />
+        </id>
+        <property name="trucks" type="int">
+            <column name="Trucks" length="10" />
+        </property>
+        <property name="rows" type="int">
+            <column name="Rows" length="10" />
+        </property>
+         <property name="oldestCart" type="date">
+            <column name="OldestCart" length="50" />
+        </property>
+         <property name="newRows" type="int">
+             <column name="NewRows" length="50" />
+         </property>
+         <property name="oldestCartDated" type="date">
+             <column name="OldestCartDated" length="50" />
+         </property>
+         <property name="lastUpdateTimeStamp" type="date">
+             <column name="LastUpdateTimeStamp" length="50" />
+         </property>
+         <property name="lastUpdateSystem" type="string">
+             <column name="LastUpdateSystem" length="50" />
+         </property>
+    </class>
+
+</hibernate-mapping>

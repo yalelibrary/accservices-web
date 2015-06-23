@@ -74,6 +74,19 @@
                 </div>
             </div>
 
+            <div class="control-group" id="date_div">
+                <label class="control-label" for="scandate">Oldest Cart Date</label>
+
+                <div class="controls">
+                    <p:calendar id="oldcartdate" effect="fadeIn"
+                                value="#{shelvingApplication.item.oldestCartDate}" readonlyInput="true"
+                                required="true" requiredMessage=" Date required."
+                                styleClass="inputBox" mode="popup" popupIconOnly="true"/>
+                    <h:graphicImage library="img" name="calendarIcon.png"/>
+                    <h:message for="oldcartdate" style="color:red"/>
+                </div>
+            </div>
+
             <div class="control-group" id="location_div">
                 <label class="control-label" for="locCode">Location Code </label>
 
