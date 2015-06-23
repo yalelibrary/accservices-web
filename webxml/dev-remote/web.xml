@@ -2,7 +2,7 @@
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
-    <display-name>ShelfScan</display-name>
+    <display-name>ShelfScan-TEST-TEST</display-name>
     <context-param>
         <param-name>facelets.LIBRARIES</param-name>
         <param-value>/WEB-INF/corejsf.taglib.xml</param-value>
@@ -53,7 +53,7 @@
         </init-param>
         <init-param>
             <param-name>serverName</param-name>
-            <param-value>http://130.132.119.170:8050</param-value>
+            <param-value>http://130.132.146.30:8080</param-value>
         </init-param>
     </filter>
     <filter>
