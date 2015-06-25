@@ -5,7 +5,7 @@
 <hibernate-mapping>
      <class name="edu.yale.sml.model.ShelvingLiveRowCount" table="ShelvingLiveRowCount" schema="dbo" catalog="">
         <id name="floor" type="string">
-            <column name="Floor" />
+            <column name="Floor" length="10" />
         </id>
         <property name="trucks" type="int">
             <column name="Trucks" length="10" />
