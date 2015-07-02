@@ -10,9 +10,7 @@
         <property name="trucks" type="int">
             <column name="Trucks" length="10"/>
         </property>
-        <property name="rows" type="int">
-            <column name="Rows" length="10"/>
-        </property>
+        <property name="rows" column="Rows"/>
         <property name="oldestCart" column="OldestCart"/>
 
         <property name="newRows" type="int">
