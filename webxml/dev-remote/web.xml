@@ -52,8 +52,10 @@
             <param-value>https://secure.its.yale.edu/cas/login</param-value>
         </init-param>
         <init-param>
+	    <!-- change dev/prod here -->
             <param-name>serverName</param-name>
-            <param-value>http://130.132.146.30:8080</param-value>
+            <!-- <param-value>http://130.132.146.30:8080</param-value> -->
+            <param-value>http://130.132.119.170:8050</param-value>
         </init-param>
     </filter>
     <filter>
