@@ -79,8 +79,6 @@
         <filter-name>DBCheckFilter</filter-name>
         <filter-class>edu.yale.sml.servlet.DBCheckFilter</filter-class>
     </filter>
-
-
     <!-- end of cas and custom auth filter admin filter to admin, locations,
         history -->
     <filter>
@@ -99,45 +97,26 @@
         <filter-name>CAS Checked Filter</filter-name>
         <url-pattern>/pages/index.xhtml</url-pattern>
     </filter-mapping>
-
     <filter-mapping>
         <filter-name>Netid Auth Filter</filter-name>
-        <url-pattern>/pages/search.xhtml</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>Netid Auth Filter</filter-name>
-        <url-pattern>/pages/historytable.xhtml</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>Netid Auth Filter</filter-name>
+        <url-pattern>/pages/locations.xhtml</url-pattern>
         <url-pattern>/pages/admin.xhtml</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>Netid Auth Filter</filter-name>
         <url-pattern>/pages/settings.xhtml</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>Netid Auth Filter</filter-name>
-        <url-pattern>/pages/locations.xhtml</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>DBCheckFilter</filter-name>
-        <url-pattern>/pages/locations.xhtml</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>DBCheckFilter</filter-name>
-        <url-pattern>/pages/search.xhtml</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>DBCheckFilter</filter-name>
+        <url-pattern>/pages/historytable.xhtml</url-pattern>
         <url-pattern>/pages/files.xhtml</url-pattern>
+        <url-pattern>/pages/logs.xhtml</url-pattern>
+        <url-pattern>/pages/floors.xhtml</url-pattern>
+        <url-pattern>/pages/advanced_search.xhtml</url-pattern>
+        <url-pattern>/pages/delete_options.xhtml</url-pattern>
+        <url-pattern>/pages/results.xhtml</url-pattern>
+        <url-pattern>/pages/remove.xhtml</url-pattern>
     </filter-mapping>
     <filter-mapping>
         <filter-name>DBCheckFilter</filter-name>
+        <url-pattern>/pages/locations.xhtml</url-pattern>
+        <url-pattern>/pages/search.xhtml</url-pattern>
+        <url-pattern>/pages/files.xhtml</url-pattern>
         <url-pattern>/pages/settings.xhtml</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>DBCheckFilter</filter-name>
         <url-pattern>/pages/results.xhtml</url-pattern>
     </filter-mapping>
     <filter-mapping>
