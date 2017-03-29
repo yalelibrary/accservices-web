@@ -7,14 +7,6 @@
     <artifactId>shelfscan-dev-war</artifactId>
     <packaging>war</packaging>
     <description>Bass Shelf Scan Application</description>
-    <distributionManagement>
-        <snapshotRepository>
-            <id>snappy</id>
-            <name>Maven2 Snapshot Repository</name>
-            <url>http://130.132.146.30:8081/nexus/content/repositories/snapshots</url>
-            <uniqueVersion>true</uniqueVersion>
-        </snapshotRepository>
-    </distributionManagement>
     <dependencies>
         <dependency>
             <groupId>edu.yale.sml</groupId>
