@@ -198,16 +198,16 @@
                 </tr>
                 <tr>
                     <!--
-                    <td style="text-align: left">Page: http://chron.library.yale.edu:8080/shelfscan/#{view.viewId}?id=
+                    <td style="text-align: left">Page: /shelfscan/#{view.viewId}?id=
                     <h:outputText value="#{param['id']}"/><h:outputText value="#{flash['initId']}" rendered="#{empty param['id']}" /></td>
                     -->
 
                     <td style="text-align: left">
                         <h:outputText
-                                value="Page: http://chron.library.yale.edu:8050/shelfscan/#{view.viewId}?id=#{param['id']}"
+                                value="Page: /shelfscan/#{view.viewId}?id=#{param['id']}"
                                 rendered="#{not empty param['id']}"/>
                         <h:outputText
-                                value="Page: http://chron.library.yale.edu:8050/shelfscan/#{view.viewId}?id=#{flash['initId']}"
+                                value="Page: /shelfscan/#{view.viewId}?id=#{flash['initId']}"
                                 rendered="#{empty param['id']}"/>
                     </td>
 
@@ -467,10 +467,10 @@
         <tr>
             <td style="text-align: left">
                 <h:outputText
-                        value="Page: http://chron.library.yale.edu:8050/shelfscan/#{view.viewId}?id=#{param['id']}"
+                        value="Page: /shelfscan/#{view.viewId}?id=#{param['id']}"
                         rendered="#{not empty param['id']}"/>
                 <h:outputText
-                        value="Page: http://chron.library.yale.edu:8050/shelfscan/#{view.viewId}?id=#{flash['initId']}"
+                        value="Page: /shelfscan/#{view.viewId}?id=#{flash['initId']}"
                         rendered="#{empty param['id']}"/>
             </td>
             <td style="text-align: right"><h:outputLink id="sup"
