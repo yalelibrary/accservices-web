@@ -268,8 +268,12 @@
         <h:outputText value="Call Number"
                       style="#{msgs.column_header_font}"/>
     </f:facet>
+    <!-- Yue Ji changed from input text to input textarea in order to add word wrap for long call number to be display in full on 11/28/2019 10:55AM
     <h:outputText
             value="#{d.DISPLAY_CALL_NO.replace('REPEAT', '').replace('*','')}"/>
+    -->
+    <h:inputTextarea style="word-wrap:normal; border-style:none; border-color:Transparent; overflow:auto;" value="#{d.DISPLAY_CALL_NO.replace('REPEAT', '').replace('*','')}" />
+    
 </p:column>
 <p:column rendered="true">
     <f:facet name="header">
@@ -357,7 +361,10 @@
         <h:outputText value="Preceding"
                       style="#{msgs.column_header_font}"/>
     </f:facet>
+    <!-- Yue Ji changed from input text to input textarea in order to add word wrap for long call number to be display in full on 11/28/2019 10:55AM
     <h:outputText value="#{d.priorPhysical}"/>
+    -->
+    <h:inputTextarea style="word-wrap:normal; border-style:none; border-color:Transparent; overflow:auto;" value="#{d.priorPhysical}" />
 </p:column>
 <p:column rendered="true">
     <f:facet name="header">
