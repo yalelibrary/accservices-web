@@ -257,7 +257,7 @@
         <h:outputText value="Barcode"
                       style="#{msgs.column_header_font}"/>
     </f:facet>
-    <h:graphicImage library="img" name="warn.gif"
+    <h:graphicImage library="img" name="warn.gif" style="width:8px;heith:8px;"
                     rendered="#{d.DISPLAY_CALL_NO.contains('REPEAT')}"/>
     <h:outputText style="color:#000000;" value="#{d.ITEM_BARCODE}"/>
 </p:column>
@@ -268,8 +268,12 @@
         <h:outputText value="Call Number"
                       style="#{msgs.column_header_font}"/>
     </f:facet>
+    <!-- Yue Ji changed from input text to input textarea in order to add word wrap for long call number to be display in full on 11/28/2019 10:55AM
     <h:outputText
             value="#{d.DISPLAY_CALL_NO.replace('REPEAT', '').replace('*','')}"/>
+    -->
+    <h:inputTextarea style="word-wrap:normal; border-style:none; border-color:Transparent; overflow:auto;" value="#{d.DISPLAY_CALL_NO.replace('REPEAT', '').replace('*','')}" />
+    
 </p:column>
 <p:column rendered="true">
     <f:facet name="header">
@@ -304,14 +308,14 @@
     What if an item has no perm_location in Orbis?  -->
 
     <!--
-    <h:graphicImage library="img" name="warn.gif"
+    <h:graphicImage library="img" name="warn.gif" style="width:8px;heith:8px;"
                     rendered="#{(not empty d.LOCATION_NAME) and (d.LOCATION_NAME ne searchView.finalLocationName)}"/>
     <h:outputText value="#{d.LOCATION_NAME}"
                   rendered="#{(not empty d.LOCATION_NAME) and(d.LOCATION_NAME ne searchView.finalLocationName)}"/>
       -->
 
 
-    <h:graphicImage library="img" name="warn.gif"
+    <h:graphicImage library="img" name="warn.gif" style="width:8px;heith:8px;"
                     rendered="#{(not empty d.LOCATION_NAME) and
                         searchView.isLocationError(d.LOCATION_NAME, searchView.finalLocationName)}"/>
     <h:outputText value="#{d.LOCATION_NAME}"
@@ -324,7 +328,7 @@
     <f:facet name="header">
         <h:outputText value="Status" style="#{msgs.column_header_font}"/>
     </f:facet>
-    <h:graphicImage library="img" name="warn.gif"
+    <h:graphicImage library="img" name="warn.gif" style="width:8px;heith:8px;"
                     rendered="#{(not empty d.ITEM_STATUS_DESC) and
             (d.ITEM_STATUS_DESC ne 'Not Charged') and (d.ITEM_STATUS_DESC ne 'Discharged') and (d.ITEM_STATUS_DESC ne 'Circulation Review')
             and (d.ITEM_STATUS_DESC ne 'Discharged')}"/>
@@ -337,7 +341,7 @@
         <h:outputText value="SizeErr"
                       style="#{msgs.column_header_font}"/>
     </f:facet>
-    <h:graphicImage library="img" name="warn.gif"
+    <h:graphicImage library="img" name="warn.gif" style="width:8px;heith:8px;"
                     rendered="#{(searchView.oversize != 'Intermixed') and d.OVERSIZE ne searchView.oversize}"/>
 </p:column>
 <!--  MISSHELF DIFF -->
@@ -357,7 +361,10 @@
         <h:outputText value="Preceding"
                       style="#{msgs.column_header_font}"/>
     </f:facet>
+    <!-- Yue Ji changed from input text to input textarea in order to add word wrap for long call number to be display in full on 11/28/2019 10:55AM
     <h:outputText value="#{d.priorPhysical}"/>
+    -->
+    <h:inputTextarea style="word-wrap:normal; border-style:none; border-color:Transparent; overflow:auto;" value="#{d.priorPhysical}" />
 </p:column>
 <p:column rendered="true">
     <f:facet name="header">
@@ -527,7 +534,7 @@
         <h:outputText value="Barcode"
                       style="#{msgs.column_header_font}"/>
     </f:facet>
-    <h:graphicImage library="img" name="warn.gif"
+    <h:graphicImage library="img" name="warn.gif" style="width:8px;heith:8px;"
                     rendered="#{p.DISPLAY_CALL_NO.contains('REPEAT')}"/>
     <h:outputText style="color:#000000;" value="#{p.ITEM_BARCODE}"/>
 </p:column>
@@ -578,7 +585,7 @@
 
 
     <!--
-     <h:graphicImage library="img" name="warn.gif"
+     <h:graphicImage library="img" name="warn.gif" style="width:8px;heith:8px;"
                     rendered="#{(not empty p.LOCATION_NAME) and
                     (p.LOCATION_NAME ne searchView.finalLocationName)}"/>
     <h:outputText value="#{p.LOCATION_NAME}"
@@ -587,7 +594,7 @@
 
         -->
 
-    <h:graphicImage library="img" name="warn.gif"
+    <h:graphicImage library="img" name="warn.gif" style="width:8px;heith:8px;"
                     rendered="#{(not empty p.LOCATION_NAME) and
                         searchView.isLocationError(p.LOCATION_NAME, searchView.finalLocationName)}"/>
     <h:outputText value="#{p.LOCATION_NAME}"
@@ -600,7 +607,7 @@
     <f:facet name="header">
         <h:outputText value="Status" style="#{msgs.column_header_font}"/>
     </f:facet>
-    <h:graphicImage library="img" name="warn.gif"
+    <h:graphicImage library="img" name="warn.gif" style="width:8px;heith:8px;"
                     rendered="#{(not empty p.ITEM_STATUS_DESC) and
            (p.ITEM_STATUS_DESC ne 'Not Charged') and (p.ITEM_STATUS_DESC ne 'Discharged') and (p.ITEM_STATUS_DESC ne 'Circulation Review')}"/>
     <h:outputText value="#{p.ITEM_STATUS_DESC}"/>
@@ -612,7 +619,7 @@
         <h:outputText value="SizeErr"
                       style="#{msgs.column_header_font}"/>
     </f:facet>
-    <h:graphicImage library="img" name="warn.gif"
+    <h:graphicImage library="img" name="warn.gif" style="width:8px;heith:8px;"
                     rendered="#{(searchView.oversize != 'Intermixed') and p.OVERSIZE ne searchView.oversize}"/>
 </p:column>
 <p:column rendered="true">
